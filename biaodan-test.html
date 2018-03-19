@@ -7,10 +7,14 @@
 <body>
 	<form action="www.kauzhu.com">
      <p>
-       用户名：<input type="text" name="username" value="text">
+      	用户名：<input type="text" name="username" value="text" list="name" >
+   <datalist id="name">   	
+       <option>tom</option>
+       <option >mike</option>
+   </datalist>
      </p>
 	 <p>
-	 	密码：<input type="password" name="password" value="text">
+	 	密码：<input type="password" name="password" >
 	 </p>
 	 <p>
 	 	性别：<input type="radio" name="sex" value="0" checked>男
@@ -18,10 +22,34 @@
 	 	      <input type="radio" name="sex" value="2">你猜
 	 </p>
 	 <p>
-	 	爱好：<input type="checkbox" name="special" value="habbit" checked>电影
-	 	      <input type="checkbox" name="special" value="habbit">大保健
-	 	      <input type="checkbox" name="special" value="habbit">一本道
-	 	      <input type="checkbox" name="special" value="habbit">千刀斩
+	 	爱好：<input type="checkbox" name="special" value="habbit1" checked>电影
+	 	      <input type="checkbox" name="special" value="habbit2">大保健
+	 	      <input type="checkbox" name="special" value="habbit3">一本道
+	 	      <input type="checkbox" name="special" value="habbit4">千刀斩
+	 </p>
+	 <p>
+	 	个人首页：<input type="url" name="url" value='www.xqc.com'>
+	 </p>
+	 <p>
+	 	邮箱地址：<input type="email" name="email" value="123@qq.com">
+	 </p>
+	 <p>
+	 	 <input type="button" name="button" value="click">
+	 	 <input type="submit" value="注册">
+	 	 <input type="image" name="picture" src="http://img.mp.itc.cn/upload/20161028/c8b80de5906044328280b82ee94e51d3_th.png">	
+	 	 <input type="reset" name="reset" value="清空">
+	 </p>
+	 <p>
+	 	时间:<input type="date" name="daytime" >
+	 	选择颜色：<input type="color" name="color">
+	 </p>
+	 <p>
+	 	<label for="address1">住址：<input type="address" name="address" id="address1"></label>
+	 	<select name="address" >
+	 		<optgroup label="厉害吧">
+	 			<option>北极</option>
+	 		</optgroup>
+	 	</select>
 	 </p>
 	</form>
 </body>
