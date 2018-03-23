@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>属性选择器</title>
+	<style >
+		[title |=wo]{color: pink}
+		[title ^= wo]{color: yellow}
+	</style>
+</head>
+<body>
+	<a href="#" >la</a>
+	<a href="#" title="wo">la1</a>
+	<a href="#" title="wo ai">la2</a>
+	<a href="#" title="wo-ai">la3</a>
+	<a href="#" title="wo.ai">la4</a>
+	<a href="#" title="">la5</a>
+	<a href="#" title="">la6</a>
+	<a href="#" title="">la7</a>
+</body>
+</html>
