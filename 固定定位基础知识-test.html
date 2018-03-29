@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>固定定位基础知识练习</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+		.father{
+			width: 200px;
+			height: 2000px;
+			background-color: red;
+			margin: 0 auto;
+			/*position: relative;
+			position: absolute;
+			left: 100px;*/
+			padding: 20px;
+			border: 20px blue solid;
+
+		}
+		.son{
+			width: 100px;
+			height: 100px;
+            background-color: black;
+            position: fixed;
+            /*bottom: 0;
+            left: 0;*/
+            z-index: 1;
+
+		}
+		.son2{
+			width: 200px;
+			height: 200px;
+		background-color: gold;
+		position: fixed;
+		}
+	</style>
+</head>
+<body>
+	<div class="father">
+		<div class="son"></div>
+		<div class="son2"></div>
+	</div>
+</body>
+</html>
