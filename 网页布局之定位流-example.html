@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网页布局之定位流-example</title>
+	<style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+		header{
+			width:1000px;
+			height: 40px;
+			background-color: #808080;
+			margin: 20px auto;
+			position: fixed;
+		}
+		
+		li{
+			width: 200px;
+			list-style:none;
+			line-height: 40px;
+			float: left;
+			text-align:center;
+		}
+		
+		li.c{
+			 background-color:#ff0000;
+			 position: relative;
+		}
+		li.c img{
+			position:absolute;
+			left: 75px;
+			top: -20px;
+		}
+		section{
+			width: 1364px;
+			height: 443px;
+			margin: 22px auto;
+		    position: relative;
+		}
+		section .s2{
+			width: 835px;
+			height:443px;
+			background-image: url(C:/Users/xc/Desktop/01-Web1801/03-css/images/2_03.png); 
+			background-repeat: no-repeat;
+			margin: 0 auto;
+		}
+		section .s1{
+			background-color: red;
+			width: 104px;
+			height: 202px;
+			position: fixed;
+			left: 0px;
+			top: 202px;
+			
+		}
+		section .s3{
+			background-color: red;
+			width: 104px;
+			height: 202px;
+			position: fixed;
+			right: 0;
+			top: 202px;
+		}
+	    footer .content{
+	    	margin: 79px auto;
+	    	width: 1002px;
+	    	height:185px;
+	    	background-color: blue;
+	    }
+	    footer .bottom{
+	    	width: 78px;
+	    	height: 78px;
+	    	background-color: gray;
+	    	position: fixed;
+	    	bottom: 0;
+	    	right:0;
+	    	line-height: 78px;
+	    	text-align: center;
+	    }
+	</style>
+</head>
+<body>
+	<header>
+		
+			<ul>
+			  <li class="a">天猫会员</li>
+			  <li class="b">品牌街</li>
+			  <li class="c">电器城 <img src="C:/Users/xc/Desktop/01-Web1801/03-css/images/11_02.png"></li>
+			  <li class="d">营业厅</li>
+			  <li class="e">魅力惠</li>
+			</ul>
+		
+	</header>
+	<section>
+		<div class="s1"></div>
+		<div class="s2"></div>
+		<div class="s3"></div>
+	</section>
+	<footer>
+		<div class="content">我是内容</div>
+        <div class="bottom"><a href="#">返回顶部</a></div> 
+	</footer>
+</body>
+</html>
