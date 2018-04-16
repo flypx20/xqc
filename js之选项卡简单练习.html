@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js选项卡简单练习</title>
+	<style>
+		div{
+			width: 200px;
+			height: 200px;
+			display: none;
+			border: 2px #ccc solid;
+		}
+		.active{
+			background-color:gold;
+		}
+	</style>
+	<script>
+		window.onload=function () {
+		    var btn = document.getElementsByTagName('input');
+		    var box =document.getElementsByTagName('div');
+		    for(var i=0;i<btn.length;i++){
+		    	btn[i].index=i;
+		    	btn[i].onclick=function(){
+		    		for(var i=0;i<btn.length;i++){
+		    			btn[i].className='';
+		    			box[i].style.display='none'
+		    		}
+		    		this.className='active';
+		    		box[this.index].style.display='block';
+		    
+		    	}
+		    }
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="我是1" class="active">
+	<input type="button" value="我是2">
+	<input type="button" value="我是3">
+	<input type="button" value="我是4">
+	<div style="display: block;">1</div>
+	<div>22</div>
+	<div>333</div>
+	<div>4444</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js的顺序结构语法</title>
+	<style>
+		input{
+			width: 200px;
+			height: 100px;
+		}
+		div{
+			width: 100px;
+			height: 200px;
+			background: red;
+		}
+
+	</style>
+	<script>
+		window.onload= function () {
+			var oColor=document.getElementById('inputer');
+			var xqc=document.getElementById('box').style;
+			oColor.onclick =function(){
+                alert("你今天是真的帅，帅的没卵子用")
+                 if (xqc.background=='red') {
+                 	xqc.background='blue';
+                 }
+                 else{
+                 	xqc.background='red';
+                 }
+			}
+			
+		}
+	</script>
+</head>
+<body>
+     <input type="button" value="点我试试看" id="inputer">
+     <div id="box"></div>	
+</body>
+</html>

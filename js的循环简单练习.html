@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js循环之简单练习</title>
+	<script type="text/javascript">
+		window.onload= function () {
+			var Btn1  = document.getElementById('btn1');
+			var Btn2  = document.getElementById('btn2');
+			var Btn3  = document.getElementById('btn3');
+			var Chk  = document.getElementById('chk');
+			var checkbox = Chk.getElementsByTagName('input')
+			Btn1.onclick = function (){
+				for ( i = 0 ;i<checkbox.length; i++){
+					checkbox[i].checked=true;
+				}
+			};
+            Btn2.onclick = function(){
+            	for (i=0 ; i<checkbox.length;i++){
+            		checkbox[i].checked=false;
+            	}
+            };
+            Btn3.onclick = function(){
+            	for (i=0 ; i<checkbox.length;i++){
+            		if (checkbox[i].checked==true) {
+            			checkbox[i].checked=false
+            		}
+            		else{
+            			checkbox[i].checked=true
+            		}
+                 }                      
+	            	       
+	         }
+	       }
+	</script>
+</head>
+<body>
+	<input type="button" value="全选" id="btn1">
+	<input type="button" value="全不选" id="btn2">
+	<input type="button" value="反选" id="btn3"><br>
+	<div id="chk">
+	<input type="checkbox"><br>
+	<input type="checkbox"><br>
+	<input type="checkbox"><br>
+	<input type="checkbox"><br>
+	<input type="checkbox"><br>
+	<input type="checkbox"><br>
+	<input type="checkbox"><br>
+	<input type="checkbox"><br>
+	<input type="checkbox"><br>
+	<input type="checkbox">
+	</div>
+</html>
