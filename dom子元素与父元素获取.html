@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dom子元素与父元素获取</title>
+	<style>
+		#box1{
+			width: 300px;
+			height: 300px;
+			margin: 0 auto;
+			background:red;
+		}
+		#box2{
+			width: 100px;
+			height: 100px;
+			margin: 0 auto;
+			background: gold;
+		}
+
+	</style>
+	<script>
+		window.onload= function () {
+		      var obox2= parentElementById('box1')
+		      obox2.onclick=function(){
+		      	obox1.style.background='blue';
+		      }
+		}
+		window.onload=function(){
+			var node =document.getElementByTagName('div')
+		}
+		console.log(node);
+	</script>
+</head>
+<body>
+	<div id="box1">
+		<div id="box2"></div>
+	</div>
+	<html>
+    <body>
+        <p id="p1">Hello World!</p>
+        <script>
+            document.getElementById("p1").innerHTML="New text!";
+            //内容变更为new text
+            document.getElementById("p1").style.color="blue";
+            //蓝色
+        </script>
+    </body>
+</html>
+</body>
+</html>

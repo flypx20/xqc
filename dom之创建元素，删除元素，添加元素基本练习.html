@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dom之创建元素，删除元素，添加元素基本练习</title>
+	<script>
+		window.onload = function () {
+            var otab = document.getElementById('tab1');
+            var thiscolor = '';
+            for (var i = 0; i < otab.tBodies[0].rows.length; i++) {
+                otab.tBodies[0].rows[i].onmouseover = function () {
+                    thiscolor = this.style.background;
+                    this.style.background = '#00FFFF';
+                };
+                otab.tBodies[0].rows[i].onmouseout = function () {
+                    this.style.background = thiscolor;
+                };
+                if (i % 2) {
+                    otab.tBodies[0].rows[i].style.background = '';
+                }
+                else {
+                    otab.tBodies[0].rows[i].style.background = '#FFFF00';
+                }
+            }
+        };
+	</script>
+</head>
+<body>
+	<table id="tab1" border="1" style="text-align: center; width: 500px; margin: 200px auto">
+        <thead>
+            <tr style="background-color: #FF0000">
+                <td>
+                    种族名称
+                </td>
+                <td>
+                    种族简称
+                </td>
+                <td>
+                    英雄
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    人类联盟
+                </td>
+                <td>
+                    HUM
+                </td>
+                <td>
+                    代表性英雄：AM
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    兽人部落
+                </td>
+                <td>
+                    ORC
+                </td>
+                <td>
+                    代表性英雄：BM
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    不死亡灵
+                </td>
+                <td>
+                    UD
+                </td>
+                <td>
+                    代表性英雄：DK
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    暗夜精灵
+                </td>
+                <td>
+                    NE
+                </td>
+                <td>
+                    代表性英雄：DH
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js之数组排序</title>
+	<script>
+		var arry = [1 ,4,-3,90,11,44]
+		function compare(n1,n2){
+			return n1-n2;
+		};
+		arry.sort(compare);
+		document.write(arry);
+		function arrMaxtoMin(arry){
+			var arryNew =[];
+			var arryOld =arry.slice(0);
+			for(var i=0;i<arry.length;i++){
+				arryNew.push(arryMaxNum(arryOld).maxNum);
+				arryOld.splice(arryMaxNum(arryOld).index,1);
+			};
+			document.write(arry);
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

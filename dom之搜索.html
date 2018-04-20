@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dom之搜索</title>
+	<script>
+		
+window.onload=function ()  
+    {  
+        var oTab=document.getElementById('tab1');  
+        var oBtn=document.getElementById('btn1');  
+        var oTxt=document.getElementById('name');  
+      
+        oBtn.onclick=function ()  
+        {  
+            for(var i=0;i<oTab.tBodies[0].rows.length;i++)  
+            {  
+                if(oTab.tBodies[0].rows[i].cells[1].innerHTML==oTxt.value)  
+                {  
+                oTab.tBodies[0].rows[i].style.background='yellow';  
+                }  
+                else  
+                {  
+                    oTab.tBodies[0].rows[i].style.background='';  
+                }  
+            }  
+          
+          
+        };  
+          
+          
+    };  
+
+	</script>
+</head>
+<body>
+	姓名：<input id="name" type="text"/>  
+<input  id="btn1" type="button" value="搜索"/>  
+<table id="tab1" border="1" width="500">  
+    <thead>  
+        <td>ID</td>  
+        <td>姓名</td>  
+        <td>年龄</td>  
+    </thead>  
+  
+    <tbody>  
+    <tr>  <td>1</td>  
+        <td>Xuan</td>  
+        <td>23</td>  
+    </tr>  
+  
+    <tr>  <td>2</td>  
+        <td>XXX</td>  
+        <td>25</td>  
+    </tr>  
+  
+    <tr>  <td>3</td>  
+        <td>SSS</td>  
+        <td>24</td>  
+    </tr>  
+  
+    <tr>  <td>4</td>  
+        <td>李四</td>  
+        <td>26</td>  
+    </tr>  
+  
+    <tr>  <td>5</td>  
+        <td>王五</td>  
+        <td>29</td>  
+    </tr>  
+    <tr>  <td>6</td>  
+        <td>牛皮</td>  
+        <td>29</td>  
+    </tr>  
+    <tr>  <td>7</td>  
+        <td>赵四</td>  
+        <td>29</td>  
+    </tr>  
+    <tr>  <td>8</td>  
+        <td>张闯</td>  
+        <td>29</td>  
+    </tr>  
+    <tr>  <td>9</td>  
+        <td>王五</td>  
+        <td>29</td>  
+    </tr>  
+    <tr>  <td>10</td>  
+        <td>王五</td>  
+        <td>29</td>  
+    </tr>  
+    </tbody>  
+</table>  
+</body>
+</html>

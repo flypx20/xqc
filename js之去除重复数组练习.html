@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js之去除重复数组练习</title>
+	<script>
+		var arr=[11,2,33,44,44,55,56,55,7]
+	function unique(arr){
+ 2         var len = arr.length;
+ 3         var result = []
+ 4         for(var i=0;i<len;i++){
+ 5             var flag = true;
+ 6             for(var j = i;j<arr.length-1;j++){
+ 7                 if(arr[i]==arr[j+1]){
+ 8                     flag = false;
+ 9                     break;
+10                 }
+11             }
+12             if(flag){
+13                 result.push(arr[i])
+14             }
+15         }
+16         return result;
+17     }
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
