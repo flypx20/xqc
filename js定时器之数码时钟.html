@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js定时器之数码时钟</title>
+     <style>
+     	body{
+     		background-color: #000;
+     		font-size: 40px;
+     		color: white;
+     	}
+     </style>
+     <script>
+     	function tostr(n){
+     		if (n<10) {
+     			return '0'+n;
+     		}else{
+     			return ''+n;
+     		}
+     	}
+     	window.onload=function () {
+     		var oimg= document.getElementsByTagName('img');
+     		function time(){
+     			var now = new Date();
+     			var str = tostr(now.getHours())+tostr(now.getMinutes())+tostr(now.getSeconds());
+     			for( var i=0;i<oimg.length;i++){
+     			oimg[i].src='images/'+str.charAt(i)+'.png';
+
+     		}
+     		
+     		}
+     		setInterval(time,1000);
+     		time();
+     	}
+     	
+     </script>
+</head>
+<body>
+	<img src="images/1.png" alt="">
+	<img src="images/0.png" alt="">
+	:
+	<img src="images/3.png" alt="">
+	<img src="images/9.png" alt="">
+	:
+	<img src="images/4.png" alt="">
+	<img src="images/5.png" alt="">
+</body>
+</html>

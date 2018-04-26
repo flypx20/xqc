@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>evnet案例之鼠标移动物体</title>
+	<script>
+		 window.onload = function(){
+              var oDiv = document.getElementById('div');
+             document.onmousemove = function(ev){
+             	var oEven = ev || event;
+               	oDiv.style.left = oEven.clientX+'px';
+               	oDiv.style.top = oEven.clientY+'px';
+               }
+		 }
+	</script>
+</head>
+<body>
+	<div style="width: 100px;height: 100px;background: red;position: absolute;" id="div"></div>
+</body>
+</html>

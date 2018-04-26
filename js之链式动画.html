@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js之链式动画</title>
+	<style>
+		div{
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+	<script>
+		function startMove(obj, attr, iTarget, fn) { //添加一个回调函数fn
+  clearInterval(obj.timer); 
+  obj.timer = setInterval(function () { 
+    var icur = null;
+    //1.判断类型
+    if (attr == 'opacity') {
+      icur = Math.round(parseFloat(getStyle(obj, attr)) * 100);
+    } else {
+      icur = parseInt(getStyle(obj, attr));
+    }    //2.算速度
+
+    var speed = (iTarget - icur) / 8;
+    speed = speed > 0 ? Math.ceil(speed)  : Math.floor(speed);
+    //3.检测停止
+    if (icur == iTarget) {
+      clearInterval(obj.timer);
+      if (fn) { //判断是否存在回调函数,并调用
+        fn();
+      }
+    } else {
+      if (attr == 'opacity') {
+        obj.style.filter = 'alpha(opacity:' + (icur + speed) + ')';
+        obj.style.opacity = (icur + speed) / 100;
+      } else {
+        obj.style[attr] = icur + speed + 'px';
+      }
+    }
+  }, 30);
+}
+function getStyle(obj, attr) {
+  if (obj.currentStyle) {
+    return obj.currentStyle[attr];
+  } else {
+    return getComputedStyle(obj, false) [attr];
+  }
+}
+        window.onload=function(){
+        	var Li=document.getElementById("div");
+             Li.onmouseover=function(){
+                startMove(Li,"width",400,function(){
+                   startMove(Li,"height",400,function(){
+                     startMove(Li,"opacity",30);
+                });
+            });
+        }
+             Li.onmouseout=function(){
+            startMove(Li,"opacity",100,function(){
+                startMove(Li,"height",100,function(){
+                    startMove(Li,"width",100);
+                });
+            });
+        }
+         }
+
+
+
+	</script>
+</head>
+<body>
+	<div id="div"></div>
+</body>
+</html>

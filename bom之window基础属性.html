@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bom之window基础属性</title>
+	<script>
+		window.onload = function () {
+			var oBtn1 = document.getElementById('btn1');
+			var oBtn2 = document.getElementById('btn2');
+			var oWin = window.open("about:blank");
+            var val = oBtn2.value
+			oBtn1.onclick = function(){
+				oWin.document.write(val);
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<input type="button" id="btn1" value="新建窗口">
+	<input type="text" id="btn2" value="">
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dom 之排序简单练习</title>
+	<script>
+		window.onload=function(){
+			var obtn = document.getElementById('btn');
+			var ouli = document.getElementById('uli');
+			var ali = ouli.children;
+			obtn.onclick = function(){
+				var arr = [];
+				for(var i=0;i<ali.length;i++){
+                    arr.push(ali[i]); 
+				}
+				arr.sort(function(oli1,oli2){
+					var n1 =oli1.innerHTML;
+					var n2 =oli2.innerHTML;
+					return n1-n2;
+				});
+				for(i=0;i<arr.length;i++){
+				ouli.appendChild(arr[i]);
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="排序" id="btn">
+	<ul id="uli">
+		<li>5</li>
+		<li>7</li>
+		<li>1</li>
+		<li>9</li>
+		<li>2</li>
+		<li>8</li>
+	</ul>
+</body>
+</html>

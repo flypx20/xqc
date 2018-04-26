@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js.clock</title>
+	<script type="text/javascript">  
+    function draw(){  
+        var now = new Date();  
+        var sec = now.getSeconds();  
+        var min = now.getMinutes();  
+        var hour = now.getHours();  
+        if(hour>12) hour -=12;  
+        hour += (min / 60);  
+          
+        var canvas = document.getElementById('clock');  
+        var content = canvas.getContext('2d');  
+        content.clearRect(0, 0, canvas.width, canvas.height);  
+          
+        //画圆圈  
+          
+        content.beginPath();  
+          
+          
+        //arc(x,y,r,sAngle,eAngle,counterclockwise)  
+        //圆的横坐标 纵坐标，半径，起始角（弧度），结束角（弧度）， 顺时针|逆时针  
+        content.arc(600,600,300,0,2*Math.PI);  
+        content.lineWidth = 15;  
+        content.strokeStyle= "black";//绘制的颜色  
+        content.stroke();//绘制已定义的路径  
+  
+        content.closePath();  
+  
+        //时刻  
+        for(var i = 0 ;i < 12;i++){  
+            content.save();  
+  
+            content.translate(600,600);//设置原点  
+            content.rotate(30 * i * Math.PI / 180);// 每次将圆以圆心 为点 然后旋转 X °   
+  
+            content.beginPath();  
+  
+            //画直线路径, 相对于 圆心 的 坐标  来确定直线的长度  
+            content.moveTo(0,-270);  
+            content.lineTo(0,-300);  
+  
+            content.lineWidth = 10;  
+            content.strokeStyle = "blue";  
+            content.stroke();  
+  
+            content.closePath();  
+            //每画完一条线条 就返回画之前的状态  
+            content.restore();  
+        }  
+  
+        //分钟  
+        for(var i = 0;i < 60;i++){  
+            content.save();  
+  
+            content.translate(600,600);  
+            content.rotate(6 * i * Math.PI / 180);  
+            content.beginPath();  
+  
+            content.moveTo(0,-280);  
+            content.lineTo(0,-300);  
+  
+            content.lineWidth = 5;  
+            content.strokeStyle = "green";  
+            content.stroke();  
+  
+            content.closePath();  
+            content.restore();  
+        }  
+  
+        //时针  
+        content.save();  
+        content.translate(600,600);  
+        content.rotate(30 * hour * Math.PI / 180);  
+        content.beginPath();  
+        content.strokeStyle = "black";  
+        content.lineWidth = 10;  
+        content.moveTo(0,0);  
+        content.lineTo(0,-200);  
+        content.stroke();  
+        content.closePath();  
+        content.restore();  
+        // 分针  
+        content.save();  
+        content.translate(600,600);  
+        content.rotate(6 * min * Math.PI / 180);  
+        content.beginPath();  
+        content.strokeStyle = "blue";  
+        content.lineWidth = 7;  
+        content.moveTo(0,0);  
+        content.lineTo(0,-150);  
+        content.stroke();  
+        content.closePath();  
+        content.restore();  
+        //秒针  
+        content.save();  
+        content.translate(600,600);  
+        content.rotate(6 * sec * Math.PI / 180);  
+        content.beginPath();  
+        content.strokeStyle = "green";  
+        content.lineWidth = 5;  
+        content.moveTo(0,0);  
+        content.lineTo(0,-100);  
+        content.stroke();  
+        content.closePath();  
+        content.restore();  
+  
+    }  
+    window.onload = draw;  
+    setInterval(draw,1000);  
+</script>  
+</head>
+<body>
+	<canvas id="clock" width = "1000" height = "1000"></canvas>  
+</body>
+</html>

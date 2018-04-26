@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js之函数作为参数</title>
+	<script>
+		function show(x,y,fn){
+			 var z=x+y;
+			 fn(z);
+
+			  }
+		show(2,6,function(sum){
+
+               alert(sum);
+		})
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

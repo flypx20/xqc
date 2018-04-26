@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hover</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+		div{
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			border: 1px solid black;
+		}
+		.box{
+			height: 100px;
+			width: 100px;
+			background-color:gold;
+			margin: 50px ;
+			display: none;
+		}
+		div:hover .box{
+			
+			display: block;
+
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<div class="box"></div>
+	</div>
+</body>
+</html>

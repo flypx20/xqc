@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js 定时器之动画案例一</title>
+	<script>
+function aninamtion(obj,attr,iTarget){
+           
+            clearInterval(obj.timer);
+            var iSpeed = 0;
+            obj.timer = setInterval(function(){
+                //由于getComputedStyle的返回值有单位,所以需要类型转换,由于透明度可能有小数,所以用parseFloat
+                var curr = parseFloat(getComputedStyle(obj,false)[attr]);
+                //透明度的处理以百分比的形式计算,所以乘以100
+                if(attr == 'opacity'){
+                    curr = curr * 100;
+                }
+                //根据当前值和目标值来决定速度的正负
+                //如果当前值小于目标值,速度为正
+                //如果当前值大于目标值,速度为负
+                if(curr <= iTarget){
+                    iSpeed = 9;
+                }else{
+                    iSpeed = -9;
+                }
+                //动画结束的条件,
+                //1.当前值和目标值的差不够一次动画时,即当目值和目标值的差小于速度时,动画结束并且物体直接到达目标
+                //2.由于速度有正负,所以用绝对值
+                if(Math.abs(iTarget - curr) <= Math.abs(iSpeed)){
+                    //结束动画
+                    clearInterval(obj.timer);
+                    //透明度的处理
+                    if(attr == 'opacity'){
+                        obj.style[attr] = iTarget/100;
+                    //其他有px单位的属性处理
+                    }else{
+                        obj.style[attr] = iTarget + 'px';
+                    }
+                //当前值和目标值的差大于一次动画时,执行动画
+                }else{
+                    //透明度的处理
+                    if(attr == 'opacity'){
+                        obj.style[attr] = (curr + iSpeed)/100;
+                    //其他有px单位的属性处理  
+                    }else{
+                        obj.style[attr] = curr + iSpeed + 'px';
+                    }
+                }
+            },30)           
+        }
+        window.onresize=window.onscorll=window.onload=function(){
+        	var oBox = document.getElementById('box');
+        	var iTarget = document.body.scrollTop || document.documentElement.scrollTop+(window.innerHeight-oBox.offsetHeight)/2;
+             
+            aninamtion(oBox,'top',iTarget)
+        }
+    </script>
+</head>
+<body style="height: 3000px;">
+	<div id="box" style="width: 100px; height: 100px; background: red;position: absolute;right: 0;margin: 0;padding: 0;"> </div>
+</body>
+</html>

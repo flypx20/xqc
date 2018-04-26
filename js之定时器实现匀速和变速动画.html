@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js之定时器实现匀速和变速动画</title>
+	<style>
+		div{
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+
+	</style>
+	<script>
+		function animation(obj,attr,iTarget,isLinear,fnEnd){
+			clearInterval(obj.timer);
+			var iSpeed = 0;
+			obj.timer = setInterval(function(){
+				var curr = parseFloat(getComputedStyle(obj,false)[attr]);
+				var isStop = false;
+				if(attr == 'opacity'){
+					curr = Math.round(curr*100)
+				}
+				
+				if(isLinear){
+					if(curr > iTarget){
+						iSpeed = -20;
+					}else{
+						iSpeed = 20;
+					}
+					if(Math.abs(iTarget - curr) <= Math.abs(iSpeed)){
+						isStop = true;
+					}					
+				}else{
+					iSpeed = (iTarget - curr)/10;
+					iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+					if(!iSpeed){
+						
+						isStop = true;
+					}
+					
+				}
+				if(isStop){
+					clearInterval(obj.timer);
+					
+					if(isLinear){
+						if(attr == 'opacity'){
+							obj.style[attr] = iTarget / 100;
+							
+						}else{
+							obj.style[attr] = iTarget + 'px';	
+						}
+
+					}
+					if(fnEnd){
+					   fnEnd();
+					}     
+				   }else{
+					   if(attr == 'opacity'){
+						obj.style[attr] = (curr + iSpeed)/100 ;
+				    	}else{
+						obj.style[attr] = curr + iSpeed + 'px';
+					}
+				}
+			},30)
+		}
+		
+		window.onload = function(){
+			var aDiv = document.getElementById('div');
+			aDiv.onmouseover = function(){
+				animation(this,'height',500,function(){
+					animation(this,'width',500);
+				});
+			}
+        
+			aDiv.onmouseout = function(){
+				animation(this,'height',100,function(){
+					animation(this,'width',100);
+				});
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<div id="div"></div>
+</body>
+</html>

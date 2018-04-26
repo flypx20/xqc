@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js定时器之匀速动画效果</title>
+	<style>
+		div{
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			position: absolute;
+			top: 50px;
+
+		}
+	</style>
+	<script >
+window.onload = function(){
+ var odiv = document.getElementById('box');
+ var obtn = document.getElementById('btn');
+ obtn.onclick = function(){
+ 	odiv.style.left='500px';
+ }
+ setInterval(function(){
+ 	
+ } 30)
+}
+</script>
+</head>
+<body>
+	<input type="button" name="" value="go" id="btn">
+	<div id="box"></div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js 定时器之匀速改变透明度</title>
+    <script type="text/javascript">
+    	var timer = null;
+    	function animation(obj,iTarget){
+    		obj.style.opacity=iTarget;
+    		clrearIntval(timer);
+    		timer = setInterval(function(){
+    			var curr =getComuptedstyle(obj,false['opacity']);
+    			var iSpeed = 0;
+    			if (curr>iTarget) {
+    				iSpeed = -0.1;
+    			}else{
+    				iSpeed = 0.1;
+    			}
+    			if (Math.abs(iTarget-curr)<=Math.abs(iSpeed)) {
+    				clrearIntval(timer);
+    			}else{
+    				obj.style.opacity=curr*1+iSpeed;
+    			}
+    		}50)
+    	}
+    	window.onload=function () {
+    		var oBox = document.getElementById('box');
+    		oBox.onmouseover=function(){
+    			animation(this,1)
+    		}
+    	}
+    </script>
+</head>
+<body>
+	<div id="box" style="background: red; width: 200px;height: 200px;opacity: 0.3"></div>
+</body>
+</html>
