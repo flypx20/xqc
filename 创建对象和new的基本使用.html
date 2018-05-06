@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>创建对象和new的基本使用</title>
+	<script>
+		 function create(name,age,year){
+               //var obj = new Object();
+                    
+                   this.name = name;
+                   this.age = age;
+        create.prototype.showName = function(){
+			console.log('i am '+ this.name);
+		}
+		create.prototype.showAge = function(){
+			console.log('i am '+ this.age+' years old');
+		}
+           
+              /* this.showName = function(){
+                	console.log('i am '+ this.name);
+                	console.log('i am '+ this.age+' years old');
+                	return true;
+                }
+                this.showAge = function(){
+                	console.log('i am '+ this.age+' years old');
+                }*/
+                //return obj;
+
+		}
+
+		var x1 = new create('tom',18);
+		console.log(x1.showName())
+		
+		x2 = new create('aim',99);
+		x2.showAge();
+		x2.showName();
+		console.log(x2.showName())
+		console.log(x2.showName == x1.showName)
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

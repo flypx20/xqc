@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件之鼠标拖拽元素</title>
+	<style>
+	    #div{
+	    	width: 500px;
+	    	height: 500px;
+	    	border: 1px solid pink;
+	    	margin: 40px auto;
+
+	    }
+		#box{
+			width: 100px;
+			height: 100px;
+			background: red;
+			position: absolute;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var oBox = document.getElementById('box');
+			var disX = 0;
+			var disY = 0;
+			oBox.onmousedown = function(ev){
+				var oEvent = ev || event;
+				var disX = oEvent.clientX - oBox.offsetLeft;
+				var disY = oEvent.clientY - oBox.offsetTop;
+				document.onmousemove = function(ev){
+				var oEvent = ev || event;
+				var oDiv =  document.getElementById('div');
+				
+				
+				oBox.style.left = oEvent.clientX - disX + 'px';
+				oBox.style.top = oEvent.clientY - disY + 'px';
+				if (oBox.offsetLeft < oDiv.offsetLeft) {
+					
+				}
+
+                document.onmouseup = function(){
+                	console.log(1);
+                	document.onmousemove = null;
+                	document.onmouseup = null;
+                }
+			   }
+			   
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<div id="div">
+	<div id="box"></div>
+</div>
+</body>
+</html>

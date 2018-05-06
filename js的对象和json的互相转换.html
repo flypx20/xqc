@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js的对象和json的互相转换</title>
+	<script>
+		var json = '{"name":"Tom","age":18}';
+		console.log(typeof json);
+		var jsonobj = JSON.parse(json)
+		console.log(typeof jsonobj)
+		console.log(json.name)
+		console.log(jsonobj.name)
+		var obj = {
+			name:"Tom",
+			age:18,
+			"@":"hello",
+			year:"2018",
+
+		}
+        console.log(typeof obj);
+        var objJson = JSON.stringify(obj);
+        console.log(typeof objJson)
+        console.log(obj["@"])
+        console.log(obj) 
+        console.log(objJson)
+        console.log(obj.year)
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

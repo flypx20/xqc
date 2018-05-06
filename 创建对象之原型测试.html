@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>创建对象之原型测试</title>
+	<script>
+        Array.prototype.sum = function() {
+        	var s = 0;
+			for(var i = 0;i<this.length;i++){
+				s += this[i];
+			}
+			return s;
+        };
+		var arr = new Array(1,2,5,7,3)
+		/*arr.sum = function () {
+			var s = 0;
+			for(var i = 0;i<arr.length;i++){
+				s += arr[i];
+			}
+			return s;
+		}*/
+		console.log(arr.sum())
+		var arr2 = new Array(23,45,1)
+		console.log(arr2.sum())
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

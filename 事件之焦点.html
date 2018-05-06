@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件之焦点</title>
+	<script>
+		window.onload = function () {
+			var Input = document.getElementById('input');
+			var Txt = document.getElementById('txt');
+			var Sub = document.getElementById('sub');
+			var isok = false;
+			var List = document.getElementById('list');
+			var Data = ['jerry','tom','jeesi','jack'];
+			var Reset = document.getElementById('sub2');
+			Input.onfocus = function(){
+				Txt.style.color = 'green';
+				Txt.innerHTML = '请告诉我你的姓名';
+			}
+			Input.onblur = function(){
+				if (Input.value.length>=3 && Input.value.length<=6) {
+					Txt.style.color = 'green';
+					Txt.innerHTML  = '哎哟，不错哦';
+					isok = true;
+				}else{
+					Txt.style.color = 'red';
+					Txt.innerHTML = '你是我见过最蠢的人了';
+				}
+			}
+			Input.oninput = function(){
+				for(var i = 0;i<Data.length;i++){
+					var aLi = document.createElement('li');
+					aLi.innerHTML = Data[i];
+                    List.appendChild[aLi];
+				}
+			}
+			Sub.onclick = function(){
+				if (!isok) {
+					return false;
+				}
+			}
+			Reset.onclick = function(){
+				
+				Txt.innerHTML = '';
+                 isok = false;
+			}
+		}
+	</script>
+</head>
+<body>
+	<form action="http://www.kuazhu.com">
+		<p>
+			<input type="text" id="input"  name="username">
+			<span id="txt"></span>
+			<ul id="list"></ul>
+		</p>
+		<p>
+			<input type="submit" value="提交" id="sub">
+			<input type="reset" value="重置" id="sub2">
+		</p>
+	</form>
+</body>
+</html>
