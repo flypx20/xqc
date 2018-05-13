@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象之改变this的指向</title>
+	<script>
+		function show(n1,n2){
+			console.log(this,n1,n2);
+		}
+		show();
+		show.call();
+		show.call({name:'ton'},100,200);
+		show.apply({name:'amy'},[300,400])
+		var fn = show.bind({name:'jexi'},500,600)
+		console.log(show.bind())
+		fn();
+		var fn2 = show.bind({name:'jexi'},500,600)()
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

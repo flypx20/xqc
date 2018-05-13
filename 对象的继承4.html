@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象的继承4</title>
+	<script>
+		function Person(name,age){
+			this.name = name;
+			this.age = age;
+			//console.log(Person.prototype.constructor)
+			//console.log('z')
+
+
+		}
+		Person.prototype.showName = function(){
+			console.log("i am "+this.name);
+			//console.log(Person.prototype.constructor)
+		}
+		Object.defineProperty(Person.prototype,"showAge",{value:function(){
+			console.log("i am "+this.age+" yars old");
+		}})
+		
+		function Student(name,age,className){
+			Person.call(this,name,age);
+			this.className = className;
+		}
+		//console.log(Student.prototype);
+		//Student.prototype = new Person();
+		//console.log(Student.prototype);
+		//Student.prototype.constructor = Student;
+		var obj = Object.create(Person.prototype);
+		Student.prototype = obj;
+        Student.prototype.constructor = Student;
+		Student.prototype.showClassName = function(){
+			console.log("i am from "+this.className)
+		}
+		s1 = new Student('aim',18,'sd')
+		s1.showName();
+		s1.showAge();
+		s1.showClassName();
+		var s2 = new s1.__proto__.constructor();
+		console.log(s2)
+		console.log(s2 instanceof Student)
+		console.log(s2 instanceof Person)
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

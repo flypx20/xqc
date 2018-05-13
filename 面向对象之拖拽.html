@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>面向对象之拖拽</title>
+	<style>
+		
+
+	</style>
+	<script>
+		   
+			window.onload =function(){
+			new drag({width:'200',height:'200',background:'red'})
+			new drag1({width:'100',height:'100',background:'blue'})
+			}
+		 function drag(option){
+		 	var _self = this;
+			this.oBox = document.createElement('div');
+			this.oBox.style.width = option.width+'px';
+			this.oBox.style.height = option.height+'px';
+			this.oBox.style.background = option.background;
+            this.oBox.style.position = 'absolute';
+            document.body.appendChild(this.oBox)
+			  this.disX = 0;
+			  this.disY = 0;
+			this.oBox.onmousedown = function(){
+				_self.mousedown()
+			}
+			
+		}
+		drag.prototype.mousedown=function(ev){
+				var oEvent = ev || event;
+				
+				var _self = this;
+				this.disX = oEvent.clientX - this.oBox.offsetLeft;
+				this.disY = oEvent.clientY - this.oBox.offsetTop;
+				document.onmousemove = function(){
+				_self.mousemove()
+			}
+                document.onmouseup =this.mouseup
+			  
+			   
+			}
+		drag.prototype.mousemove=function(ev){
+				var oEvent = ev || event;
+				this.oBox.style.left = oEvent.clientX - this.disX + 'px';
+				this.oBox.style.top = oEvent.clientY - this.disY + 'px';}
+		drag.prototype.mouseup=function(){
+			document.onmousemove = null;
+             document.onmouseup = null;
+		}
+		drag1.prototype = Object.create(drag.prototype);
+		drag1.prototype.constructor = drag1;
+		function drag1(option){
+			drag.call(this,option)
+		}
+		drag1.prototype.mousemove = function(){
+			this.disX = oEvent.clientX - this.oBox.offsetLeft;
+			this.disY = oEvent.clientY - this.oBox.offsetTop;
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

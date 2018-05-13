@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>面向对象之选项卡</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		li{
+			list-style: none;
+		}
+		.btn li{
+			float: left;
+			width: 40px;
+			height: 50px;
+			background: pink;
+			border-radius: 10px;
+			color: black;
+			margin-right: 10px;
+			line-height: 50px;
+			text-align: center;
+			top: 0;
+		}
+		.btn li.active{
+			background: gray;
+		}
+		.text{
+			position: absolute;
+			margin-top: 60px;
+		}
+		.text li{
+			width: 200px;
+			height: 200px;
+			border: 1px solid black;
+			display: none;
+		}
+	</style>
+	<script> 
+		
+		window.onload = function(){
+			new Tab("btn","text")
+			new Tab("btn1","text1")
+		}
+		function Tab(btnId,TEXTId) {
+			 this.aBtn = document.getElementById(btnId).children
+			 this.aText = document.getElementById(TEXTId).children
+			  //var _self = this;
+				for(var i=0;i<this.aBtn.length;i++){
+                 
+					this.aBtn[i].index = i;
+                   this.aBtn[i].onclick = this.fnclick.bind(this,this.aBtn[i])
+                    //function(){
+                   	
+                   	//_self.fnclick(this);
+                  // }
+			   }
+		}
+
+
+
+		Tab.prototype.fnclick=function(obtn){
+                   	     console.log(this)
+                   	    for(var j=0;j<this.aBtn.length;j++){
+                   	    	this.aBtn[j].className='';
+                   	    	this.aText[j].style.display='none';
+                   	    }
+                   	    this.aBtn[obtn.index].className='active';
+                   	    this.aText[obtn.index].style.display='block';
+                   }
+	</script>
+</head>
+<body>
+	<ul id="btn" class="btn">
+		<li class="active">btn1</li>
+		<li>btn2</li>
+		<li>btn3</li>
+		<li>btn4</li>
+	</ul>
+	<ul id="text" class="text">
+		<li style="display: block;">1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+	<ul id="btn1" class="btn">
+		<li class="active">btn1</li>
+		<li>btn2</li>
+		<li>btn3</li>
+		<li>btn4</li>
+	</ul>
+	<ul id="text1" class="text">
+		<li style="display: block;">1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+</body>
+</html>

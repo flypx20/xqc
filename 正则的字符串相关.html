@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则的字符串相关</title>
+	<script>
+		var str = 'abcdeacddsa';
+		console.log(str.search('a'));
+		console.log(str.charAt(0));
+		console.log(str.search('b'))
+		console.log(str.search(/b/))
+		console.log(str.match(/a/g))
+		var str1 = 'abcdacbd';
+		console.log(str1.search(/a/))
+		console.log(str1.search('a'))
+		console.log(str1.search(/a/g))
+		console.log(str1.charCodeAt(0))
+		console.log(str1.indexOf('a'))
+		console.log(str1.lastIndexOf('a'))
+		console.log(str1.indexOf('c'))
+		console.log(str1.lastIndexOf('c'))
+		console.log(str1.indexOf(/a/))
+		console.log(str1.lastIndexOf(/a/))
+		//console.log(str1.contat(str))
+		console.log(str1.slice(0,1))
+		console.log(str1.slice(0,7))
+		console.log(str1.slice(-2,8))
+		var str2 = 'acdc2018-05-13abjc2018-05-12dhsa';
+		var reg =/(\d{4})-(\d{2})-(\d{2})/g;
+		console.log(reg.exec(str2));
+	    console.log(str2.match(reg))
+		var str3 = 'a1c3b2n5m6c'
+		console.log(str3.split('1'))
+		console.log(str3.split(/\d/))
+		console.log(str3.replace(function(match){
+			return match*1+1;
+		}));
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

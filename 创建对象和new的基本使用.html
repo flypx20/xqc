@@ -9,12 +9,17 @@
                     
                    this.name = name;
                    this.age = age;
+                   if(!this.showName){
         create.prototype.showName = function(){
 			console.log('i am '+ this.name);
 		}
+	}               
+	if (!this.showAge) {
 		create.prototype.showAge = function(){
 			console.log('i am '+ this.age+' years old');
 		}
+		}
+		
            
               /* this.showName = function(){
                 	console.log('i am '+ this.name);
@@ -29,12 +34,12 @@
 		}
 
 		var x1 = new create('tom',18);
-		console.log(x1.showName())
+		x1.showName()
 		
 		x2 = new create('aim',99);
 		x2.showAge();
 		x2.showName();
-		console.log(x2.showName())
+		
 		console.log(x2.showName == x1.showName)
 		
 	</script>

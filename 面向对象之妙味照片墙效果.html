@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>妙味照片墙效果</title>
+    <style>
+        html, body {margin: 0; padding: 0;}
+        #ul1 {width: 660px; position: relative; margin: 10px auto;}
+        li {width: 200px; height: 150px; margin: 10px; float: left; list-style: none;}
+    </style>
+    <script>
+        window.onload = function(){
+            //布局转换，将浮动布局转成定位布局
+            var aLi = document.getElementsByTagName('li');
+            var izIndex = 2;
+            var arr = [];
+            var oInput = document.getElementById('input1');
+
+            for(var i=0; i<aLi.length; i++){
+                arr.push([aLi[i].offsetLeft, aLi[i].offsetTop]);
+            }
+
+            for(var i=0; i<aLi.length; i++){
+                aLi[i].style.position = 'absolute';
+                aLi[i].style.left = arr[i][0] + 'px';
+                aLi[i].style.top = arr[i][1] + 'px';
+                aLi[i].style.margin = 0; //去掉影响定位的值。例如margin、padding都已经算到left和top里面了，所以不需要再算进去
+            }
+
+            for(var i=0; i<aLi.length; i++){
+                aLi[i].index = i;
+                drag(aLi[i]);
+            }
+
+            oInput.onclick = function(){
+                var randomArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+                randomArr.sort(function(n1, n2){
+                    return Math.random() - 0.5;
+                })
+                for(var i=0; i<aLi.length; i++){
+                    startMove(aLi[i], {left: arr[randomArr[i]][0], top: arr[randomArr[i]][1]});
+                    aLi[i].index = randomArr[i];
+                }
+            }
+
+            function drag(obj){
+                var disX = 0;
+                var disY = 0;
+
+                obj.onmousedown = function(ev){
+                    var ev = ev || window.event;
+                    obj.style.zIndex = izIndex ++;
+                    disX = ev.clientX - obj.offsetLeft;
+                    disY = ev.clientY - obj.offsetTop;
+
+                    document.onmousemove = function(ev){
+                        var ev = ev || window.event;
+                        obj.style.left = ev.clientX - disX + 'px';
+                        obj.style.top = ev.clientY - disY + 'px';
+
+                        // for(var i=0; i<aLi.length; i++){
+                        //  if(pz(obj, aLi[i]) &amp;&amp; obj != aLi[i]){
+                        //      aLi[i].style.border = '2px solid red';
+                        //  } else {
+                        //      aLi[i].style.border = '';
+                        //  }
+                        // }
+
+                        var nL = nearLi(obj);
+                        for(var i=0; i<aLi.length; i++){
+                            aLi[i].style.border = '';
+                        }
+
+                        if(nL){
+                            nL.style.border = '2px solid red';
+                        }
+                        
+
+                    }
+
+                    document.onmouseup = function(){
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+
+                        var nL = nearLi(obj);
+                        var tmp = 0;
+
+                        if(nL){
+                            startMove(nL, {left: arr[obj.index][0], top: arr[obj.index][1]});
+
+                            startMove(obj, {left: arr[nL.index][0], top: arr[nL.index][1]});
+                            nL.style.border = '';
+
+                            tmp = obj.index;
+                            obj.index = nL.index;
+                            nL.index = tmp;
+                        } else {
+                            startMove(obj, {left: arr[obj.index][0], top: arr[obj.index][1]});
+                        }
+                        
+                    }
+
+                    return false; 
+                }
+            }
+
+            function nearLi(obj){
+                var value = 9999;
+                var index = -1;
+                for(var i=0; i<aLi.length; i++){
+                    if(pz(obj, aLi[i])  obj != aLi[i]){
+                        
+                        var c = jl(obj, aLi[i]);
+
+                        if(c<value){
+                            value = c;
+                            index = i;
+                        }
+                    }
+                }
+
+                if(index != -1){
+                    return aLi[index];
+                } else {
+                    return false;
+                }
+            }
+
+            function jl(obj1, obj2){
+                var a = obj1.offsetLeft - obj2.offsetLeft;
+                var b = obj1.offsetTop - obj2.offsetTop;
+
+                return Math.sqrt(a*a + b*b);
+            }
+
+            function pz(obj1, obj2){
+                var L1 = obj1.offsetLeft;
+                var R1 = obj1.offsetLeft + obj1.offsetWidth;
+                var T1 = obj1.offsetTop;
+                var B1 = obj1.offsetTop + obj1.offsetHeight;
+
+                var L2 = obj2.offsetLeft;
+                var R2 = obj2.offsetLeft + obj2.offsetWidth;
+                var T2 = obj2.offsetTop;
+                var B2 = obj2.offsetTop + obj2.offsetHeight;
+
+                if(R1 < L2 || L1 > R2 || B1 < T2 || T1 > B2){ //碰不到的情况
+                    return false;
+                } else { //其余都是碰到的情况
+                    return true;
+                }
+            }
+
+            //以下是运动框架move.js的代码
+            function css(obj, attr){
+                if(obj.currentStyle){
+                    return obj.currentStyle[attr];
+                } else {
+                    return getComputedStyle(obj, false)[attr];
+                }
+            }
+
+            function startMove(obj, json, fn){
+                clearInterval(obj.iTimer);
+                var iCur = 0;
+                var iSpeed = 0; //速度初始化
+                
+                obj.iTimer = setInterval(function(){
+                
+                    var iBtn = true;
+
+                    for(var attr in json){
+                        
+                        var iTarget = json[attr];
+                        
+                        if(attr == 'opacity'){
+                            iCur = Math.round(css(obj, 'opacity') * 100);
+                        } else {
+                            iCur = parseInt(css(obj, attr));
+                        }
+                        
+                        iSpeed = (iTarget - iCur) / 8;
+                        iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+                        
+                        if(iCur != iTarget){
+                            iBtn = false;
+                            if(attr == 'opacity'){
+                                obj.style.opacity = (iCur + iSpeed) / 100;
+                                obj.style.filter = 'alpha(opacity=' + (iCur + iSpeed) + ')';
+                            } else {
+                                obj.style[attr] = iCur + iSpeed + 'px';
+                            }
+                        }
+                    }
+
+                    if(iBtn){
+                        clearInterval(obj.iTimer);
+                        fn &amp;&amp; fn.call(obj);
+                    }
+                
+                }, 30);
+            }           
+
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="随机" id="input1">
+    <ul id="ul1">
+        <li><img src="images/1.jpg"></li>
+        <li><img src="images/2.jpg"></li>
+        <li><img src="images/3.jpg"></li>
+        <li><img src="images/4.jpg"></li>
+        <li><img src="images/5.jpg"></li>
+        <li><img src="images/1.jpg"></li>
+        <li><img src="images/2.jpg"></li>
+        <li><img src="images/3.jpg"></li>
+        <li><img src="images/4.jpg"></li>
+    </ul>
+</body>
+</html>

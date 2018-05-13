@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象之内存分析</title>
+	<script>
+		function Create(name,age){
+			this.name = name;
+			this.age = age;
+		}
+		Create.prototype.showName = function() {
+			console.log('i am '+this.name)
+		};
+		Create.prototype.showAge = function(){
+			console.log('i am '+this.age+' years old')
+		}
+		var x1 = new Create('tom',18);
+		
+		
+		
+
+		var x2 = x1;
+		x2.age = 99;
+		x2.name = 'amy';
+		x1.showAge();
+		x1.showName();
+		x2.showName();
+		x2.showAge();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

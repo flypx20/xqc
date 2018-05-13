@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则的初体验</title>
+	<script>
+		var str1 = "you are pig ";
+		var reg1 = /\bare\b/
+		console.log(str1.replace(reg1,"are not a"))
+		console.log(str1.search(/pig/i))
+		 var str2 = "this web's name is http://www.kuazhu.com"
+		 var reg2 = /(\w+):\/\/(\w+)\.([0-9a-z-]+)\.(\w+)/;
+		 console.log(str2.match(reg2))
+
+		 var str3 = '123fgghr 23kfdkj 345  sdjskjs45 343mdkdjk sdd67 89djskjk';
+		 var result = [];
+		 var tmp = '';
+		 for(var i = 0;i<str3.length;i++){
+		 	if (!isNaN(parseInt(str3.charAt(i)))) {
+		 	tmp += str3.charAt(i);
+		 	}else if (tmp) {
+		 		result.push(tmp);
+		 		tmp = '';
+		 	}
+		 }
+         /*if (tmp) {
+         	result.push(tmp);
+         	tmp = '';
+         }*/
+		 console.log(result);
+		 var str4 = '123fgghr 23kfdkj 345  sdjskjs45 343mdkdjk sdd67 89djskjk';
+		 var reg3 = /\d+/g;
+		 console.log(str4.match(reg3))
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
