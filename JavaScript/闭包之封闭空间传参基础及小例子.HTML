@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包之封闭空间传参基础及小例子</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			width: 100%;
+			height: 30px;
+			border: 0.5px solid rgba(0,0,0,0.1);
+
+		}
+		.active{
+			background:red;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="active"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+<script>
+	var oLi = document.getElementsByTagName('li');
+	var oLastOne = 0;
+	//基础函数实现功能
+	/*var oLi = document.getElementsByTagName('li');
+	for(var i =0;i<oLi.length;i++){
+		oLi[i].onmouseover = function(){
+			for(var j =0;j<oLi.length;j++){
+				oLi[j].className = '';
+
+			}
+			this.className = 'active';
+		}
+	}
+	//实现功能的另一种方法
+	for(var i =0;i<oLi.length;i++){
+		oLi[i].index = i;
+		oLi[i].onmouseover = function(){
+			oLi[oLastOne].className = '';
+			this.className = 'active';
+			oLastOne = this.index;
+
+		}
+		//Li[i].className = 'active';
+	}*/
+	//封闭空间传参实现功能
+	for(var i =0;i<oLi.length;i++){
+		(function(index){
+				oLi[i].onmouseover = function(){
+					oLi[oLastOne].className = '';
+					this.className = 'active';
+					oLastOne = index;
+
+				}
+		})(i);
+	}
+</script>
+</html>

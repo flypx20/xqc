@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>javascript-自定义语法错误</title>
+	<script>
+	
+		function sum(n1,n2){
+			if(isNaN(parseInt(n1))||isNaN(parseInt(n2))){
+				throw new Error('not a number')
+			}else{
+				return n1*n2;
+			}
+		};
+		try{
+			console.log(sum(12,'ad'));
+		}catch(e){
+			console.log(e);
+		}finally{
+			console.log('end');
+		}
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
