@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>皇帝上朝</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	(function(w){
+		function king(){
+			//this.name  = name;
+			this.id = Math.random();
+		}
+		king.prototype = {
+			constructor:king,
+			__proto__:Object.prototype,
+			say :function(){
+				console.log("king "+this.id+' say: '+"平身");
+			}
+		};
+		king.getking = (function(){
+			var king1 = null;
+			return function(){
+				if (!king1) {
+					console.log('aa');
+					king1 = new king();
+				}
+				return king1;
+				
+			};
+		})();
+		w.king = king;
+	})(window);
+	for (var i = 1; i <= 5; i++) {
+		
+		console.log("day"+i);
+		king.getking().say();
+	}
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01-闭包和原型构建对象</title>
+</head>
+<body>
+	
+</body>
+<script>
+		 (function(w){
+			function Person(name,age){
+				/*this.name = name;
+				this.age = age;*/
+				this.init(name,age);
+
+			}
+			Person.prototype = {
+				constructor:Person,
+				__proto__:Object.prototype,
+				init(name,age){
+					this.name = name;
+					this.age = age;
+				},
+				showName:function(){
+				 console.log("i am "+this.name);
+				},
+				showAge:function(){
+				console.log("i am "+this.age);
+				}
+			};
+			w.person = Person;
+		})(window);
+		 	var p1 = new person("tom",17);
+		 	p1.showName();
+		 	p1.showAge();
+ 	</script>
+ </html>

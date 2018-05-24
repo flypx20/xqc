@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包之封闭空间传参基础</title>
+	<style>
+		div{
+			width: 200px;
+			height: 220px;
+			background: red;
+		}
+	</style>
+	
+</head>
+<body>
+	<input type="button" id="input">
+	<div id="div"></div>
+</body>
+<script>
+		//此种方法由于每次运行程序都会执行document.getElementById,浪费资源
+		//可以通过传参的方式来解决浪费问题
+		/*(function(){
+			var oInput = document.getElementById('input');
+			var oDiv = document.getElementById('div');
+			console.log(oInput);
+			console.log(oDiv);
+			oInput.onclick = function(){
+				alert('hello');
+				oDiv.style.display = 'none';
+
+			} 
+		})();*/
+
+		//传参方式解放浏览器资源
+		(function(d,w){  //这时候系统也就只会加载一次页面，大大解放系统资源
+			var oInput = d.getElementById('input');
+			var oDiv = d.getElementById('div');
+			console.log(oInput);
+			console.log(oDiv);
+			oInput.onclick = function(){
+				alert('hello');
+			} 
+			w.oInput = oInput;
+			w.oDiv = oDiv;//把oDiv变成全局变量
+		})(document,window)
+		oInput.onmouseover = function(){
+			oDiv.style.display = 'none';
+		}
+	</script>
+</html>

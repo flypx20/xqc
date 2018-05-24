@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数节流</title>
+	<style>
+		body{
+			height: 2222px;
+		}
+	</style>
+</head>
+<body>
+	
+</body>
+<script>
+	/*var timer = null;
+
+	window.onresize = function(){
+		clearTimeout(timer);
+		timer = setTimeout(function(){
+		console.log('aaa');
+				},400)
+	};
+	window.onscroll = function(){
+		console.log('bbb');
+	}*/
+    function throttle(fn,delay){		
+    	var timer = null;
+    	return function(){
+			clearTimeout(timer);
+    		timer = setTimeout(fn,400);	
+    	}
+    }
+    window.onresize = throttle(function(){
+    	console.log('aa');
+    	console.log(window.innerWidth)
+    },400)
+    window.onscroll = throttle(function(){
+    	console.log('bb');
+    	
+    },400)
+</script>
+</html>

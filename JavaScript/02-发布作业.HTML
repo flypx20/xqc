@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>观察者模式</title>
+	<script>
+		//老师
+		(function(w){
+
+			function Person(name) {
+				this.name = name;
+				this.students = [];
+			}
+			Person.prototype = {
+				constructor:Person,
+				__proto__:Object.prototype,
+				register:function(student){
+					this.students.push(student);
+				},
+				publish:function(msg){
+					for (var i = 0; i < this.students.length; i++) {
+						this.students[i].listen(msg);
+					}
+				}
+			};
+			w.Person = Person;
+		})(window);
+		//学生
+		(function (w) {
+			function student(name){
+				this.name = name;
+				this.msg = '';
+				teacher.register(this);
+			}
+			student.prototype = {
+				constructor:student,
+				__proto__:Object.prototype,
+				listen:function(msg){
+					this.msg = msg;
+				}
+			};
+			w.student = student;
+		})(window);
+		var teacher = new Person("teacher");
+		var s1 = new student("s1");
+		var s2 = new student("s2");
+		var s3 = new student("s3");
+		teacher.publish('你好，我是teacher徐');
+		console.log(s1.name+" get "+s1.msg);
+		console.log(s2.name+" get "+s2.msg);
+		console.log(s3.name+" get "+s3.msg);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包和封闭空间</title>
+	<script>
+		var name = 'Tom';
+		function show() {
+			var name1 ='leo';
+			console.log(name);
+			console.log(name2);
+			function show1(){
+				console.log(name1);
+				console.log(name);
+				console.log(name2);
+				var name2 = 'amy';
+			}
+			show1();
+		}
+		//show();
+		//console.log(name1);
+		//console.log(name2);
+		function show2(){
+			var name1 = 'leo1'
+			return function(){
+				return name1;
+			}
+		}
+		console.log(show2());
+		console.log(show2()());
+		var fn = show2();
+		console.log(fn());
+		(function(){
+			var name = 'Tom1';
+			console.log(name);
+		})();
+		console.log(name);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

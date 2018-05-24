@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	var arr = [10,20,45,35,60,70,65,90];
+	/*var each = arr.forEach(function(value,index){
+			console.log("index:: "+index+" value: "+value);
+	});//forEach方法没有返回值，不会创建新数组
+	var map = arr.map(function(value,index){
+		console.log("index:: "+index+" value: "+value);
+		return 10;//map方法会返回一个新数组，这是和forEach的区别
+	});
+	console.log(map);
+	var filter = arr.filter(function(value,index){
+		console.log("index:: "+index+" value: "+value);
+		return value>=20;//filter方法可以判断value，并返回一个新数组
+	});
+	console.log(filter);*/
+	//全真判断方法
+	var bres = arr.every(function(value,index){
+		console.log("index:: "+index+" value: "+value);
+		return 0;
+	});
+	console.log(bres);
+	//有真判断
+	var bre = arr.some(function(value,index){
+		console.log("index:: "+index+" value: "+value);
+		return 20;
+	});
+	console.log(bre);
+	
+</script>
+</html>

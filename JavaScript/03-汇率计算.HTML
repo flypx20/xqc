@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>观察者模式之汇率计算</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//本币
+	(function(w){
+		function Local(name){
+			this.oInput = null;
+			this.foreigners = [];
+			this.init(name);
+		}
+		Local.prototype = {
+			constructor:Local,
+			init:function(name){
+				var oP = document.createElement('p');
+				this.oInput = document.createElement('input');
+				oP.innerHTML = name;
+				oP.appendChild(this.oInput);
+				document.body.appendChild(oP);
+			},
+			register:function(foreign){
+
+				this.foreigners.push(foreign);
+			},
+			publish:function(){
+				this.oInput.oninput = function(){
+					for(var i = 0;i<this.foreigners.length;i++){
+						this.foreigners[i].listen(this.oInput.value);
+					}
+				}.bind(this);
+			}
+		};
+		w.Local = Local;
+	})(window);
+	//外币
+	(function(w){
+		function foreign(name,rate,local){
+			this.oInput = null;
+			this.init(name);
+			this.rate = rate;
+			local.register(this);
+		}
+		foreign.prototype = {
+			constructor:foreign,
+			init:function(name){
+				var oP = document.createElement('p');
+				this.oInput = document.createElement('input');
+				oP.innerHTML = name;
+				oP.appendChild(this.oInput);
+				document.body.appendChild(oP);
+			},
+			listen:function(val){
+				this.oInput.value = val /this.rate;
+			}
+		};
+
+
+		w.foreign = foreign;
+	})(window);
+	var cny = new Local('软妹币');
+	var f1 = new foreign('dollar',6,cny);
+	cny.publish();
+</script>
+</html>
