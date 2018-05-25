@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ajax请求数据get,post方法集合</title>
+</head>
+<body>
+	<input type="button" name="获取数据" value="点击获取数据" id="btn">
+</body>
+<script type="text/javascript">
+	(function(w){
+		function ajax(method,url,data,fnSuc,fnFail){
+			var oAjax = new XMLHttpRequest();
+			if (method == "POST") {
+				oAjax.open(method, url,true);
+				oAjax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				oAjax.send(data);
+
+			}else{
+				if(data){
+					url = url + "?" + data;
+				}
+				oAjax.open(method,url,true);
+				oAjax.send();
+			}
+			oAjax.onreadystatechange = function(){
+				if (oAjax.readyState == 4) {
+					if (oAjax.status == 200) {
+						fnSuc(oAjax.responseText);
+					}else{
+						fnFail(oAjax.status);
+					}
+				}
+			};
+		}
+		w.ajax = ajax;
+	})(window);
+	var oBtn = document.getElementById('btn');
+	oBtn.onclick=function(){
+		ajax("POST",
+			'http:127.0.0.1:2000/postReq',
+			'name=fzf&age=21',
+			function(val){
+				console.log("get data success::",val);
+			},
+			function(status){
+                console.log("get data failed::",status);
+			});
+	};
+</script>
+</html>

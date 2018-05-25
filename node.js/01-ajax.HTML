@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01-Ajax请求数据</title>
+</head>
+<body>
+	<input type="button" id="btn" value="获取">
+</body>
+<script type="text/javascript">
+	var oBtn = document.getElementById("btn");
+	oBtn.onclick = function(){
+		var oAjax = new XMLHttpRequest();
+		oAjax.open('GET','http://127.0.0.1/aa.txt',true);
+		oAjax.send();
+		oAjax.onreadystatechange = function(){
+			if (oAjax.readyState == 4) {
+				console.log('get DATA:',oAjax.reponseText);
+			}
+	};
+};
+</script>
+</html>

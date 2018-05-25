@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01-Ajax请求数据</title>
+</head>
+<body>
+	<input type="button" id="btn" value="获取">
+	<ul id="ul1"></ul>
+</body>
+<script type="text/javascript">
+	var oBtn = document.getElementById("btn");
+	var oUl = document.getElementById("ul1");
+	oBtn.onclick = function(){
+		//0 还没有初始化
+		//1 已经初始化，但还没有调用open方法
+		//2 send方法已经调用
+		//3 返回了部分函数
+		//4 数据完全返回
+		var oAjax = new XMLHttpRequest();//1 创建Ajax对象
+		//console.log('after::new ',oAjax.readyState);
+		oAjax.open('POST','http://127.0.0.1:2000/postReq',true);//2 和服务器建立连接
+		//console.log("after::open ",oAjax.readyState);
+		oAjax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		oAjax.send("name=fzf&age=21");//3 请求数据
+		//console.log("after::send ",oAjax.readyState);
+		oAjax.onreadystatechange = function(){		
+			console.log("in event ::",oAjax.readyState);
+			if (oAjax.readyState == 4) {
+				//4	数据完全返回
+				if (oAjax.status == 200) {
+					console.log('get DATA:',oAjax.responseText);
+					console.log(oAjax.responseText)
+					//console.log(typeof oAjax.responseText);
+					//var obj = JSON.parse(oAjax.responseText);
+					//console.log(typeof obj);
+					//var oLi = document.createElement('li');
+					//oLi.innerHTML = '名字：'+obj.name+'年龄: '+obj.age;
+					//oUl.appendChild(oLi);
+				}else{
+					console.log("failed::"+oAjax.status);
+				}
+				
+			}
+	};
+};
+</script>
+</html>
