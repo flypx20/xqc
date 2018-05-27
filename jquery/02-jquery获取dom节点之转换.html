@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02-jquery获取dom节点之转换.html</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			width: 200px;
+			height: 200px;
+			border:1px solid #010;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var $oDiv =$('.div1');
+			console.log($oDiv);
+			var oDiv = $oDiv[0];
+			oDiv.style.background = 'red';
+			console.log(oDiv);
+			var $div = $(oDiv);
+			console.log($div);
+			var oDiv1 = $div.get(0);
+			oDiv1.style.background = 'blue';
+			var $div1 = $(oDiv1);
+			console.log($div1);
+			$div1.css("background","red");
+			$("div").css("background-color","#FF0000");
+	   		$(".div1").click(function(){
+		      $("div").css("background-color","pink");
+		      $("div")[3].style.background = "blue";
+		  });
+		});
+	</script>
+</head>
+<body>
+	<div class="div1">
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</body>
+</html>

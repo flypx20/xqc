@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery体验</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			width: 100px;
+			height: 100px;
+			border:1px solid #000;
+		}
+	</style>
+	<script type="text/javascript">
+		(function(w){
+			function fzf(){
+				alert('hello,飞猪飞');
+			}
+			w.$=fzf;
+		})(window);
+	</script>
+	<script type="text/javascript">
+		 window.jQuery || document.write('<script src = "js/jquery-1.12.4.js"><\/script>');
+	</script>
+	<script type="text/javascript">
+		/*方法一
+		//jQuery可以执行
+		$(function(){
+			var name = 'fzf';
+			alert(name);
+		});
+		$(function(){
+			var name = 'fzf1';
+			alert(name);
+		});
+		
+		//方法二
+		jQuery(function(){
+			var name = 'fzf';
+			alert(name);
+		});
+		jQuery(function(){
+			var name = 'fzf1';
+			alert(name);
+		});
+		
+		//方法三
+		jQuery(document).ready(function(){
+			var name = 'fzf';
+			alert(name);
+		});
+		jQuery(document).ready(function(){
+			var name = 'fzf1';
+			alert(name);
+		});
+		
+		//方法四
+		$(document).ready(function(){
+			var name = 'fzf';
+			alert(name);
+		});
+		$(document).ready(function(){
+			var name = 'fzf1';
+			alert(name);
+		});
+		
+		//window.onload方法在页面中只执行一次，且等到所有dom节点和资源加载完成后执行
+		window.onload = function(){
+			var oBtn = document.getElementsByTagName('button')[0];
+			oBtn.onclick = function(){
+				var oDiv = document.getElementsByTagName('div');
+				for (var i = 0; i < oDiv.length; i++) {
+					oDiv[i].style.background = '#000';
+					oDiv[i].style.width = '200px';
+				}
+			};
+		};
+		
+		var fzf = jQuery.noConflict();//放弃$的使用权，并且把jquery赋给fzf；
+		$();
+		fzf(function(){
+			alert('not good');
+		});
+		*/
+		$(function(){
+			$('button').click(function(){
+				$('div').css({
+					"background":"red",
+					"width":"200px"
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<button>点我</button>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>

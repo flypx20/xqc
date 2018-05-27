@@ -28,7 +28,10 @@
 					if (oAjax.status == 200) {
 						fnSuc(oAjax.responseText);
 					}else{
-						fnFail(oAjax.status);
+						if (fnFail) {
+							fnFail(oAjax.status);
+						}
+						
 					}
 				}
 			};
@@ -37,15 +40,13 @@
 	})(window);
 	var oBtn = document.getElementById('btn');
 	oBtn.onclick=function(){
-		ajax("POST",
-			'http:127.0.0.1:2000/postReq',
-			'name=fzf&age=21',
+		ajax("GET",
+			'http://127.0.0.1:2000/data.JSON',
+			"",
 			function(val){
 				console.log("get data success::",val);
-			},
-			function(status){
-                console.log("get data failed::",status);
-			});
+			}
+		);
 	};
 </script>
 </html>
