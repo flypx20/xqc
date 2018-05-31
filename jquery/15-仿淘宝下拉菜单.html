@@ -28,9 +28,11 @@
 			background: #f8f3f3;
 			border: none;
 			display: inline-block;
+			transition:transform 1s linear;
+			margin-left: 3px;
 		}
 		.grandpa:hover .son{
-
+			transform: rotateZ(180deg);
 		}
 		ul{
 			width: 100px;
@@ -55,6 +57,7 @@
 		}
 		.grandpa:hover .father{
 			background: #fff;
+			color: #ff6700;
 		}
 		.grandpa:hover .son{
 			background: #fff;
@@ -72,7 +75,6 @@
 <script>
 	(function(w){
 		function menu(div,li1,li2){
-
 			this.init(div,li1,li2);
 		}
 		menu.prototype = {
@@ -106,15 +108,9 @@
 						$grand.hover(function(){
 								$ul.stop();
 								$ul.slideDown(1000);
-								$son.animate({
-									transform: rotateZ(180)
-								},1000);
 						},function(){
 								$ul.stop();
 								$ul.slideUp(1000);
-								$son.animate({
-									transform: rotateZ(0)
-								},1000);
 						});
 					});
 
@@ -128,6 +124,8 @@
 	})(window);
 	var m2 = new menu('我的淘宝','已买到的宝贝','我的足迹');
 	var m1 = new menu('收藏夹','收藏的宝贝','收藏的店铺');
+	var m3 = new menu('收藏夹','收藏的宝贝','收藏的店铺');
+	var m4 = new menu('收藏夹','收藏的宝贝','收藏的店铺');
 
 </script>
 </html>
