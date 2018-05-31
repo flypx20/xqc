@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery的静态方法</title>
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var oLi= document.getElementsByTagName('li');
+			var oDiv = document.getElementsByTagName('div');
+			var arr = [1,2,4,6,8,3,5];
+			var likeArr = {0:"qq",1:"aa",2:"bbb",3:"33",length:4};
+			/*arr.forEach(function(value,index){
+				console.log(index,":::",value);
+			});
+			
+			$.each(arr,function(index,value){
+				console.log(index,":::",value);
+			});
+			$.each(oLi,function(index,value){
+				console.log(index,":::",value);
+			});
+			$.each(oDiv,function(index,value){
+				console.log(index,":::",value);
+			});
+			
+			$.each(likeArr,function(index,value){
+				console.log(index,":::",value);
+			});
+			
+			 var res = arr.map(function(value,index){
+				console.log(index,":::",value);
+				return value;
+			});
+			 console.log(res);
+			 
+			var $res = $.map(oLi,function(value,index){
+			 	console.log(index,":::",value);
+			 	return value;
+			 });
+			console.log($res);
+			
+			var $res = $.map(oDiv,function(value,index){
+			 	console.log(index,":::",value);
+			 	return value;
+			 });
+			console.log($res);
+			*/
+			var $res = $.map(likeArr,function(value,index){
+			 	console.log(index,":::",value);
+			 	return value;
+			 });
+			console.log($res);
+		});
+	</script>
+</head>
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>

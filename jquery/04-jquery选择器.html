@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery的选择器</title>
+	<style type="text/css">
+		div{
+			width: 200px;
+			height: 200px;
+			border:1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<div>我是div</div>
+	<div><p>我是段落</p></div>
+	<div><span>我是span</span></div>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		//console.log($('div').eq().index());
+		$('div').eq(0).click(function(){
+			$('div').has('span').css({
+				"background":"red",
+			});
+			$('div:contains(段落)').css({
+				"background":"red",
+			});
+			$('div:empty').css({
+				"background":"yellow",
+			});
+			$('div:parent').css({
+				"background":"blue",
+			});
+			$('div:has(span)').css({
+				"background":"pink",
+			});
+
+		});
+	});
+</script>
+</html>

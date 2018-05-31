@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery的动画速度</title>
+	<style type="text/css">
+		div{
+			width: 200px;
+			height: 100px;
+			background: red;
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+	<button>action</button>
+	<div></div>
+	<div></div>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('button').click(function(){
+			$('div').eq(0).animate({width:600}, 3000,"swing");
+			$('div').eq(1).animate({width:600}, 3000,"linear");
+		});
+	});
+</script>
+</html>

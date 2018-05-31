@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery的动画</title>
+	<style type="text/css">
+		button{
+			width: 50px;
+			height: 20px;
+		}
+		div{
+			width: 100px;
+			height: 100px;
+			background: #000;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<button>显示</button>
+	<button>隐藏</button>
+	<button>切换</button>
+	<div></div>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('button').eq(0).click(function(event) {
+			/*$('div').show(function(){
+				$(this).css({
+					"background":"red",
+				},1000);
+			});	*/
+			$('div').slideDown(function(){
+				$(this).css({
+					"background":"red",
+				},1000);
+			});
+		});
+		$('button').eq(1).click(function(event) {
+			/*$('div').hide(1000,function(){
+				$(this).css({
+					"background":"pink",
+				});
+			});
+			*/
+			$('div').slideUp()(1000,function(){
+				$(this).css({
+					"background":"pink",
+				});
+			});
+		});
+		$('button').eq(2).click(function(event) {
+			$('div').slideToggle(1000,function(){
+				$(this).css({
+					"background":"blue",
+				});
+			});
+		});
+	});
+</script>
+</html>

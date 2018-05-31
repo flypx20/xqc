@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery之选项卡</title>
+	<style type="text/css">
+	li{
+		list-style: none;
+	}
+	.btn{
+		margin-bottom: 40px;
+	}
+		.btn li{
+			width: 40px;
+			height: 20px;
+			display: inline-block;
+			border: 1px solid #000;
+			line-height: 20px;
+			text-align: center;
+			
+		}
+		.active{
+			background: #000;
+			color: #fff;
+		}
+		.content{
+			margin-top: 30px;
+		}
+		.content li{
+			width: 200px;
+			height: 200px;
+			border: 1px solid #000;
+			display: none;
+			
+		}
+		.content .show{
+
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<ul class="btn">
+		<li class="active">1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+
+	<ul class="content">
+		<li class="show">我是飞猪飞1号</li>
+		<li>我是飞猪飞2号</li>
+		<li>我是飞猪飞3号</li>
+		<li>我是飞猪飞4号</li>
+	</ul>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+/*
+	$(function(){
+		//console.log($('.btn li'));
+		$('.btn li').mouseenter(function(){
+			$(this).addClass('active');
+			$(this).siblings('').removeClass('active');
+			//console.log($(this).index());
+			var index = $(this).index();
+			$('.content li').eq(index).addClass('show');
+			$('.content li').eq(index).siblings('').removeClass('show');
+		});
+	});
+		*/
+	$(function(){
+		$('.btn li').hover(function() {
+			$(this).addClass('active');
+			var index = $(this).index();
+			$('.content li').eq(index).addClass('show');
+			//$('.content li').eq(index).siblings('').removeClass('show');
+		}, function() {
+			$(this).removeClass('active');
+			var index = $(this).index();
+			$('.content li').eq(index).removeClass('show');
+		});
+	});
+	
+</script>
+</html>

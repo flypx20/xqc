@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery委托事件</title>
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+			
+			/*
+			//事件委托可以对动态创建的dom节点进行操作
+			$('ul').delegate('li', 'click', function(event) {
+				alert($(this).html());
+				console.log(this);
+			});
+			*/
+			$('button').click(function(){
+				var $li = $('<li>阿猪已经死了，你选择得嘛</li>');
+				$('ul').append($li);
+			});
+			//此方法不可以对动态创建的节点进行操作
+			$('li').click(function() {
+				console.log(this);
+				alert($(this).html());
+			});
+		});
+
+	</script>
+</head>
+<body>
+	<button>飞猪飞</button>
+	<ul>
+		<li>我是飞猪飞1号</li>
+		<li>飞猪飞2号</li>
+		<li>飞猪飞3号</li>
+		<li>飞猪飞4号</li>
+	</ul>
+</body>
+</html>

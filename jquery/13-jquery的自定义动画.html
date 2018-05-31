@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery的自定义动画</title>
+	<style type="text/css">
+		div{
+			width: 200px;
+			height: 200px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<button>action</button>
+	<button>stop</button>
+	<div></div>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$('button').eq(0).click(function(event) {
+		
+		//链式调用动画的第一种方法：最简单
+		$('div').animate({
+             width:"+=200",//多个参数一起会同时执行
+             height:"-=100"
+		}, 1000).delay(3000).animate({
+             opacity:0.5
+		}, 1000);
+		/*
+		//链式调用的第二种方法：较简单
+		$('div').animate({
+             width:"+=200"
+
+		}, 1000,function(){
+			$('div').animate({
+             height:"+=100"
+			}, 1000,function(){
+				$('div').animate({
+                  opacity:0.5
+				}, 1000);
+			});
+		});
+		
+		//链式调用的第三种方法：最麻烦
+		$('button').eq(1).click(function(event) {
+             //$('div').stop(false,true);
+		});
+
+		$('div').animate({
+			width:300,
+		}, 1000);
+
+		$('div').animate({
+			height:300
+		}, 1000);
+
+		$('div').animate({
+			opacity:0.5
+		}, 1000);
+		*/
+	});
+</script>
+</html>
