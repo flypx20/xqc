@@ -5,9 +5,10 @@
 	<title>仿淘宝下拉菜单</title>
 	<style type="text/css">
 		body{
-			background:rgba(20, 0, 0, 0.5);
+			background:rgba(0, 0, 0, 0.5);
 		}
 		.grandpa{
+			width: 100px;
 			display: inline-block;
 			position: relative;
 			right: -630px;
@@ -15,7 +16,7 @@
 		.father{
 			width: 100px;
 			height: 40px;
-			background: #666;
+			background: #f8f3f3;
 			line-height: 40px;
 			text-align: center;
 			margin: 0 auto;
@@ -24,31 +25,33 @@
 			width: 20px;
 			height: 20px;
 			line-height: 20px;
-			background: #666;
-			border: none; 
+			background: #f8f3f3;
+			border: none;
 			display: inline-block;
 		}
 		.grandpa:hover .son{
-			transform: rotateZ(180deg);
+
 		}
 		ul{
+			width: 100px;
 			height: 80px;
-			text-align: center;
 			list-style: none;
-			position: relative;
-			top: -17px;
-			right: 20px;
+			position: absolute;
+			top: 40px;
+			right: 0px;
+			padding: 0px 0px;
 			overflow: hidden;
-
+			background: #fff;
+			display: none;
+			box-sizing: border-box;
+			margin:0px 0px;
 		}
 		li{
 			width: 100px;
 			height: 40px;
 			line-height: 40px;
 			text-align: center;
-			background: #666;
-			margin: 0 auto;
-			
+
 		}
 		.grandpa:hover .father{
 			background: #fff;
@@ -56,20 +59,20 @@
 		.grandpa:hover .son{
 			background: #fff;
 		}
-		.grandpa:hover li{
-			background: #fff;
+		.grandpa li:hover{
+			background: #2e24240f;
 		}
 	</style>
 </head>
 <body>
-	
-	
+
+
 </body>
 <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 <script>
 	(function(w){
 		function menu(div,li1,li2){
-			
+
 			this.init(div,li1,li2);
 		}
 		menu.prototype = {
@@ -79,6 +82,7 @@
 					//var $GrandPa = $('<div class="grandpa"><div class="father"></div><ul><li></li><li></li></ul></div>');
 					var grandPa = document.createElement('div');
 					var Father  = document.createElement('div');
+					var oSon = document.createElement('div');
 					var oUl = document.createElement('ul');
 					var oLi1 = document.createElement('li');
 					var oLi2 = document.createElement('li');
@@ -87,23 +91,43 @@
 					grandPa.className = 'grandpa';
 					Father.className = 'father';
 					Father.innerHTML = div;
-					
+					oSon.className = 'son';
+					oSon.innerHTML = '&or;';
+					Father.appendChild(oSon);
 					grandPa.appendChild(Father);
 					oUl.appendChild(oLi1);
 					oUl.appendChild(oLi2);
 					grandPa.appendChild(oUl);
 					document.body.appendChild(grandPa);
-					
-					
-			}
-		};
-		
+					$(function(){
+						var $grand = $(grandPa);
+						var $son = $(oSon);
+						var $ul = $(oUl);
+						$grand.hover(function(){
+								$ul.stop();
+								$ul.slideDown(1000);
+								$son.animate({
+									transform: rotateZ(180)
+								},1000);
+						},function(){
+								$ul.stop();
+								$ul.slideUp(1000);
+								$son.animate({
+									transform: rotateZ(0)
+								},1000);
+						});
+					});
 
-		
+			},
+
+		};
+
+
+
 		w.menu = menu;
 	})(window);
-	var m2 = new menu('我的淘宝<div class="son">&or;<div>','已买到的宝贝','我的足迹');
-	var m1 = new menu('收藏夹<div class="son">&or;<div>','收藏的宝贝','收藏的店铺');
-	
+	var m2 = new menu('我的淘宝','已买到的宝贝','我的足迹');
+	var m1 = new menu('收藏夹','收藏的宝贝','收藏的店铺');
+
 </script>
 </html>
