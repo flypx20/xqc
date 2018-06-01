@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ajax的jqXHR</title>
+</head>
+<body>
+	<button>获取数据</button>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+	   $('button').click(function(){
+	   		var jqXHR = $.ajax({
+	   			url:'./data1.json',
+   				type:"GET",
+   				dataType:"json",
+	   		});
+	   		jqXHR.done(function(){
+	   			console.log('nice work');
+	   		});
+	   		jqXHR.fail(function(){
+	   			console.log('oh no');
+	   		});
+	   		jqXHR.always(function(){
+	   			console.log('i am always back');
+	   		});
+	   });
+	});
+</script>
+</html>

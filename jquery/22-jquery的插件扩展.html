@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery之插件的扩展</title>
+	<style type="text/css">
+		div{
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<button>我给你变魔术</button>
+	<div>你好</div><div>我是飞猪飞</div>
+	<div>你好</div><div>我是飞猪飞</div>
+</body>
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+		;(function($){
+			//这种方法较麻烦
+			/*
+			$.fn.setColor = function(option){
+		   			var defaults = {
+		   				color:'red',
+		   				width:'200px'
+		   			};
+		   			option = $.extend(defaults,option);
+		   			this.each(function() {
+		   				console.log(this);
+		   				this.style.color = option.color;
+		   				this.style.width = option.width;
+		   			});
+		   		};
+		   		*/
+		   		//较简单，官方推荐,方便管理
+		   		$.fn.extend({
+		   			setBackground:function(option){
+		   				var defaults = {
+		   					background:'gold',
+		   				};
+		   				option = $.extend(defaults,option);
+		   				this.each(function(index, el) {
+		   					this.style.background = option.background;
+		   				});
+		   			},
+		   			setColor:function(option){
+				   			var defaults = {
+				   				color:'red',
+				   				width:'200px'
+				   			};
+				   			option = $.extend(defaults,option);
+				   			this.each(function() {
+				   				console.log(this);
+				   				this.style.color = option.color;
+				   				this.style.width = option.width;
+				   			});
+				   	}
+		   		});
+		   		
+		})(jQuery);
+	</script>
+	<script>
+		$(function(){
+		   $('button').click(function(event) {
+		   		
+		   		$('div').setColor({
+		   			color:'blue',
+		   			width:'100px'
+		   		});
+		   		$('div').eq(2).setBackground();
+		   });
+		});
+	</script>
+</html>

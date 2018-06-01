@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery选项卡插件</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+
+	}
+		.tab{
+			width: 160px;
+			margin: 20px auto;
+			
+		}
+		li{
+			list-style: none;
+			color: #000;
+			border: 1px solid #000;
+			overflow: hidden;
+			box-sizing: border-box;
+		}
+		.btn>li{
+			width: 40px;
+			height: 30px;
+			float: left;
+			line-height: 30px;
+			text-align: center;
+		}
+		.content>li{
+			width: 200px;
+			height: 200px;
+			display: none;
+
+		}
+		.btn .active{
+			background: #ff6700;
+		}
+		.content .active{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<div class="tab">
+		<ul class="btn">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<ul class="content">
+			<li class="active">飞猪飞1号</li>
+			<li>飞猪飞2号</li>
+			<li>飞猪飞3号</li>
+			<li>飞猪飞4号</li>
+		</ul>
+	</div>
+</body>
+</html>

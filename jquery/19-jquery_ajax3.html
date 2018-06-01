@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery_ajax的全局配置</title>
+</head>
+<body>
+	<button>获取数据</button>
+	<button>飞猪飞post</button>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		$.ajaxSetup({
+	   				url:'./data.json',
+	   				type:"GET",
+	   				data:{name:"ton",age:12},
+	   				dataType:"json",
+	   	});
+	   $('button').eq(0).click(function(event) {
+
+	   			$.ajax({
+	   				success:function(){
+	   					console.log('恭喜你成功了');
+	   				}
+	   			});
+	   	  });
+	   $('button').eq(1).click(function(event) {
+
+	   			$.ajax({
+	   				type:"POST",
+	   				success:function(data){
+	   					console.log(data.name);
+	   				},
+	   				global:false
+	   			});
+	   	  });
+	});
+</script>
+</html>

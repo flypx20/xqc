@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery_ajax的全局配置2</title>
+</head>
+<body>
+	<button>获取数据</button>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		console.log($(document));
+		//请求开始,未完成其它请求时执行回调函数
+	   $(document).ajaxStart(function(){
+	   		console.log('1::ajaxStart');
+	   });
+	   //请求结束,所有请求结束时执行回调函数
+	   $(document).ajaxStop(function(){
+	   		console.log('5::ajaxStopS');
+	   });
+	   //,当有请求成功时执行回调函数
+	   $(document).ajaxSuccess(function(){
+	   		console.log('3::ajaxSuccess');
+	   });
+	   //当有请求完成时执行回调函数
+	   $(document).ajaxComplete(function(event, xhr, settings) {
+	   		console.log('4::ajaxComplete');
+	   });
+	   //当有请求失败时执行回调函数
+	   $(document).ajaxError(function(){
+	   		console.log('ajaxSuccess');
+	   });
+	   //当有请求发送请求时执行回调函数
+	   $(document).ajaxSend(function(){
+	   		console.log('2::ajaxSend');
+	   });
+	   $.ajaxSetup({
+	   				url:'./data.json',
+	   				type:"GET",
+	   				data:{name:"ton",age:12},
+	   				dataType:"json",
+	   	});
+	   $('button').click(function(event) {
+	   		$.ajax({
+	   			success:function(data){
+	   				console.log(data.name);
+	   			},
+	   			//global:false
+	   		});
+	   });
+	});
+</script>
+</html>
