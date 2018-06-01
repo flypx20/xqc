@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery_ajax</title>
+</head>
+<body>
+	<button>获取数据</button>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+	   $('button').click(function(event) {
+	   		$.ajax({
+	   			url:'./data.json',
+	   			//type:"GET",
+	   			type:"POST",
+	   			//data:"name=tom&age=99",
+	   			//data:{name:"ton",age:99},
+	   			dataType:"json",
+	   			success:function(data,statusMSG,jqXHR){
+	   				console.log("success::",data.name);
+	   			},
+	   			error: function(jqXHR,statusMSG){
+	   				console.log('error::',statusMSG);
+	   			},
+	   			complete: function(jqXHR,statusMSG){
+	   				console.log("ok::",statusMSG);
+	   			},
+	   			timeout:1000,
+	   			statusCode:{
+	   				404:function(){
+	   					console.log('阿猪已经死了');
+	   				},
+	   			},
+	   			headers:{test:'fzf'}
+
+	   		});
+	   	});
+	});
+</script>
+</html>

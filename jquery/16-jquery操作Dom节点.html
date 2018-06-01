@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery之操作DOM节点</title>
+	<style type="text/css">
+		div{
+			width: 100px;
+			height: 50px;
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<button>飞猪飞将军</button>
+	<ul>
+		<li>飞猪飞1号</li>
+		<li>飞猪飞2号</li>
+		<li>飞猪飞3号</li>
+		<li>飞猪飞4号</li>
+	</ul>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+	   $('button').eq(0).click(function(event) {
+	   		var $li = $('<li>我是飞猪飞5号</li>');
+	   		var $delet = $('<button>飞猪飞将军删除</button><div>阿猪已经死了</div>');
+	   		var $replace = $('<button>替换</button><div class="fzf">飞猪飞</div><div>飞猪飞</div><div>飞猪飞</div><div>飞猪飞</div>');
+	   		var $clone = $('<button>复制</button><div class="fzf">飞猪飞</div>');
+	   		//$(父元素节点jquery对象).append(子元素节点jquery对象)
+	   		//$('ul').append($li);
+	   		//$(子元素节点jquery对象).appendTo(父元素节点jquery对象)
+	   		//$li.appendTo($('ul'));
+
+
+	   		//$(父元素节点jquery对象).prepend(子元素节点jquery对象),在静态节点之前创建节点
+	   		//$('ul').prepend($li);
+	   		//$(子元素节点jquery对象).prependTo(父元素节点jquery对象)
+	   		//$li.prependTo($('ul'));
+
+
+	   		//在外部创建节点
+	   		//在外部后面创建节点
+	   		//$('ul').after($li);
+	   		//$('ul').after($delet);
+	   		$('ul').after($clone);
+	   		//在外部前面复制节点
+	   		//$('ul').before($li);
+	   		$('div').click(function(event) {
+	   				alert('飞猪飞你好');
+	   			});
+	   		//删除节点
+	   		$('button').eq(1).click(function(event) {
+	   			//remove删除节点没有保留节点的事件
+	   			//var $res = $('div').remove();
+	   			//detach删除节点保留节点的事件
+	   			//var $res = $('div').detach();
+	   			//console.log($res);
+	   			//$('body').append($res);
+
+
+	   			//节点的替换操作
+	   			//var $h = $('<h1>飞猪飞将军</h1>');
+	   			//var $res = $('div').eq(0).replaceWith('<h2>飞猪飞</h2>');
+	   			//$h.replaceAll('.fzf');
+	   			//console.log($res);
+
+	   			//节点的复制操作
+	   			$('div').click(function(event) {
+	   					alert('飞猪飞将军号');
+	   			});
+	   			var $res = $('div').eq(0).clone();
+	   			$('body').append( $('div').clone(true));
+	   		});
+	   		//清空节点的innerHTml
+	   		//$('ul').empty();
+	   });
+	});
+</script>
+</html>

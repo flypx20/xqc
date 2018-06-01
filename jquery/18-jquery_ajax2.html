@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery的ajax方法</title>
+</head>
+<body>
+	<button>获取数据</button>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+	   $('button').click(function(event) {
+	   		/*$.get('./data.json', function(data) {
+	   			console.log(data.name);
+	   		},'json');
+	   		
+	   		$.get('./data.json','name=tom&age=89',function(data){
+	   			console.log(data.age);
+	   		},'json');
+	   		
+	   		$.getJSON('./data.json',{name:"ami",age:12},function(data){
+	   			console.log(data.name);
+	   		});
+	   		
+	   		$.getScript('./data.js',function(data){
+	   			console.log(data);
+	   		});
+	   		
+	   		$.post('/path/to/file', {name: 'value1'}, function(data) {
+	   			console.log(data.name);
+	   		},'json');
+	   		*/
+	   		$('body').load('./data.js',function(data,status){
+	   			console.log(status);
+	   		});
+	   });
+	});
+</script>
+</html>
