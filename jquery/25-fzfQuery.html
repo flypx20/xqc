@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>fzfQuery</title>
+</head>
+<body>
+	<ul>
+		<li class="li"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+<!-- <script type="text/javascript" src="js/jquery-1.12.4.js"></script> -->
+<script type="text/javascript" src="js/fzfQuery-1.0.js"></script>
+<script>
+	//传的值为假的话，返回空的jquery对象
+	// console.log($(''));
+	// console.log($(null));
+	// console.log($(undefined));
+	// console.log($(0));
+	// console.log($(false));
+	// console.log($(NaN));
+
+	//传的值为空函数的话，返回document的jquery对象
+	console.log($(function(){
+
+	}));
+	// console.log(typeof $(function(){}) );
+
+
+	//传的值为伪数组或数组时，返回数组本身的jquery对象
+	// var like = {0:"aaa",1:"bbb",2:"ccc",length:3};
+	// var arr = [1,2,3,4,5];
+	// var oLi = $('li');
+	// var oDiv = $('<div><p></p></div><div><p></p></div>');
+	// console.log(like);
+	// console.log(arr);
+	// console.log(oLi);
+	// console.log(oDiv);
+
+	//传的值为常量的话，返回本身的jquery对象
+	// console.log($(1));
+	// console.log($('.li'));
+
+
+</script>
+</html>
