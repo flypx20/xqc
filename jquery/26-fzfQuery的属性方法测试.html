@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>fzfQuery的属性方法测试</title>
+	<!-- <script type="text/javascript" src="js/jquery-1.12.4.js"></script> -->
+	<script type="text/javascript" src="js/fzfQuery-1.0.js"></script>
+	<script>
+		$(function(){
+		  
+			// console.log( $('li').html());
+			// console.log($('li').html('飞猪飞'));
+			// console.log( $('li').text('飞猪飞'));
+			$('button')[0].onclick = function(){
+				console.log($('input').val());
+				console.log($('input').val('ccc'));
+				};
+				
+
+		});
+	</script>
+</head>
+<body>
+	<ul>
+		<li>飞猪飞1号</li>
+		<li>飞猪飞2号</li>
+		<li>飞猪飞3号</li>
+		<li>飞猪飞4号</li>
+	</ul>
+	<button>飞猪飞</button>
+	<div class="box1" name = "btn1"></div>
+	<div class="box2" name = "btn2"></div>
+	<input type="" name="" value="aaa">
+	<input type="" name="" value="bbb">
+</body>
+</html>
