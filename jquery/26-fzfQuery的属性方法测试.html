@@ -3,18 +3,45 @@
 <head>
 	<meta charset="UTF-8">
 	<title>fzfQuery的属性方法测试</title>
-	<!-- <script type="text/javascript" src="js/jquery-1.12.4.js"></script> -->
-	<script type="text/javascript" src="js/fzfQuery-1.0.js"></script>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box1{
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+		.box2{
+			width: 150px;
+			height: 150px;
+			background: gray;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<!-- <script type="text/javascript" src="js/fzfQuery-1.0.js"></script> -->
 	<script>
 		$(function(){
-		  
+		  	var str = 'adc';
 			// console.log( $('li').html());
 			// console.log($('li').html('飞猪飞'));
 			// console.log( $('li').text('飞猪飞'));
 			$('button')[0].onclick = function(){
-				console.log($('input').val());
-				console.log($('input').val('ccc'));
-				};
+				// console.log($('input').val());
+				// console.log($('input').val('ccc'));
+				// console.log($('div').addClass('box1 box2 box3'));
+				// console.log($('div').removeClass());
+				// alert(parseInt(''));
+				// alert(parseFloat('-0.9'));
+				// alert(str.concat('d','e'));
+				// console.log($('div').removeClass('box1 box2 box3'));
+				// // 
+				// console.log($('div').empty('box'));
+				// console.log($('div').eq(0).remove('div'));
+				// console.log($('div').hasClass('div'));
+				console.log($('div').append($('p')[0]));
+			};
 				
 
 		});
@@ -28,9 +55,11 @@
 		<li>飞猪飞4号</li>
 	</ul>
 	<button>飞猪飞</button>
-	<div class="box1" name = "btn1"></div>
-	<div class="box2" name = "btn2"></div>
+	<div class="  box1 aa box" name = "btn1">飞猪飞1号</div>
+	<div class="box2 box1" name = "btn2">飞猪飞2号</div>
 	<input type="" name="" value="aaa">
 	<input type="" name="" value="bbb">
+	<p>飞猪飞将军</p>
+	<p>飞猪飞将军2</p>
 </body>
 </html>

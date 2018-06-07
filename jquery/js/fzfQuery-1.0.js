@@ -172,6 +172,9 @@
 				}
 			}
 			return retArr;
+		},
+		toWords:function(str){
+			return str.match(/\b\w+\b/g);
 		}
 
 	});
@@ -235,6 +238,125 @@
 				return this;
 			}else{
 				return this[0].value;
+			}
+		},
+		css:function(arg1,arg2){
+			if (fzfQuery.isString(arg1)) {
+				if (arguments.length == 1) {
+					if(this[0].currentStyle){//兼容低级浏览器
+						return this[0].currentStyle[arg1];
+					}else{
+						return getComputedStyle(this[0],false)[arg1];
+					}
+				}else if (arguments.length==2) {
+					this.each(function() {
+						this.style[arg1] = arg2;							
+					});
+				}
+				
+			}else if (fzfQuery.isObject(arg1)) {
+				this.each(function() {
+					for (key in arg1){
+						this.style[key] = arg1[key];
+					}
+				});
+			}
+			return this;
+		},
+		hasClass : function(arg){
+			var res = false;
+			if (arg) {
+				var reg = eval('/\\b'+arg+'\\b/');
+				this.each(function() {
+					if (reg.test(this.className)) {
+						res = true;
+						return false;
+					}
+				});
+			}
+			return res;
+		},
+		addClass : function(arg){
+			if (arg) {
+				var name = fzfQuery.toWords(arg);
+				this.each(function(){
+					for(var i= 0; i<name.length;i++){
+						if (!$(this).hasClass(name[i])) {
+							this.className +=(' '+name[i]);
+						}
+					}
+				});
+			}
+			return this;
+		},
+		removeClass:function(arg){
+	    	this.each(function() {
+	    		 if (arg) {
+	    		 	var name = fzfQuery.toWords(arg);
+	    		 	for(var i =0;i<name.length;i++){
+	    		 		var reg =  eval('/\\b'+name[i]+'\\b/');
+	    		 		if ($(this).hasClass(name[i])) {
+			          		this.className = this.className.replace(reg, ' ');
+			       		}
+	    		 	}
+		        }else{
+		            this.className = "";
+		        }
+	    	
+	    	});
+	  		 return this;
+  		},
+  		toggleClass:function(arg1,arg2){
+  				if (arguments.length == 0) {
+  					this.each(function() {
+  						this.className = "";
+  					});
+  				}else if (fzfQuery.isString(arg1)) {
+  					this.each(function() {
+  						var name = fzfQuery.toWords(arg1);
+  						for (var i = 0; i < name.length; i++) {
+  							if ($(this).hasClass(name[i])) {
+  								$(this).removeClass(name[i]);
+  							}else{
+  								$(this).addClass(name[i]);
+  							}
+  					}
+  					});
+  					
+	  			}else if (fzfQuery.isFunction(arg1)) {
+	  				//this.toggleClass();
+  				}
+  				return this;
+  		}
+	});
+	//fzfquery操作DOM节点方法；
+	fzfQuery.fn.extend({
+		empty:function(){
+			this.each(function(index, el) {
+				this.innerHTML= '';		
+			});
+			return this;
+		},
+		remove:function(sec){
+			if (sec) {
+				var doms = document.querySelectorAll(sec);
+				this.each(function() {
+					for (var i = 0; i < doms.length; i++) {
+						if (this == doms[i]) {
+							this.parentNode.removeChild(this);
+						}
+					}
+				});
+			}else{
+				this.each(function() {
+					this.parentNode.removeChild(this);
+				});
+			}
+			return this;
+		},
+		append:function(source){
+			if (source) {
+				var $source = $(source);
 			}
 		}
 	});
