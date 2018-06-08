@@ -175,6 +175,13 @@
 		},
 		toWords:function(str){
 			return str.match(/\b\w+\b/g);
+		},
+		addEvent:function(dom,eventName,fn){
+			if(dom.addEventListener){
+				dom.addEventListener(eventName,fn);
+			}else{
+				dom.attachEvent('on'+eventName,fn);
+			}
 		}
 
 	});
@@ -426,12 +433,15 @@
 					this.each(function(index) {
 						var parentNode = this;
 						if (index == 0) {
-							var arg = '';
-							$source.each(function() {
-								arg += this;
-								console.log(arg);
-								parentNode.insertBefore(this, parentNode.firstChild);
-							});
+							// var arg = '';
+							// $source.each(function() {
+							// 	console.log(this);
+								
+							// 	parentNode.insertBefore(this, parentNode.firstChild);
+							// });
+							for (var i = 0; i < $source.get().length; i++) {
+								console.log( $source.get()[1]);
+							}
 						}else{
 							$source.each(function(index, el) {
 								var dom = this.cloneNode(true);
@@ -442,6 +452,43 @@
 				}
 			}
 			return this;
+		}
+	});
+	fzfQuery.fn.extend({
+		on:function(eventName,fn){
+			this.each(function() {
+				if (!this.bucketEvent) {
+					this.bucketEvent = {};
+				}
+				if (!this.bucketEvent[eventName]) {
+					this.bucketEvent[eventName] = [];
+					this.bucketEvent[eventName].push(fn);
+					fzfQuery.addEvent(this,eventName,function(){
+						fzfQuery.each(this.bucketEvent[eventName],function(){
+							this();
+						});
+					});
+				}else{
+					this.bucketEvent[eventName].push(fn);
+				}
+			});
+		},
+		off:function(eventName,fnName){
+			if (arguments.length ==0) {
+				this.each(function() {
+					if (this.bucketEvent) {
+						this.bucketEvent = {};
+					}
+				});
+			}else if (arguments.length ==1) {
+				this.each(function() {
+					if (this.bucketEvent[eventName]) {
+						this.bucketEvent[eventName] = [];
+					}
+				});
+			}else if (arguments.length ==2) {
+
+			}
 		}
 	});
 	fzfQuery.fn.init.prototype = fzfQuery.fn;
