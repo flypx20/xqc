@@ -19,8 +19,9 @@
 			background: gray;
 		}
 	</style>
-	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
-	<!-- <script type="text/javascript" src="js/fzfQuery-1.0.js"></script> -->
+	<!-- <script type="text/javascript" src="js/jquery-1.12.4.js"></script> -->
+	<!-- <script type="text/javascript" src="js/kQuery.js"></script> -->
+	<script type="text/javascript" src="js/fzfQuery-1.0.js"></script>
 	<script>
 		$(function(){
 		  	var str = 'adc';
@@ -36,15 +37,22 @@
 				// alert(parseFloat('-0.9'));
 				// alert(str.concat('d','e'));
 				// console.log($('div').removeClass('box1 box2 box3'));
-				// // 
+				// //
 				// console.log($('div').empty('box'));
 				// console.log($('div').eq(0).remove('div'));
 				// console.log($('div').hasClass('div'));
-				console.log($('div').append('hahab    b     bs'));
+				// console.log($('div').append('hahab    b     bs'));
 				// console.log($('div')[0].appendData);
-				// console.log($('div').prepend('hahab    b     bs'));
+				console.log($('div').append($('p')));
+				// console.log('asasd sasas'+'saa');
+				// console.log($('div').prepend('a aa','b','c'));
+				// console.log($('div').prepend('<p>haha</p><p>1223</p>'));
+				// console.log($('div').get());
+				// console.log($('div').append('<p>haha</p><p>1223</p>'));
+				// console.log($('div').append('haha'));
+				// console.log(fzfQuery.isHTML('<p>haha</p><p>1223</p>'));
 			};
-				
+
 
 		});
 	</script>

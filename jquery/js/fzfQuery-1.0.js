@@ -1,6 +1,6 @@
 //fzfQuery的基本结构是一个闭包
 (function(window){
-	var 
+	var
 	//创建fzfQuery的构造函数
 		fzfQuery = function(selector){
 			return new fzfQuery.fn.init(selector);
@@ -20,7 +20,7 @@
 				});
 				this[0] = document;
 				this.length = 1;
-			//处理字符串	
+			//处理字符串
 			}else if(fzfQuery.isString(selector)){
 				//HTML代码处理
 				if(fzfQuery.isHTML(selector)){
@@ -34,7 +34,7 @@
 					this.length = tmpDom.children.length;
 					*/
 					[].push.apply(this,tmpDom.children);
-				//选择器处理	
+				//选择器处理
 				}else{
 					var doms = document.querySelectorAll(selector);
 					// console.log(doms);
@@ -45,12 +45,12 @@
 					this.length = doms.length;
 					*/
 					[].push.apply(this,doms);
-				}	
+				}
 			}
 			else if(fzfQuery.isArray(selector)){
 				//由于apply转伪数组有兼容问题(IE8以下不兼容),所以把所有传入的数组转换成真数组
 				var tmpArr = [].slice.call(selector);
-				
+
 				//把转换后的真数组转换成伪数组
 				[].push.apply(this,tmpArr);
 			}else{
@@ -129,7 +129,7 @@
 				return str.replace(/^\s+|\s+$/g,'');
 			}else{
 				return str;
-			}	
+			}
 		},
 		each:function(arr,fn){
 			if (fzfQuery.isArray(arr)) {
@@ -250,10 +250,10 @@
 					}
 				}else if (arguments.length==2) {
 					this.each(function() {
-						this.style[arg1] = arg2;							
+						this.style[arg1] = arg2;
 					});
 				}
-				
+
 			}else if (fzfQuery.isObject(arg1)) {
 				this.each(function() {
 					for (key in arg1){
@@ -302,7 +302,7 @@
 		        }else{
 		            this.className = "";
 		        }
-	    	
+
 	    	});
 	  		 return this;
   		},
@@ -322,7 +322,7 @@
   							}
   					}
   					});
-  					
+
 	  			}else if (fzfQuery.isFunction(arg1)) {
 	  				//this.toggleClass();
   				}
@@ -333,7 +333,7 @@
 	fzfQuery.fn.extend({
 		empty:function(){
 			this.each(function(index, el) {
-				this.innerHTML= '';		
+				this.innerHTML= '';
 			});
 			return this;
 		},
@@ -354,17 +354,37 @@
 			}
 			return this;
 		},
-		append:function(source){	
+		append:function(source){
 			if (source) {
 				if (fzfQuery.isString(source)) {
-					this.each(function() {
-						// var $this = fzfQuery(this);
-						// $this.html(this.innerHTML+source);
-						// this.appendData=source;
-						var text = document.createTextNode(source);
-						this.appendChild(text);
-					});
-				}else{
+					if (!fzfQuery.isHTML(source)) {
+						if (arguments.length>=1) {
+								var arg = '';
+								for(var i =0;i<arguments.length;i++){
+									 arg += arguments[i];
+								}
+							}
+							this.each(function() {
+								var text = document.createTextNode(arg);
+								this.appendChild(text);
+						});
+					}else{
+						var $source = $(source);
+						this.each(function(index) {
+							var parentNode = this;
+							if (index == 0) {
+									$source.each(function() {
+									parentNode.appendChild(this);
+								});
+						}else{
+							$source.each(function(index, el) {
+								var dom = this.cloneNode(true);
+								parentNode.appendChild(dom);
+								});
+							}
+						});
+					}
+				}else {
 					var $source = $(source);
 					this.each(function(index) {
 						var parentNode = this;
@@ -386,9 +406,38 @@
 		prepend:function(source){
 			if (source) {
 				if (fzfQuery.isString(source)) {
-					this.each(function() {
-						var $this = fzfQuery(this);
-						$this.html(source+this.innerHTML);
+					if (!fzfQuery.isHTML(source)) {
+						if (arguments.length>=1) {
+							var arg = '';
+							for(var i =0;i<arguments.length;i++){
+								 arg += arguments[i];
+							}
+						}
+						this.each(function() {
+							var parentNode = this;
+							var text = document.createTextNode(arg);
+							this.insertBefore(text, parentNode.firstChild);
+						});
+					}else{
+
+					}
+				}else {
+					var $source = $(source);
+					this.each(function(index) {
+						var parentNode = this;
+						if (index == 0) {
+							var arg = '';
+							$source.each(function() {
+								arg += this;
+								console.log(arg);
+								parentNode.insertBefore(this, parentNode.firstChild);
+							});
+						}else{
+							$source.each(function(index, el) {
+								var dom = this.cloneNode(true);
+								parentNode.insertBefore(dom, parentNode.firstChild);
+							});
+						}
 					});
 				}
 			}
