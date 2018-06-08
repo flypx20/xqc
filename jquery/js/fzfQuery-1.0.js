@@ -354,10 +354,45 @@
 			}
 			return this;
 		},
-		append:function(source){
+		append:function(source){	
 			if (source) {
-				var $source = $(source);
+				if (fzfQuery.isString(source)) {
+					this.each(function() {
+						// var $this = fzfQuery(this);
+						// $this.html(this.innerHTML+source);
+						// this.appendData=source;
+						var text = document.createTextNode(source);
+						this.appendChild(text);
+					});
+				}else{
+					var $source = $(source);
+					this.each(function(index) {
+						var parentNode = this;
+						if (index == 0) {
+							$source.each(function() {
+								parentNode.appendChild(this);
+							});
+						}else{
+							$source.each(function(index, el) {
+								var dom = this.cloneNode(true);
+								parentNode.appendChild(dom);
+							});
+						}
+				});
+				}
 			}
+			return this;
+		},
+		prepend:function(source){
+			if (source) {
+				if (fzfQuery.isString(source)) {
+					this.each(function() {
+						var $this = fzfQuery(this);
+						$this.html(source+this.innerHTML);
+					});
+				}
+			}
+			return this;
 		}
 	});
 	fzfQuery.fn.init.prototype = fzfQuery.fn;
