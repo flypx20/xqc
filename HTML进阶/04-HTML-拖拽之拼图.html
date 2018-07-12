@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拼图</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			width: 500px;
+			height: 300px;
+			margin: 100px auto;
+		}
+		.box{
+			list-style: none;
+			float: left;
+			width: 100px;
+			height: 150px;
+		}
+	</style>
+</head>
+<body>
+	<ul class="container">
+		<li class="box" draggable = 'true'><img src="img/01.png" alt=""></li>
+		<li class="box" draggable = 'true'><img src="img/02.png" alt=""></li>
+		<li class="box" draggable = 'true'><img src="img/06.png" alt=""></li>
+		<li class="box" draggable = 'true'><img src="img/05.png" alt=""></li>
+		<li class="box" draggable = 'true'><img src="img/08.png" alt=""></li>
+		<li class="box" draggable = 'true'><img src="img/10.png" alt=""></li>
+		<li class="box" draggable = 'true'><img src="img/04.png" alt=""></li>
+		<li class="box" draggable = 'true'><img src="img/03.png" alt=""></li>
+		<li class="box" draggable = 'true'><img src="img/09.png" alt=""></li>
+		<li class="box" draggable = 'true'><img src="img/07.png" alt=""></li>
+	</ul>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		var target = null;
+	   $('.container')
+	   .on('dragstart', '.box', function(event) {
+	   		target = this;
+	   		event.originalEvent.dataTransfer.setData('html',this.innerHTML);
+	   })
+	   .on('drop', '.box', function(event) {
+	   		if (target != this) {
+	   			target.innerHTML = this.innerHTML;
+
+	   			this.innerHTML = event.originalEvent.dataTransfer.getData('html');
+	   		}
+	   })
+	   .on('dragover', '.box', function(event) {
+	   	event.preventDefault();
+	   });
+
+	});
+</script>
+</html>

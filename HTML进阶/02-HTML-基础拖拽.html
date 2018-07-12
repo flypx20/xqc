@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HTML  api之拖拽</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			width: 300px;
+			height: 300px;
+			background: pink;
+			transition: all 1s;
+		}
+		.target{
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+		.biger{
+			width: 400px;
+			height: 400px;
+			background: blue;
+		}
+		.hide{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="container" id="container"></div>
+	<div class="target" id="target" draggable="true"></div>
+	<img src="../images/jdM1.jpg" class="hide" id="logo">
+</body>
+<script type="text/javascript" src="../jquery/js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+	   $('#target')
+	   .on('dragstart',function(ev){
+	   		ev.originalEvent.dataTransfer.setData('targetId',ev.target.id);
+	   		ev.originalEvent.dataTransfer.setDragImage($('#logo').clone()[0],0,0);
+	   })
+	   .on('drag',function(event) {
+	   		console.log('target:  drag');
+	   });
+	   $('#container')
+	   .on('drop',function(ev) {
+	   		
+	   		$('#container').append($('#'+ev.originalEvent.dataTransfer.getData('targetId')));
+	   })
+	   .on('drag',function(event) {
+	   		console.log("cntainer :drag");
+	   })
+	   .on('dragover',function(event) {
+	   		event.preventDefault();
+	   })
+	   .on('dragenter',function(event) {
+	 		console.log("container:dragenter");
+	 		 $('#container').addClass('biger');
+	   })
+	   .on('dragleave',function(event) {
+	   		console.log("container:dragleave");
+	   })
+	   .on('dragend', function(event) {
+	   		 $('#container').removeClass('biger');
+
+	   });
+	});
+</script>
+</html>

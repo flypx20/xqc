@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>调查问卷</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.page{
+			width: 1000px;
+			margin: 100px auto;
+		}
+		.container{
+			float: left;
+			width: 500px;
+			padding: 10px 60px;
+			min-height: 500px;
+			box-sizing: border-box;
+			border-right: 1px red solid;
+		}
+		.form{
+			float: left;
+			width: 500px;
+			min-height: 500px;
+			padding: 10px 20px;
+			box-sizing: border-box;
+		}
+		.box{
+			width: 100%;
+			border:1px dashed;
+			margin-bottom: 10px;
+			padding: 10px 20px;
+
+		}
+	</style>
+</head>
+<body>
+	<div class="page">
+		<div class="container">
+			<h2>调查问卷</h2>
+		</div>
+		<div class="form">
+			<div class="box" draggable="true">
+				<label>姓名</label>
+				<input type="text" name="username">
+			</div>
+			<div class="box" draggable="true">
+				<label>年龄</label>
+				<input type="text" name="userage">
+			</div>
+			<div class="box" draggable="true">
+				<label>爱好</label>
+				<input type="checkbox" name="hobby">
+				篮球
+				<input type="checkbox" name="hobby">
+				红球
+				<input type="checkbox" name="hobby">
+				白球
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../jquery/js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+	  /* var target = null;
+	   $('.form').on('dragstart', '.box', function(event) {
+	   		target = this;
+	   });*/
+	   $('.container')
+	   .on('drop',function(event) {
+	   		$('.box').on('click',function(event) {
+	   		console.log(this);
+
+	   		  	$('.container').append($(this).clone());
+
+	   		});
+	   })
+	   .on('dragover',function(event) {
+	   		event.preventDefault();
+	   });
+	});
+</script>
+</html>
