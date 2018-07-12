@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>cookie</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	// 存储
+	/*var oData = new Date();
+	oData.setDate(oData.getDate()+14);
+	document.cookie = "name=Tom;expires="+oData;
+	console.log(document.cookie);*/
+	function setCookie(key,value,date){
+		var oData = new Date();
+		oData.setDate(oData.getDate()+date);
+		document.cookie = key +'='+ value+';expires=' +oData;
+	}
+	setCookie('sex','男',1);
+	// 获取
+	function getCookie(key){
+		var value = '';
+		var str = document.cookie;
+		console.log(str);
+		var str1 = str.split(';');
+		console.log(str1);
+		for(var i = 0;i<str1.length;i++){
+			var arr = str1[i].split('=');
+			console.log(arr);
+			if (arr[0].trim() == key.trim()) {
+				value = arr[1];
+				break;
+			}
+
+		}
+		return value;
+	}
+	getCookie('sex');
+	console.log(getCookie('key'));
+	//删除
+	function removeCookie(key){
+		return setCookie(key,false,-1);
+	}
+	removeCookie('sex');
+</script>
+</html>
