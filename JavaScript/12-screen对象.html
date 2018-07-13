@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取screen对象属性相关</title>
+	<style type="text/css">
+		div{
+			width: 10000px;
+			height: 5000px;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+</body>
+<script type="text/javascript">
+	var oDiv = document.getElementsByTagName('div');
+	console.log(screen.width);//屏幕的宽高度
+	console.log(screen.availHeight);//屏幕的可用宽高度--去除电脑任务栏
+	console.log(screen.width+'*'+screen.height);//屏幕分辨率
+	console.log(document.body.clientWidth);
+	console.log(document.body.clientHeight);//屏幕可见区域宽高度
+	console.log('屏幕可见区域宽高度（包括边线）'+document.body.offsetWidth);
+	console.log('屏幕可见区域宽高度（包括边线）'+document.body.offsetHeight);
+	console.log('屏幕可见区域宽高度(兼容性)'+document.documentElement.clientHeight);
+	console.log('屏幕可见区域宽高度(兼容性)'+document.documentElement.clientWidth);
+	console.log('屏幕可见区域宽高度(绝对宽高度)'+document.documentElement.offsetHeight);
+	console.log('屏幕可见区域宽高度(绝对宽高度)'+document.documentElement.offsetWidth);
+	console.log('网页正文全文宽高度'+document.body.scrollWidth);
+	console.log('网页正文全文宽高度'+document.body.scrollHeight);
+	console.log('网页被卷起的宽高度'+document.documentElement.scrollTop);
+	console.log('网页被卷起的宽高度'+document.documentElement.scrollLeft);
+	console.log('网页正文部分上/左'+window.screenTop);
+	console.log('网页正文部分上/左'+window.screenLeft);
+	setTimeout(function(){
+		history.go(-1);
+	},1000);
+</script>
+</html>

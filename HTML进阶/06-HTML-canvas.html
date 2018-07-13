@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas</title>
+	<style type="text/css">
+		canvas{
+			border: 1px red solid;
+		}
+		#canvas{
+			width: 600px;
+			height: 600px;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="300" height="300" id="canvas"></canvas>
+	<canvas width="600" height="600" id="canvas1"></canvas>
+</body>
+<script type="text/javascript">
+	var oCanvas = document.getElementById('canvas');
+	var oCanvas1 = document.getElementById('canvas1');
+	var oContext = oCanvas.getContext('2d');
+	oContext.moveTo(0,0);
+	oContext.lineTo(300,300);
+	oContext.lineWidth = 10;
+	oContext.strokeStyle = 'red';
+	oContext.stroke();
+
+
+	var oContext1 = oCanvas1.getContext('2d');
+	oContext1.moveTo(0,0);
+	oContext1.lineTo(600,600);
+	oContext1.lineWidth = 10;
+	oContext1.strokeStyle = 'red';
+	oContext1.stroke();
+</script>
+</html>

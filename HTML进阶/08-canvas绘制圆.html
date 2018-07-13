@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas画圆</title>
+	<style type="text/css">
+		canvas{
+			border:1px #ff0000 solid;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+</body>
+<script type="text/javascript">
+	var oCanvas = document.getElementById('canvas');
+	var oCtx = oCanvas.getContext('2d');
+	oCanvas.width = 600;
+	oCanvas.height = 400;
+	// oCtx.scale(2,2);
+	// oCtx.save();
+	// oCtx.translate(50,50);
+	// var grd=oCtx.createLinearGradient(0,0,175,50);
+	var grd = oCtx.createRadialGradient(300,300,0,300,300,50);
+	grd.addColorStop(0.1,"#ff0000");
+	grd.addColorStop(0.5,"#00ff00");
+	grd.addColorStop(1,"#0000ff");
+	oCtx.fillStyle=grd;
+	oCtx.arc(300,300,50,0,2*Math.PI,true);
+
+	oCtx.fill();
+	// oCtx.strokeStyle = grd1;
+	// oCtx.restore();
+	// oCtx.strokeRect(0,300,100,100);
+	// oCtx.fillRect(0,0,175,50);
+	
+</script>
+</html>

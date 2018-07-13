@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		var oDiv = document.createElement('div');
+		document.body.appendChild(oDiv);
+		// for (var i = 0; i < 10; i++) {
+		// 	var oP = document.createElement('p');
+		// 	var oText = document.createTextNode(i+1);
+		// 	oP.appendChild(oText);
+		// 	oDiv.appendChild(oP);
+		// }
+		var i = 1;
+		setInterval(function(){
+		 		var oP = document.createElement('p');
+				var oText = document.createTextNode(i++);
+		 		oP.appendChild(oText);
+				 oDiv.appendChild(oP);
+		}, 1000);
+	};
+</script>
+</html>

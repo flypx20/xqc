@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas表盘制作</title>
+	<style type="text/css">
+		canvas{
+			border:1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+</body>
+<script type="text/javascript">
+	var oCanvas = document.getElementById('canvas');
+	oCanvas.width = 600;
+	oCanvas.height = 600;
+
+	var oCtx = oCanvas.getContext('2d');
+	oCtx.beginPath();
+	oCtx.translate(300,300);
+	oCtx.arc(0,0,200,0,2*Math.PI,true);
+	oCtx.fill();
+
+	//时针
+	oCtx.beginPath();
+	oCtx.moveTo(0,0);
+	oCtx.lineTo(100,0);
+	oCtx.lineWidth = 4;
+	oCtx.strokeStyle = '#ff0000';
+	oCtx.stroke();
+
+	//分针
+	oCtx.beginPath();
+	oCtx.moveTo(0,0);
+	oCtx.lineTo(0,120);
+	oCtx.lineWidth = 3;
+	oCtx.strokeStyle = '#ccc';
+	oCtx.stroke();
+
+	//秒针
+	oCtx.beginPath();
+	oCtx.rotate(Math.PI/6);
+	oCtx.moveTo(0,0);
+	oCtx.lineTo(160,0);
+	oCtx.lineWidth = 2;
+	oCtx.strokeStyle = '#ccc';
+	oCtx.stroke();
+
+
+	for (var i = 0; i < 12; i++) {
+		oCtx.rotate(Math.PI/6);
+		if (i == 1||i==4||i==7|i==10) {
+			oCtx.moveTo(150,0);
+			oCtx.lineTo(200,0);
+		}else{
+			oCtx.moveTo(180,0);
+			oCtx.lineTo(200,0);
+		}
+		
+		oCtx.lineWidth = 2;
+		oCtx.strokeStyle = '#ccc';
+		oCtx.stroke();
+	}
+</script>
+</html>

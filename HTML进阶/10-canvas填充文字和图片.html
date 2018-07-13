@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10-canvas填充文字和图片</title>
+	<style type="text/css">
+		canvas{
+			border:1px red solid;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+</body>
+<script type="text/javascript">
+	/*var oCanvas = document.getElementById('canvas');
+	oCanvas.width = 600;
+	oCanvas.height = 600;
+	var ctx = oCanvas.getContext('2d');*/
+	 // ctx.fillStyle = '#99f';    //   填充颜色
+  //       ctx.fillRect(0,0,1000,1000);
+ 
+  //       var img = new Image;
+  //       img.src = 'img/girl.jpg';
+ 
+  //       img.onload = function () {
+  //           // ctx.drawImage(img, 0,0);
+  //           // ctx.drawImage(img,0,0,200,300);
+  //           ctx.drawImage(img,0,0,100,100,0,0,200,200);
+  //       };
+ 
+  //       ctx.fillStyle = '#fff';   // 文字填充颜色
+  //       ctx.font = '33px Adobe Ming Std';
+  //       ctx.fillText('怎么得到你想要的?',300,100);
+ 
+  //       ctx.fillStyle = '#fff';
+  //       ctx.font = '66px Adobe Ming Std';
+  //       ctx.fillText('让自己配得上!',200,200);
+ 
+  //       ctx.stroke();
+  /*ctx.beginPath();
+  var str = 'fzf,love';
+  ctx.font = '50px sans-serif';
+  ctx.textAlign = 'right';
+  ctx.textBaseLine = 'middle';
+  ctx.fillText(str,0,200);
+  ctx.strokeText(str,0,300);*/
+  var oCanvas = document.getElementById('canvas');
+	oCanvas.width = 600;
+	oCanvas.height = 600;
+	//获取canvas的上下文环境
+	var ctx = oCanvas.getContext('2d');
+	ctx.beginPath();
+	var str = "Hello 飞猪飞";
+	ctx.font = '50px sans-serif';
+	ctx.textAlign = 'right';
+	// ctx.textBaseline = 'middle';
+	// ctx.fillText(str,0,200);
+	ctx.strokeText(str,300,200);
+
+
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas画直线</title>
+	<style type="text/css">
+		canvas{
+			border: 1px blue solid;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="100" height="100" id="canvas"></canvas>
+</body>
+<script type="text/javascript">
+	var oCanvas = document.getElementById('canvas');
+	var oContext =oCanvas.getContext('2d');
+	oCanvas.width = 600;
+	oCanvas.height = 300;
+
+	oContext.moveTo(0,0);
+	oContext.lineTo(100,100);
+	oContext.lineTo(100,300);
+	oContext.lineWidth = 1;
+	oContext.strokeStyle = 'red';
+	oContext.fillStyle = 'blue';
+	oContext.closePath();
+	oContext.stroke();
+	oContext.fill();
+
+	oContext.beginPath();
+	oContext.moveTo(300,300);
+	oContext.lineTo(400,100);
+	// oContext.lineWidth = 10;
+	// oContext.strokeStyle = 'blue';
+	oContext.stroke();
+</script>
+</html>
