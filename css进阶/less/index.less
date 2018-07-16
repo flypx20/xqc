@@ -11,12 +11,89 @@
 .rem(@attr,@px1,@px2,@px3,@px4){
 	@{attr}:unit(@px1/@rem,rem) unit(@px2/@rem, rem) unit(@px3/@rem, rem) unit(@px4/@rem, rem);
 }
-.chart-header{
+.container{
 	.rem(width,320);
+
+}
+.chart-header{
 	.rem(height,45);
-	border-bottom:1px #ccc solid;
+	.rem(font-size,20);
 	.rem(line-height,45);
+	border-bottom:1px #dfdfdf solid;
 	.header-back{
-		
+		.rem(width,45);
+		text-align: center;
+	}
+	.header-tittle{
+		display: inline-block;
+		.rem(width,200);
+		text-align: center;
+		font-weight: bold;
+	}
+	
+}
+
+.chart-top{
+	.rem(font-size,14);
+	.rem(line-height,45);
+	font-weight: bold;
+	.message li{
+		.rem(height,45);
+		border-bottom:1px #dfdfdf solid;
+		color:#878787;
+	}
+	.top-mark{
+		.rem(width,20);
+		text-align: center;
+		.rem(margin-left,10);
+	}
+	.top-edit{
+		float: right;
+		.rem(margin-right,10);
+		color:#dc2d3a;
+	}
+	.top-check{
+		.rem(font-size,18);
+		.rem(width,40);
+		text-align: center;
+		color:#db292f;
+	}
+	.top-jd{
+		.rem(font-size,17);
+	}
+	.top-shop{
+		.rem(margin-left,10);
+		color:#000;
+		.rem(font-size,17);
+	}
+	.top-text{
+		.rem(margin-left,10);
+		font-weight:700;
+		.rem(font-size,12 );
+	}
+	.top-exclamation{
+		.rem(font-size,12);
+	}
+}
+li{
+	list-style: none;
+}
+.chart-content .container{
+	display: inline-block;
+	.rem(height,152);
+	float: left;
+	border-bottom:1px #dfdfdf solid;
+	.content-goodBox{
+		margin:5px 10px;
+		.rem(font-size,14);
+		.content-good{
+			display: inline-block;
+		}
+	}
+	.content-product{
+		float: right;
+		margin:10px;
+		.rem(font-size,12);
+
 	}
 }
