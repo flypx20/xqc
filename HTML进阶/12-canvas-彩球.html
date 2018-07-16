@@ -63,11 +63,11 @@
 		BallArr.push(ball);
 	});
 	setInterval(function() {
-		ctx.clearRect(0,0,oCanvas.width,oCanvas.height);
+		// ctx.clearRect(0,0,oCanvas.width,oCanvas.height);
 		for (var i = 0; i < BallArr.length; i++) {
 			BallArr[i].render();
 			BallArr[i].updata();
 		}
-	}, 50);
+	}, 100);
 </script>
 </html>

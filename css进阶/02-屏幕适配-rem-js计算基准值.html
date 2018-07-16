@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta charset="utf-8" name="viewport" content="width=device-width">
+	<title>02-屏幕适配-rem-js计算基准值</title>
+	<link rel="stylesheet" type="text/css" href="css/01-less.css">
+</head>
+<body>
+	<div class="container">
+		<img src="../HTML进阶/img/girl.jpg">
+		<h1>飞猪飞，赶紧修复bug,别看美女了，心累不啊</h1>
+	</div>
+
+</body>
+<script type="text/javascript">
+	(function(win,doc){
+		var oRoot = doc.getElementsByTagName('html')[0];
+		function refreshFontSize(){
+			var iWidth = doc.body.clientWidth ||doc.documentElement.clientWidth;
+			var iFontSize = iWidth/10;
+			oRoot.style.fontSize = iFontSize +'px';
+		}
+		
+		win.addEventListener('resize',refreshFontSize,false);
+		doc.addEventListener('DOMContentLoaded',refreshFontSize,false);
+	})(window,document);
+</script>
+</html>

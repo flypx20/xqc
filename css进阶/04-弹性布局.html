@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04-弹性布局</title>
+	<style type="text/css">
+		.father{
+			width: 1000px;
+			height: 500px;
+			margin: 300px auto;
+			border: 1px red solid;
+			display: flex;
+			/*flex-direction: row;/*决定项目的排列方向为水平方向左起点开始*/
+			/*flex-direction: row-reverse;/*决定项目的排列方向为水平方向右起点开始*/
+			flex-direction: column;/*决定项目的排列方向为垂直方起点上沿开始*/
+			/*flex-direction: column-reverse;决定项目的排列方向为垂直方起点下沿开始*/
+			/*flex-wrap: nowrap; 决定项目一行排不下,不换行，元素的宽度按照比例重新就算*/
+			/*flex-wrap:wrap;/*换行,第一行在上方*/
+			/*flex-wrap:wrap-reverse;/*换行，第一行在下方
+			/*flex-flow:row-reverse wrap;*/
+			/*justify-content:flex-start;左对齐*/
+			/*flex-direction:column-reverse;*/
+			/*justify-content: flex-end;右对齐*/
+			/*justify-content:center;居中*/
+			/*justify-content:space-between;两端贴边，项目之间间隔相等*/
+			/*justify-content:space-around;每个项目的两侧的间隔相等*/
+			/*align-items:stretch;换行后如果项目没有设置高度或为auto则占满整个容器的高度*/
+			/*align-content:stretch;/*换行后按项目的的高度来填充行*/
+			/*align-items:flex-start;起点对齐*/
+
+			/*align-content:flex-start;*/
+			/*align-items:flex-end;终点对齐*/
+			/*align-content:flex-end;*/
+			/*align-items:center;*/
+			/*align-content:center;*/
+			/*align-items:baseline;*/
+			/*align-content:baseline;*/
+
+
+		}
+		.son1{
+			width: 100px;
+			height: 50px;
+			background: gold;
+			/*order:2;项目的排列顺序值，值越小排列越靠前，默认为0*/
+			/*flex-grow:2;*/
+			/*flex-shrink:1;*/
+			align-self: center;
+		}
+		.son2{
+			width: 200px;
+			height: 50px;
+			background: gray;
+			/*order:0;*/
+			/*flex-grow:1;*/
+			/*flex-shrink:1;*/
+		}
+		.son3{
+			width: 900px;
+			height: 50px;
+			background: purple;
+			/*order:2;*/
+			/*flex-grow:1;*/
+			/*flex-shrink:1;*/
+		}
+	</style>
+</head>
+<body>
+	<div class="father">
+		<div class="son1">1</div>
+		<div class="son2">2</div>
+		<div class="son3">3</div>
+	</div>
+</body>
+</html>
