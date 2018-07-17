@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05-响应式布局</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			height: 60px;
+			margin: 0 auto;
+			background: red;
+		}
+		@media screen and (max-width: 768px){
+			.container{
+				width: 100%;
+			}
+		}
+		@media screen and (min-width: 768px) and (max-width: 992px){
+			.container{
+				width: 750px;
+			}
+		}
+		@media screen and (min-width: 992px) and (max-width: 1200px){
+			.container{
+				width: 970px;
+			}
+		}
+		@media screen and (min-width: 1200px){
+			.container{
+				width: 1170px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="container"></div>
+</body>
+<!-- <script type="text/javascript">
+	(function(win,doc){
+		var oContainer = doc.querySelector('.container');
+		var iWidth = doc.body.clientWidth || doc.documentElement.clientWidth;
+		function resize(){
+			if (iWidth >= 1200) {
+				oContainer.style.width = '1170px';
+			}else if (iWidth >= 992) {
+				oContainer.style.width = '970px';
+
+			}else if (iWidth >= 768) {
+				oContainer.style.width = '750px';
+
+			}else if (iWidth <768) {
+				oContainer.style.width = '100%';
+
+			}
+		}
+		
+		win.addEventListener('resize',resize,false);
+		doc.addEventListener('DOMContentLoaded',resize,false);
+	})(window,document);
+</script> -->
+</html>

@@ -63,20 +63,70 @@ li {
   list-style: none;
 }
 .chart-content .container {
-  display: inline-block;
   height: 4.75rem;
   float: left;
   border-bottom: 1px #dfdfdf solid;
 }
 .chart-content .container .content-goodBox {
-  margin: 5px 10px;
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+  width: 3.75rem;
   font-size: 0.4375rem;
 }
+.chart-content .container .content-goodBox .content-check {
+  position: absolute;
+  top: 50%;
+  font-size: 0.5625rem;
+  color: #db292f;
+}
 .chart-content .container .content-goodBox .content-good {
-  display: inline-block;
+  margin-left: 0.9375rem;
+  height: 2.34375rem;
 }
 .chart-content .container .content-product {
   float: right;
-  margin: 10px;
+  margin: 12px;
+  font-size: 0.4375rem;
+}
+.chart-content .container .content-product .content-name {
+  width: 4.78125rem;
+  height: 1.875rem;
+  margin-bottom: 0.3125rem;
+}
+.chart-content .container .content-product .content-name .content-introduce {
+  font-weight: bold;
+  margin-bottom: 0.3125rem;
+}
+.chart-content .container .content-product .content-name .content-heavy {
+  color: #878787;
+}
+.chart-content .container .content-product .content-price {
+  display: inline-block;
+  width: 1.25rem;
+  height: 0.9375rem;
+  font-size: 0.3125rem;
+  line-height: 0.9375rem;
+  margin-right: 0.625rem;
+  color: #db292f;
+  font-weight: bold;
+}
+.chart-content .container .content-product .content-min,
+.chart-content .container .content-product .content-num,
+.chart-content .container .content-product .content-plus {
+  display: inline-block;
+  width: 0.78125rem;
+  height: 0.78125rem;
+  line-height: 0.78125rem;
+  font-size: 0.78125rem;
+  text-align: center;
+  color: #878787;
+  background: #f5f5f5;
+}
+.chart-content .container .content-product .content-footer {
+  float: right;
+  margin-top: 0.15625rem;
   font-size: 0.375rem;
+  margin-right: 0.3125rem;
+  color: #878787;
 }
