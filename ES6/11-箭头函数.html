@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11-箭头函数.html</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	function sum(x,y) {
+		console.log(x+y);
+		return x+y;
+	}
+	// sum(1,2);
+
+	let sum1 = (x,y)=>{
+		console.log(x+y);
+		return x+y;
+	};
+	// sum1(1,2);
+
+	let sum2 = (x,y) => x+y;
+	console.log(sum2(1,2));
+
+	let sum3 = x => x+10;
+	console.log(sum3(1));
+
+	var arr = [2,1,5,3,4];
+	arr.sort((n1,n2)=>n2-n1);
+	console.log(arr);
+
+
+	function Timer(id){
+		this.id = id
+
+		setTimeout(function(){
+			console.log(this,this.id);
+		},200);
+		setTimeout(() => {
+		  console.log(this,this.id);
+		}, 100);
+
+		setTimeout(function(){
+		  console.log(this,this.id);
+		}.bind({id:101}), 300);
+	}
+	var t = new Timer('100');
+</script>
+</html>

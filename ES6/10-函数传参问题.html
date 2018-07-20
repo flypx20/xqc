@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10-函数传参问题</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	function show(name,arr){
+		console.log(name,arr[0],arr[1]);
+	}
+	show('fzf',[18,'飞猪飞']);
+
+	//rest参数
+	function show1(name,...arg){
+		// console.log(name,arg[0],arg[1]);
+	}
+	show1('fzf',...[16]);
+	
+	//结构解析传参
+	function show2(name,{age=18,years=2018} = {}){
+		console.log(name,age,years);
+	}
+	show2('fzf',{age:20,});
+
+
+	function show3(name='fzf'){
+		console.log(name);
+	}
+	//设置默认值的参数一定要放在最后面
+	show3('飞猪飞');
+
+
+	function show4(name){
+		if (typeof name === 'undefined') {
+			name = '飞猪飞';
+		}
+		console.log(name);
+	}
+	show4();
+</script>
+</html>

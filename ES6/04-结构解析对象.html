@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04-结构解析对象</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	let {username:username1,age:age} = {username:'fzf',age:16};//{属性选项名：属性} = {属性选项名：属性}
+	console.log(age);//16
+	// console.log(username);//ReferenceError	
+
+	let {username2,age1} = {username2:'飞猪飞',age1:1};
+	console.log(username2,age1);//飞猪飞 1
+
+	let {username3,age2} = {age2:1,username3:'飞猪飞'};
+	console.log(username3,age2);//飞猪飞 1
+
+	let{username4:fzf,age3} = {username4:null,age3:1};
+	console.log(fzf,age3);//null 1
+
+</script>
+</html>

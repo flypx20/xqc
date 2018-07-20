@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07-set数据结构</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	let s = new Set();
+	let arr = [11,22,33];
+	console.log(s);
+	console.log(s.size);
+	console.log(typeof s,typeof arr,typeof s == typeof arr);	
+	s.add(11);
+	/*console.log(s);
+	s.add(11);//添加某个值，返回 Set 结构本身。
+	s.add(22);
+	s.add(33);
+	console.log(s);*/
+	// s.add(arr);
+	// console.log(s);
+
+	let s1 = new Set(arr);
+	let s2 = new Set([11,22,33]);
+	console.log(s1==s2,s1,s2);
+	console.log(s1.delete(11));//删除某个值，返回一个布尔值，表示删除是否成功。
+	console.log(s1.has(11));//返回一个布尔值，表示该值是否为Set的成员。
+	// console.log(s1.clear());//清除所有成员，没有返回值。
+
+	//Set的遍历顺序就是插入顺序
+	//由于 Set 结构没有键名，只有键值（或者说键名和键值是同一个值
+	for(key of s2.keys()){
+		console.log(key);
+	}
+
+	for(key of s2.values()){
+		console.log(key);
+	}
+
+	for(key of s2.entries()){
+		console.log(key);//entries方法返回的遍历器，同时包括键名和键值，所以每次输出一个数组，它的两个成员完全相等。
+	}
+	for(key of s2){
+		console.log(key);//Set 结构的实例默认可遍历，它的默认遍历器生成函数就是它的values方法。
+	}
+	console.log(Set.prototype[Symbol.iterator] === Set.prototype.values);
+
+	s2.forEach((item) => {
+	  console.log(item);
+	});
+	s2.forEach(function(value,key){
+		console.log(key,value);
+	});
+</script>
+</html>

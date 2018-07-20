@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03-结构解析数组</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	let [a,b,c] = [];
+	console.log(a,b,c);//undefined,undefined,undefined
+
+	let [d,e,f] = [1,2,3];
+	console.log(d,e,f);//1,2,3
+
+	let [g,[h,i],j]  = [1,[2,4],3];
+	console.log(g,h,i,j);//1,2,4,3
+
+	let [k,l,m=4] = [1,2];
+	console.log(k,l,m);//1,2,4
+
+	let [n,o,p=4] = [1,2,null];
+	console.log(n,o,p);//1,2,null
+
+	let [q,r,s=4] = [1,2,undefined];
+	console.log(q,r,s);//1,2,4
+
+	let[t,u,v=4] = [1,2,0];
+	console.log(t,u,v);//1,2,0
+</script>
+</html>

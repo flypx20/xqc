@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>09-class构造对象</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	class Person{
+		//不写constructor系统会自动生成
+		constructor(name,age){
+			this.name = name;
+			this.age = age;
+		}
+		showName(){
+			console.log('i am '+this.name);
+		}
+		showAge(){
+			console.log('i am '+this.age+' years old');
+		}
+		static SayHi(){
+			console.log('hi....');
+		}
+	}
+	class Student extends Person{
+		constructor(name,age,major){
+			super(name,age);
+			this.major = major;//this必须放在super后面
+		}
+		showMajor(){
+			console.log('i am from '+this.major);
+		}
+		showName(){
+			console.log('i am '+this.name+' i am a pig');
+		}//可以覆盖父类的方法
+	}
+	// var p = new Person('飞猪飞',20);
+	// console.log(p);
+	// console.log(typeof Person);
+	// p.showName();
+	// p.showAge();
+	var s = new Student('飞猪飞',20,'computer');
+	s.showName();
+	s.showAge();
+	s.showMajor();
+	Student.SayHi();
+</script>
+</html>

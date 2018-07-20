@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01-let变量定义</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*var name = 'fzf';
+		var name = '飞猪飞';
+		console.log(name);var允许在相同作用域内，重复声明同一个变量。*/
+
+		/*let name = 'fzf';
+		let name = '飞猪飞';
+		console.log(name);let不允许在相同作用域内，重复声明同一个变量。*/
+
+		/*// let是一个块级作用域
+		// var是一个函数级作用域
+		{
+			var i = 0;
+			let b =1;
+		}
+
+		console.log(i);
+		console.log(b);*/
+/*
+		var a = [];
+		for (var i = 0; i < 10; i++) {
+			a[i] = function(){
+				console.log(i);
+			};
+		}
+		a[6]();
+
+		for (let i = 0; i < 10; i++) {
+			a[i] = function(){
+				console.log(i);
+			};
+		}
+		a[6]();*/
+
+
+		for (var i = 0; i < 3; i++) {
+			let i = 'abc';
+			console.log(i);//打印3遍
+		}
+		for (var j = 0; j < 3; i++) {
+			var j = 'abc' ;
+			console.log(j);//打印1遍
+		}
+
+		//let不存在变量提升
+
+		console.log(age);
+		var age = 12;//undefined
+
+
+		/*console.log(age1);
+		let age1 = 13;//age1 is not defined*/
+
+		/*var tmp = 123;
+		console.log(tmp);
+		总之，在代码块内，使用let命令声明变量之前，该变量都是不可用的。
+		这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。
+		if (true) {
+			// tmp = 'abc';
+			let tmp;
+			// console.log(tmp);
+			tmp = 'abc';
+			console.log(tmp);
+		}*/
+	</script>
+</body>
+</html>

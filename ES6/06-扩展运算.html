@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06-扩展运算</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	var arr = [11,22,33,44];
+	console.log(arr);
+	console.log(...arr);//扩展运算
+
+	// function sum(n1,n2){
+	// 	console.log(n1+n2);
+	// }
+	// sum(...arr);
+	// sum(11,22);
+	/*function sum(){
+		var result = 0;
+		for (var i = 0; i < arguments.length; i++) {
+			result +=arguments[1];
+		}
+		console.log(result);
+	}
+*/
+	
+
+	function sum(...arr){
+		var result = 0;
+		for (var i = 0; i < arr.length; i++) {
+			result +=arr[i];
+		}
+		console.log(result);
+	}
+
+	sum(...arr);
+	sum(11,22,33,44);
+	sum([11,22,33,44]);
+	console.log(...arr);
+
+	//浅拷贝
+
+	var arr1 = arr;
+	arr1.push(55);
+	console.log(arr1,arr1==arr);
+
+	//深拷贝
+
+	var arr2 = [];
+	for (var i = 0; i < arr.length; i++) {
+		arr2.push(arr[i]);
+	}
+	console.log(arr2);
+
+	
+	var arr4 = [];
+	arr4 = arr.slice();
+	arr4.push(66);var arr3 = [];
+	arr3 = arr.concat();
+
+	arr3.push(66);
+	console.log(arr3,arr,arr3==arr);
+
+	console.log(arr4,arr4==arr);
+
+	var arr5 = [];
+	arr5.push(...arr);
+	arr5.push(66);
+	console.log(arr5,arr5==arr);
+	console.log(arr);
+
+	
+	console.log(Math.max.apply(null,arr) == Math.max(...arr));
+
+	var obj1 = {name:'fzf',age:25};
+	var obj2 =obj1;
+	obj2.name = '飞猪飞';
+	console.log(obj1==obj2);
+
+	var obj3 = {...obj1};
+	obj3.name = 'fzf';
+	console.log(obj3,obj3==obj1,obj1);
+	var obj4 = {name:'fzf',age:24,friends:{
+		name:'leo',
+		age:12
+	}};
+	var obj5 = {...obj4};
+	obj5.friends.name = 'meiko';
+	console.log(obj5==obj4);
+	console.log(obj5.friends==obj4.friends);
+	console.log(obj4,obj5);
+</script>
+</html>

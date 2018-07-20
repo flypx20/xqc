@@ -130,3 +130,9 @@ li {
   margin-right: 0.3125rem;
   color: #878787;
 }
+.chart-foot .container {
+  position: fixed;
+  bottom: 0;
+  height: 2.1875rem;
+  border: 1px #ccc solid;
+}
