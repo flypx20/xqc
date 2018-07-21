@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13-promise的基本使用</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	let getImagePromise = (url)=>{
+		let promise = new Promise((resolve,reject)=>{
+			let img = new Image();
+
+			img.onload = ()=>{
+				resolve(url);
+			};
+
+			img.onerror = ()=>{
+				reject(url);
+			};
+
+
+			img.src = url;
+		});
+
+		return promise;
+	};
+	let promise =  getImagePromise('../images/0.png');
+	console.log(promise);
+	promise
+	.then(()=>{
+		console.log('success loaded');
+		console.log(promise);
+		throw new Error('test');
+	}, ()=>{
+		console.log(promise);
+		console.log('failed loaded');
+	})
+	.catch((err)=>{
+		console.log("error:",err);//没有fail函数时执行
+	})
+	.finally(()=>{
+		console.log('fianlly');
+	});
+
+/*	function loadImage(url,success,fail){
+		var img = new Image();
+
+		img.onload = function(){
+			success();
+		};
+		img.onerror = function(){
+			fail();
+		};
+
+		img.src = url;
+	}
+
+	loadImage('../images/0.png',()=>{
+		console.log('sucess loaded');
+	},()=>{
+		console.log('failed loaded');
+	});*/
+</script>
+</html>

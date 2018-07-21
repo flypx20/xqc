@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>14-promise的异步</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	let promise = new Promise((resolve,reject)=>{
+		console.log('a');
+		resolve();
+	});
+
+	promise.then(()=>{
+		console.log('b');
+	});
+	console.log('c');
+</script>
+</html>
