@@ -202,3 +202,42 @@ li{
 		font-weight: bold;
 	}
 }
+.chart-cover{
+	width: 100%;
+	height: 100%;
+	background:rgba(0,0,0,0.8);
+	z-index: 2;
+	position: fixed;
+	.rem(font-size,20);
+	.chart-remove{
+		.rem(width,270);
+		.rem(height,175);
+		position: absolute;
+		top: 60px;
+		left: 15px;
+		.rem(border-radius,20);
+		background: #fff;
+		.remove-content{
+			width: 100%;
+			text-align: center;
+			.rem(height,130);
+			.rem(line-height,130);
+			border-bottom: 1px #ccc solid;
+		}
+		.remove-left{
+		}
+		.remove-left,
+		.remove-right{
+			float: left;
+			width: 50%;
+			text-align: center;
+			.rem(height,45);
+			.rem(line-height,45);
+			box-sizing: border-box;
+		}
+		.remove-right{
+			border-left: 1px #ccc solid;
+			color:#db292f;
+		}
+	}
+}
