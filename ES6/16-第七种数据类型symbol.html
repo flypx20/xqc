@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>16-第七种数据类型symbol</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	let s1 = Symbol();
+	console.log(typeof s1);//symbol
+
+	let s2 = Symbol();
+	console.log(s1 === s2);//false
+
+	let s3 = Symbol('AA');
+	let s4 = Symbol('AA');//对s4的描述
+
+	console.log(s3.toString());//Symbol(AA)
+	console.log(s4.toString());//Symbol(AA)
+
+	let a = {};
+
+	a[s1] = 'fzf';
+
+	console.log(a);//{Symbol():"fzf"};
+
+	//在对象的内部，使用symbol值定义属性时，Symbol值必须放在方括号内
+	let b = {
+		[s1]:'fzf',
+		[s3]:(arg)=>{
+			console.log(arg);
+		}
+	};
+
+	console.log(b[s1]);//fzf
+
+	let c = {};
+	Object.defineProperty(c,s1,{value:'fzf'});
+
+	console.log(c[s1]);//fzf
+
+	a.s2 = '飞猪飞';
+	console.log(a[s2]);//undefined
+
+	console.log(typeof a.s2);//string
+	console.log(typeof s2);//symbol
+	console.log(a['s2']);//飞猪飞
+
+	b[s3](123);//123
+/*Symbol 作为属性名，该属性不会出现在for...in、for...of循环中，也不会被Object.keys()、Object.getOwnPropertyNames()、JSON.stringify()返回。但是，它也不是私有属性，有一个Object.getOwnPropertySymbols方法，可以获取指定对象的所有 Symbol 属性名。*/
+	console.log(Object.getOwnPropertySymbols(b));//获取b对象的symbol属性名
+
+
+	let size = Symbol('size');
+
+class Collection {
+	constructor() {
+		this[size] = 0;
+	}
+
+	add(item) {
+		this[this[size]] = item;
+		this[size]++;
+	}
+
+	static sizeOf(instance) {
+		return instance[size];
+	}
+}
+	let x = new Collection();
+	Collection.sizeOf(x);
+	console.log(Collection.sizeOf(x));
+	console.log(x[size]===Collection.sizeOf(x));
+	x.add('foo');
+	console.log(Collection.sizeOf(x));
+
+	console.log(Object.keys(x));//['0']
+
+	console.log(Object.getOwnPropertyNames(x));//['0']
+
+	console.log(Object.getOwnPropertySymbols(x));//[Symbol('size')]
+
+	/*Symbol作为函数不能使用new
+	Symbol不参与运算
+	Symbol可以显式转换成字符串
+	Symbol可以转换成bool但是不能转换成数字。*/
+
+	
+
+</script>
+</html>

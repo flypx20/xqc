@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "formidable": "^1.2.1",
     "jade": "^1.11.0",
     "uuid": "^3.3.2"
   }
