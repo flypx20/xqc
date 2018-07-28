@@ -19,7 +19,7 @@ let myurl = req.url;
 
 
 
-console.log(querystring.parse(array.query));
+// console.log(querystring.parse(array.query));
 	res.setHeader('Content-Type','text/html;charset=UTF-8');
 	res.end('ok');
 });
