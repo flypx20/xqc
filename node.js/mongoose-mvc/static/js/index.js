@@ -21,7 +21,6 @@
 			$(this).css({
 				transform:'matrix(1, 0, 0, 1, '+getRandom(0,wallWidth-wishWidth) +','+getRandom(0,wallHeight-wishHeight) +')'
 			});
-			console.log('aaa');
 		});
 		//改变显示顺序
 		$elem.hover(function(){
@@ -48,10 +47,13 @@
 			dataType:'json'
 		})
 		.done(function(data){
-			console.log('aa');
+			console.log($this.data('id'));
 			if(data.status == 0){//删除成功
 				//移除dom节点
+				
 				$(self.parentNode).remove();
+			console.log('aa');
+
 			}
 		});
 
@@ -67,7 +69,6 @@
 			type:'POST'
 		})
 		.done(function(data){
-			console.log(data);
 			if(data.status === 0){//成功
 				var $dom = $(`<div class="wish" style="background: ${data.data.color}">
 								<a href="javascript:;" class="close" data-id='${data.data.id}'></a>
@@ -76,7 +77,7 @@
 				$wall.append($dom);
 
 				handleWish($dom);
-
+				console.log('aaaa');
 				$('#content').val('');				
 			}else{
 				alert('呜呜呜，许愿不成功');

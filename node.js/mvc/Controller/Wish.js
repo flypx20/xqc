@@ -34,6 +34,7 @@ class Wish{
 	}
 	
 	add(req,res,...args){
+		console.log(Date().now);
 		let body = '';
 		req.on('data',(chunk)=>{
 			body+=chunk;
@@ -55,6 +56,7 @@ class Wish{
 				}
 				let resultion = JSON.stringify(result);
 				res.end(resultion);
+				console.log(Date().now);
 			});
 		});
 	}

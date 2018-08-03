@@ -6,8 +6,23 @@ const mode = require('./js/model.js');
 const url = require('url');
 const querystring = require('querystring');
 const swig = require('swig');
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+
+// Connection URL
+const url1 = 'mongodb://localhost:27017';
+
+// Database Name
+const dbName = 'fzf';
 
 let server = http.createServer((req,res)=>{
+
+	MongoClient.connect(url, function(err, client) {
+ 	 assert.equal(null, err);
+ 	 console.log("Connected successfully to server");
+
+  	const fzf = client.db(dbName);
+  	const fzfs = fzf.collection('data');
 	let filePath = req.url;
 	let reqUrl = url.parse(filePath,true);
 	let pathName = reqUrl.pathname;
@@ -62,7 +77,7 @@ let server = http.createServer((req,res)=>{
 		});
 		req.on('end',()=>{
 			let obj = querystring.parse(body);
-			mode.add(obj,(err,data)=>{
+			fzfs.insertMany(obj,function(err){
 				let result = {};
 				if (!err) {
 					result = {
@@ -80,7 +95,17 @@ let server = http.createServer((req,res)=>{
 			});
 		});
 	}else if (pathName === '/del') {
-		mode.remove(reqUrl.query.id,(err)=>{
+		fzfs.deletOne({id:reqUrl.query.id},function(err,result){
+			if (!err) {
+				let resultion = JSON.stringify({
+					status:0
+				});
+				res.end(resultion);
+				console.log('aa');
+				
+			}
+		});
+		/*mode.remove(reqUrl.query.id,(err)=>{
 			if (!err) {
 				let resultion = JSON.stringify({
 					status:0
@@ -89,7 +114,7 @@ let server = http.createServer((req,res)=>{
 			console.log('aa');
 				
 			}
-		});
+		});*/
 	}
 	else{
 		if (filePath.lastIndexOf('.') ==-1) {
@@ -112,8 +137,8 @@ let server = http.createServer((req,res)=>{
 			}
 		});
 		}
-
-	
+		client.close();
+	});
 });
 
 server.listen(3000,'127.0.0.1',()=>{
