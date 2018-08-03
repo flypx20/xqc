@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>index</title>
+</head>
+<body>
+	<button id="get">GET</button>
+	<button id="post">POST</button>
+	<button id="put">PUT</button>
+	<button id="delete">DELETE</button>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+	   $('#get').on('click',function(event) {
+	      $.ajax({
+	   	  	url: '/blogs',
+	   	  	type: 'GET'
+	   	  })
+	   	  .done(function(data) {
+	   	  	console.log("success",data);
+	   	  })
+	   	  .fail(function(err) {
+	   	  	console.log("error",err);
+	   	  });
+	   });
+	    $('#post').on('click',function(event) {
+	      $.ajax({
+	   	  	url: '/blogs',
+	   	  	type: 'POST'
+	   	  })
+	   	  .done(function(data) {
+	   	  	console.log("success",data);
+	   	  })
+	   	  .fail(function(err) {
+	   	  	console.log("error",err);
+	   	  });
+	    
+	   });
+	    $('#put').on('click',function(event) {
+	      $.ajax({
+	   	  	url: '/blogs',
+	   	  	type: 'PUT'
+	   	  })
+	   	  .done(function(data) {
+	   	  	console.log("success",data);
+	   	  })
+	   	  .fail(function(err) {
+	   	  	console.log("error",err);
+	   	  });
+	    
+	   });
+	    $('#delete').on('click',function(event) {
+	      $.ajax({
+	   	  	url: '/blogs',
+	   	  	type: 'DELETE'
+	   	  })
+	   	  .done(function(data) {
+	   	  	console.log("success",data);
+	   	  })
+	   	  .fail(function(err) {
+	   	  	console.log("error",err);
+	   	  });
+	    
+	   });
+	});
+</script>
+</html>
