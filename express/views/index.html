@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> {{ title }} </title>
+</head>
+<body>
+	<div>
+		{% if obj.name == '飞猪飞' %}
+		<h1>{{content}}</h1>
+		{% endif %}
+	</div>
+	<div>
+		{% if obj.age === 11 %}
+		<h1>{{title}}</h1>
+		{% elseif obj.name == '飞猪飞' %}
+		{% for key,value in array %}
+		<p>{{ key }} -- {{ value }}</p>
+		{% endfor %}
+		{% else %}
+		<p>飞猪飞吃葡萄不吐葡萄皮</p>
+		{% endif %}
+	</div>
+</body>
+</html>

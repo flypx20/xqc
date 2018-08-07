@@ -2,15 +2,17 @@ const express = require('express');
 
 const users = require('./public/js/use.js');
 const blogs = require('./public/js/blog.js');
+var bodyParser = require('body-parser');
 
 var app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+ 
+// parse application/json
+app.use(bodyParser.json());
 app.use(express.static('public'));
 
-app.use('/users',users,function(req){
-	 console.log(req.originalUrl); 
-     console.log(req.baseUrl);
-     console.log(req.path);
-});
+app.use('/users',users);
 app.use('/blogs',blogs);
 
 

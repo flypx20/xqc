@@ -10,7 +10,7 @@ bookRouter
        res.send('user post data....');
     })
     .post('/',function (req, res) {
-        res.send('user put data....');
+        console.log(req.body);
     })
     .delete('/',function (req, res) {
        res.send('user delete data....');

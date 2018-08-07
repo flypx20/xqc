@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>{{title}}</title>
+	<title>index</title>
 </head>
 <body>
-	{{content}}
 	<button id="get">GET</button>
 	<button id="post">POST</button>
 	<button id="put">PUT</button>
@@ -29,7 +28,8 @@
 	    $('#post').on('click',function(event) {
 	      $.ajax({
 	   	  	url: '/users',
-	   	  	type: 'POST'
+	   	  	type: 'POST',
+	   	  	data:{name:'fzf',age:18}
 	   	  })
 	   	  .done(function(data) {
 	   	  	console.log("success",data);

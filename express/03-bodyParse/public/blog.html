@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>{{title}}</title>
+	<title>index</title>
 </head>
 <body>
-	{{content}}
 	<button id="get">GET</button>
 	<button id="post">POST</button>
 	<button id="put">PUT</button>
@@ -16,7 +15,7 @@
 	$(function(){
 	   $('#get').on('click',function(event) {
 	      $.ajax({
-	   	  	url: '/users',
+	   	  	url: '/blogs',
 	   	  	type: 'GET'
 	   	  })
 	   	  .done(function(data) {
@@ -28,7 +27,7 @@
 	   });
 	    $('#post').on('click',function(event) {
 	      $.ajax({
-	   	  	url: '/users',
+	   	  	url: '/blogs',
 	   	  	type: 'POST'
 	   	  })
 	   	  .done(function(data) {
@@ -41,7 +40,7 @@
 	   });
 	    $('#put').on('click',function(event) {
 	      $.ajax({
-	   	  	url: '/users',
+	   	  	url: '/blogs',
 	   	  	type: 'PUT'
 	   	  })
 	   	  .done(function(data) {
@@ -54,7 +53,7 @@
 	   });
 	    $('#delete').on('click',function(event) {
 	      $.ajax({
-	   	  	url: '/users',
+	   	  	url: '/blogs',
 	   	  	type: 'DELETE'
 	   	  })
 	   	  .done(function(data) {
