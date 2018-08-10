@@ -1,0 +1,37 @@
+{% extends './layout.html' %}
+{% block title %}飞猪飞的粉丝{% endblock %}
+{% block content1 %} <li ><a href="/admin/userlist">用户列表<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content3 %}<li class="active"><a href="/category">分类列表<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content4 %} <li ><a href="/arcitle">文章列表<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content2 %}
+{% if id %}
+	<h2 class="sub-header">编辑分类</h2>
+  <form class="form-horizontal" action="/category/edit" method="post">
+  {% else %}
+  <h2 class="sub-header">新增分类</h2>
+  <form class="form-horizontal" action="/category/add" method="post">
+  {% endif %}
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">分类名称</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="name" name="name" placeholder="分类名称">
+    </div>
+    <p class="text-danger err text-capitalize"></p>
+  </div>
+  <div class="form-group">
+    <label for="order" class="col-sm-2 control-label">排序</label>
+    <div class="col-sm-4">
+      <input type="number" class="form-control" name="order" id="order" value="0">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4">
+      <input type="hidden" name="id" value="{{ id }}">
+      <button type="submit" class="btn btn-primary" id="btn-sub">提交</button>
+    </div>
+  </div>
+</form>
+{% endblock %}
+{% block end %}
+<script type="text/javascript" src="/js/category.js"></script>
+{% endblock %}

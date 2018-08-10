@@ -1,4 +1,6 @@
 const express = require('express');
+var multer  = require('multer');
+var upload = multer({ dest: 'static/uploads' });
 const swig = require('swig');
 const Cookies = require('cookies');
 
@@ -9,11 +11,15 @@ const session = require('express-session');
 const users = require('./router/use.js');
 const blogs = require('./router/index.js');
 const admin = require('./router/admin.js');
+const category  = require('./router/category.js');
+const article  = require('./router/article.js');
+
 
 const mongoose = require('mongoose');
 const MongoStore = require("connect-mongo")(session);
-
 mongoose.connect('mongodb://localhost:27017/blog',{ useNewUrlParser: true });
+
+
 
 const db = mongoose.connection;
 db.on('error',(err)=>{
@@ -83,6 +89,9 @@ app.use(bodyParser.json());
 app.use('/admin',admin);
 app.use('/user',users);
 app.use('/',blogs);
+app.use('/category',category);
+app.use('/article',article);
+
 
 
 

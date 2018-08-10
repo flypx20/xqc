@@ -1,6 +1,16 @@
 const express = require('express');
 var bookRouter = express.Router();
 const swig = require('swig');
+const wish = require('../model/model.js');
+const pagination = require('../model/pagination.js');
+
+bookRouter.use((req,res,next)=>{
+    if(req.userInfo.isAdmin){
+        next();
+    }else{
+        res.send('<h1>请用管理员账号登录</h1>');
+    }
+});
 
 bookRouter
     .get('/',(req,res)=>{
@@ -14,7 +24,23 @@ bookRouter
     	});
     })
     .get('/userlist',(req,res)=>{
-    	res.render('admin/userList');
+    	pagination({
+    		page:req.query.page,
+    		model:wish,
+    		query:{},
+    		projection:'_id,username,isAdmin'
+    	})
+    	.then((data)=>{
+    		res.render('admin/userlist',{
+                name:req.userInfo,
+    			userlist:data.docs,
+    			page:data.page,
+    			list:data.list
+    		});
+
+    	});
+    	
+
     });
     
 

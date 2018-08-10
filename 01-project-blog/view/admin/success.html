@@ -1,0 +1,10 @@
+{% extends './layout.html' %}
+{% block title %}飞猪飞的粉丝{% endblock %}
+{% block content1 %} <li ><a href="/admin/userlist">用户列表<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content3 %}<li ><a href="/category">分类列表<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content4 %} <li class="active"><a href="/article">文章列表<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content2 %}
+	<h2 class="sub-header">{{ url }}</h2>
+	<div class="alert alert-success" role="alert" class="link">{{ message }}</div>
+	<a href="/article" class="link">点击跳转</a>
+{% endblock %}
