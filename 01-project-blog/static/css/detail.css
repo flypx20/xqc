@@ -25,3 +25,6 @@
 .summary-text{
 	font-weight: bold;
 }
+.form-inline>.form-group #comment{
+	width:600px;
+}

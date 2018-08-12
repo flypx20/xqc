@@ -17,4 +17,13 @@
                 <p class="content">{{ article.content | safe }}</p>  
               </div>
             </div> 
+  <form class="form-inline">
+    <div class="form-group">
+      <label class="sr-only" for="exampleInputAmount">喜欢就来评论吧</label>
+      <div class="input-group ">
+        <input type="text" class="form-control commend" id="comment" placeholder="喜欢就来评论吧">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">点击评论</button>
+</form>
 {% endblock %}

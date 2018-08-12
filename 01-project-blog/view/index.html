@@ -1,7 +1,9 @@
 {% extends './layout.html' %}
 {% block title %}飞猪飞{% endblock %}
 {% block content %} 
-<input type="hidden" value="{{ category }}" id='cate-id'>
+{% if cate %}
+<input type="hidden" value="{{ cate }}" id='cate-id'>
+{% endif %}
   <div id="main-carousel" class="carousel slide" data-ride="carousel">
               <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -9,9 +11,7 @@
     <li data-target="#main-carousel" data-slide-to="1"></li>
   </ol>
   <!-- Wrapper for slides -->
-  {% if cate %}
-  <div></div>
-  {% else %}
+  {% if !cate %}
   <div class="carousel-inner" role="listbox">
     <div class="item active" >
       <img src="/image/carouse/s1.jpg" class="img-responsive" alt="...">
@@ -57,7 +57,7 @@
 {% endfor %}     
 </div>                   
 <!--热门文章列表分页-->
-     {% if articleList %}
+    {% if articleList %}
       <nav aria-label="Page navigation">
         <ul class="pagination" id="page">
           <li>
@@ -77,7 +77,8 @@
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>
+
         </ul>
       </nav>
-      {% endif %}
+    {% endif %}
 {% endblock %}

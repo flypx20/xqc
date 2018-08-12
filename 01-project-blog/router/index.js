@@ -21,6 +21,7 @@ bookRouter
                         articleList:data.docs,
                         page:data.page,
                         list:data.list,
+                        pages:data.pages,
                         categories:categories,
                         topArticles:topArticles
                     });
@@ -44,6 +45,7 @@ bookRouter
                         articleList:data.docs,
                         page:data.page,
                         list:data.list,
+                        pages:data.pages,
                         categories:categories,
                         topArticles:topArticles,
                         cate:id
@@ -54,8 +56,12 @@ bookRouter
 
     })
 	.get('/articles',(req,res)=>{
-        console.log(req.body);
-		article.findPagination(req)
+        let category = req.query.category;
+         let query = {};
+        if (category) {
+            query.category = category;
+        }
+		article.findPagination(req,query)
 		.then((data)=>{
 			res.json({
 				code:0,

@@ -157,3 +157,6 @@ body{
 footer{
 	text-align: center;
 }
+#comment{
+	width:660px !important;
+}

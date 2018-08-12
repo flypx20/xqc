@@ -7,9 +7,8 @@ function pagination(options){
             page = 1;
         }
         
-        options.model.estimatedDocumentCount({})
+        options.model.countDocuments(options.query)
         .then((count)=>{
-            
             let list = [];
             let limit = 2;
             let pages = Math.ceil(count / limit);

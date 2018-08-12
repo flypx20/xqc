@@ -150,7 +150,11 @@
 			page = $this.html();
 		}
 		var query = 'page='+page;
-		// var category = $('#')
+		var category = $('#cate-id').val();
+		console.log(category);
+		if (category) {
+			query += '&category='+category;
+		}
 		$.ajax({
 			url: '/articles?'+query,
 			type: 'GET',
