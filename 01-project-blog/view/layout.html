@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>个人博客</title>
-    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/index.css">
+    <link href="/lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/index.css">
   </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top kz-navbar">
@@ -22,12 +22,20 @@
         </div>
         <div class="collapse navbar-collapse" id="top-nav">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">首页</a></li>
+            {% if cate %}
+            <li><a href="/">首页</a></li>
+            {% else %}
+            <li class="active"><a href="/">首页</a></li>
+            {% endif %}
             {% for category in categories %}
-            <li><a href="#">{{ category.name }}</a></li>
+            {% if category._id.toString() == cate %}
+            <li class="active"><a href="/list/{{ category._id.toString() }}">{{ category.name }}</a></li>
+            {% else %}
+            <li><a href="/list/{{ category._id.toString() }}">{{ category.name }}</a></li>
+            {% endif %}
             {% endfor %}
-            <li><a href="#">学无止境</a></li>
-            <li><a href="#">我的足迹</a></li>
+            <li><a href="javascript:;">学无止境</a></li>
+            <li><a href="javascript:;">我的足迹</a></li>
           </ul>
         </div>
       </div>
@@ -86,12 +94,12 @@
               <!--广告-->
               <div class="ad">
                   <a href="#" class="thumbnail">
-                    <img class="img-responsive" src="image/ad/ad2.jpg" alt="...">
+                    <img class="img-responsive" src="/image/ad/ad2.jpg" alt="...">
                   </a>
               </div>
               <div class="ad">
                   <a href="#" class="thumbnail">
-                    <img class="img-responsive" src="image/ad/ad1.jpg" alt="...">
+                    <img class="img-responsive" src="/image/ad/ad1.jpg" alt="...">
                   </a>                
               </div>
               <div class="panel panel-default about-me">
@@ -102,7 +110,7 @@
                   <div class="media">
                     <div class="media-left">
                       <a href="#">
-                        <img class="media-object me-img" src="image/me.jpg" alt="...">
+                        <img class="media-object me-img" src="/image/me.jpg" alt="...">
                       </a>
                     </div>
                     <div class="media-body">
@@ -118,24 +126,11 @@
                 </div>
                 <div class="panel-body">
                   <ul class="list-group">
+                    {% for article in topArticles %}
                     <li class="list-group-item">
-                      <a href="#" class="link text-ellipsis">深入了解 Bootstrap 底层结构的关键部分</a>
+                      <a href="/view/{{ article._id.toString() }}" class="link text-ellipsis">[{{ article.click }}] &nbsp;{{ article.title }}</a>
                     </li>
-                    <li class="list-group-item">
-                      <a href="#" class="link text-ellipsis">深入了解 Bootstrap 底层结构的关键部分</a>
-                    </li>
-                    <li class="list-group-item">
-                      <a href="#" class="link text-ellipsis">深入了解 Bootstrap 底层结构的关键部分</a>
-                    </li> 
-                    <li class="list-group-item">
-                      <a href="#" class="link text-ellipsis">深入了解 Bootstrap 底层结构的关键部分</a>
-                    </li> 
-                    <li class="list-group-item">
-                      <a href="#" class="link text-ellipsis">深入了解 Bootstrap 底层结构的关键部分</a>
-                    </li> 
-                    <li class="list-group-item">
-                      <a href="#" class="link text-ellipsis">深入了解 Bootstrap 底层结构的关键部分</a>
-                    </li>                                                                    
+                    {% endfor %}
                   </ul>
                 </div>
               </div>
@@ -144,7 +139,7 @@
                   <h3 class="panel-title">关注我</h3>
                 </div>
                 <div class="panel-body">
-                  <img src="image/Wechat.jpeg" class="wechat-img" alt="">
+                  <img src="/image/Wechat.jpeg" class="wechat-img" alt="">
                 </div>
               </div> 
           </div><!--主内容右边-->
@@ -154,8 +149,9 @@
     <footer>
       <p>Blog Design by <a href="#">Kuazhu</a> <a href="#">豫ICP备11002373号-1</a>.</p>
     </footer>
-    <script src="lib/jquery/jquery-1.12.4.js"></script>
-    <script src="lib/bootstrap/js/bootstrap.js"></script>
-    <script src="js/index.js"></script>
+    <script src="/lib/jquery/jquery-1.12.4.js"></script>
+    <script src="/lib/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/js/moment.js"></script>
+    <script src="/js/index.js"></script>
   </body>
 </html>

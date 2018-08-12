@@ -19,13 +19,7 @@ bookRouter.use((req,res,next)=>{
 
 bookRouter
     .get('/',(req,res)=>{
-    	pagination({
-
-            page:req.query.page,
-            model:article,
-            query:{},
-            populate:[{path:'category',select:'name'},{path:'user',select:'username'}]
-        })
+    	article.findPagination(req)
         .then((data)=>{
             res.render('admin/article',{
                 name:req.userInfo,

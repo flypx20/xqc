@@ -3,6 +3,9 @@ function pagination(options){
 
     return new Promise((resolve,reject)=>{
          let page = options.page || 1;
+         if(parseInt(page) <= 0){
+            page = 1;
+        }
         
         options.model.estimatedDocumentCount({})
         .then((count)=>{
@@ -10,10 +13,8 @@ function pagination(options){
             let list = [];
             let limit = 2;
             let pages = Math.ceil(count / limit);
-            if ( parseInt(page) === 0) {
+            if(parseInt(page) > pages){
                 page = pages;
-            }else if(parseInt(page) === (pages+1)){
-                page = 1;
             }
             for (var i = 1; i <= pages; i++) {
                 list.push(i);
