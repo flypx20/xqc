@@ -1,5 +1,23 @@
 {% extends './layout.html' %}
-{% block title %}飞猪飞{% endblock %}
+{% block title %}
+
+<div class="wrapper">
+<svg width="100%" height="100">
+    <text text-anchor="middle" x="50%" y="50%" class="text text-1">
+       飞猪飞
+    </text>
+    <text text-anchor="middle" x="50%" y="50%" class="text text-2">
+        飞猪飞
+    </text>
+    <text text-anchor="middle" x="50%" y="50%" class="text text-3">
+        飞猪飞
+    </text>
+    <text text-anchor="middle" x="50%" y="50%" class="text text-4">
+        飞猪飞
+    </text>
+</svg> 
+</div>
+{% endblock %}
 {% block content %} 
 {% if cate %}
 <input type="hidden" value="{{ cate }}" id='cate-id'>
@@ -58,8 +76,8 @@
 </div>                   
 <!--热门文章列表分页-->
     {% if articleList %}
-      <nav aria-label="Page navigation">
-        <ul class="pagination" id="page">
+      <nav aria-label="Page navigation" data-category="{{ cate }}" data-url="/articles" id="articleList">
+        <ul class="pagination" id="page" >
           <li>
             <a href="javascript:;" aria-label="Previous" id="previous">
               <span aria-hidden="true">&laquo;</span>

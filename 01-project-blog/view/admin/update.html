@@ -1,0 +1,47 @@
+   {% extends './layout.html' %}
+{% block title %}
+<div class="wrapper">
+<svg width="100%" height="100">
+    <text text-anchor="middle" x="50%" y="50%" class="text text-1">
+       飞猪飞
+    </text>
+    <text text-anchor="middle" x="50%" y="50%" class="text text-2">
+        飞猪飞
+    </text>
+    <text text-anchor="middle" x="50%" y="50%" class="text text-3">
+        飞猪飞
+    </text>
+    <text text-anchor="middle" x="50%" y="50%" class="text text-4">
+        飞猪飞
+    </text>
+</svg> 
+</div>
+{% endblock %}
+{% block content1 %} <li ><a href="/admin/userlist">用户列表<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content3 %}<li ><a href="/category">分类列表<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content4 %}<li ><a href="/article">文章列表<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content5 %} <li><a href="/comment">评论列表<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content6 %} <li><a href="/resource">资源管理<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content7 %} <li><a href="/admin/site">站点管理<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content8 %} <li class="active"><a href="/admin/password">修改密码<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content2 %} 
+<h1 class="page-header">飞猪飞的管理中心</h1>
+<div id="updatepassword">
+<div class="form-group">
+  <label for="exampleInputEmail1">用户名</label>
+  <input type="email" class="form-control" placeholder="请输入用户名" name="userrename" id="rename">
+</div>
+<div class="form-group">
+  <label for="exampleInputPassword1">请输入原密码</label>
+  <input type="password" class="form-control" placeholder="请输入原密码" name="oldpassword" id="oldpassword">
+</div>
+ <div class="form-group">
+  <label for="exampleInputPassword1">请输入新密码</label>
+  <input type="password" class="form-control" placeholder="请输入新密码" name="newpassword" id="newpassword">
+</div>
+<a class="btn btn-primary" href="javascript:;" id="sub-repass">提交修改</a>
+</div> 
+<p class="text-danger"></p>
+{% endblock %}
+
+   

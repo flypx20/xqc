@@ -1,0 +1,58 @@
+{% extends './layout.html' %}
+{% block title %}飞猪飞的粉丝{% endblock %}
+{% block content1 %} <li ><a href="/admin/userlist">用户列表<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content3 %}<li ><a href="/category">分类列表<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content4 %} <li ><a href="/article">文章列表<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content5 %} <li class="active"><a href="/comment">评论列表<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content6 %} <li><a href="/resource">资源管理<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content7 %} <li><a href="/admin/site">站点管理<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content8 %} <li><a href="/admin/password">修改密码<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content2 %}
+<h2 class="sub-header">粉丝评论列表</h2>
+<div class="table-responsive">
+<table class="table table-striped" style="fixed">
+  <thead>
+    <tr>
+      <th>粉丝</th>
+      <th>内容</th>
+      <th>编辑</th>
+    </tr>
+  </thead>
+  {% for comment in commentList %}
+  <tbody>
+    <tr>
+      <td>{{ comment.user.username }}</td>
+      <td>{{ comment.content }}</td>
+      <td>
+  		<a href="/commend/delete/{{ comment._id.toString() }}">删除</a>
+		  </td>
+    </tr>
+  </tbody>
+ {% endfor %}
+</table>
+{% if pages %}
+<nav aria-label="Page navigation">
+	<ul class="pagination">
+		<li>
+		  <a href="/comment?page={{ page-1 }}" aria-label="Previous">
+		    <span aria-hidden="true">&laquo;</span>
+		  </a>
+
+		</li>
+		{% for i in list %}
+		{% if page == i %}
+		<li><a href="javascript:;" class="btn btn-primary active">{{ i }}</a></li>
+		{% else %}
+		<li><a href="/comment?page={{ i }}" >{{ i }}</a></li>
+		{% endif %}
+		{% endfor %}
+		<li>
+		  <a href="/comment?page={{ page+1 }}" aria-label="Next">
+		    <span aria-hidden="true">&raquo;</span>
+		  </a>
+		</li>
+	</ul>
+</nav>
+{% endif %}
+</div>
+{% endblock %}

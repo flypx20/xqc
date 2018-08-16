@@ -13,6 +13,8 @@ const blogs = require('./router/index.js');
 const admin = require('./router/admin.js');
 const category  = require('./router/category.js');
 const article  = require('./router/article.js');
+const Comment = require('./router/comment.js');
+const people = require('./router/home.js');
 
 
 const mongoose = require('mongoose');
@@ -84,13 +86,16 @@ app.use((req,res,next)=>{
 
 //处理post请求的中间件
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.use(bodyParser.json());
+
+app.use('/home',people);
+
 app.use('/admin',admin);
 app.use('/user',users);
 app.use('/',blogs);
 app.use('/category',category);
 app.use('/article',article);
+app.use('/commend',Comment);
 
 
 

@@ -3,13 +3,6 @@ var bookRouter = express.Router();
 const swig = require('swig');
 const category = require('../model/category.js');
 const pagination = require('../model/pagination.js');
-bookRouter.use((req,res,next)=>{
-	if(req.userInfo.isAdmin){
-		next();
-	}else{
-		res.send('<h1>请用管理员账号登录</h1>');
-	}
-});
 
 
    bookRouter.get('/',(req,res)=>{

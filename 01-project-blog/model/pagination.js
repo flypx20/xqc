@@ -3,21 +3,23 @@ function pagination(options){
 
     return new Promise((resolve,reject)=>{
          let page = options.page || 1;
-         if(parseInt(page) <= 0){
-            page = 1;
-        }
         
+       
         options.model.countDocuments(options.query)
         .then((count)=>{
             let list = [];
             let limit = 2;
             let pages = Math.ceil(count / limit);
-            if(parseInt(page) > pages){
+             if(parseInt(page) > pages){
                 page = pages;
             }
+             if(parseInt(page) <= 0){
+            page = 1;
+        }
             for (var i = 1; i <= pages; i++) {
                 list.push(i);
             }
+
             let skip = (page -1)*limit;
              
             
@@ -27,7 +29,7 @@ function pagination(options){
                     que =  que.populate(options.populate[i]);
                 }
            }
-            
+
             que.sort(options.sort)
             .limit(limit)
             .skip(skip)
@@ -35,7 +37,8 @@ function pagination(options){
                  resolve({
                     docs:user,
                     page:page*1,
-                    list:list
+                    list:list,
+                    pages:pages
                });
             });
         });

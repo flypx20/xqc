@@ -3,10 +3,32 @@ var bookRouter = express.Router();
 const swig = require('swig');
 const category = require('../model/category.js');
 const article = require('../model/article.js');
+const comment = require('../model/comment.js');
 const pagination = require('../model/pagination.js');
+const resource = require('../model/resource.js');
+
+const path = require('path');
+const fs = require('fs');
+
+
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'static/resource/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now()+path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ storage: storage });
+
 
 //显示首页
 bookRouter
+//权限控制
+ 
     .get('/',(req,res)=>{
     	category.find({},'_id name')
 		.then((categories)=>{
@@ -16,15 +38,19 @@ bookRouter
             .then((topArticles)=>{
                article.findPagination(req)
                 .then((data)=>{
-                    res.render('index',{
-                        userInfo:req.userInfo,
-                        articleList:data.docs,
-                        page:data.page,
-                        list:data.list,
-                        pages:data.pages,
-                        categories:categories,
-                        topArticles:topArticles
+                  
+                        res.render('index',{
+                            userInfo:req.userInfo,
+                            articleList:data.docs,
+                            page:data.page,
+                            list:data.list,
+                            pages:data.pages,
+                            categories:categories,
+                            topArticles:topArticles,
+                           
+                       
                     });
+                    
                 });
             }); 
         });
@@ -68,7 +94,8 @@ bookRouter
 				userInfo:req.userInfo,
 	            articleList:data.docs,
 	            page:data.page,
-	            list:data.list
+	            list:data.list,
+                pages:data.pages
         	});
 			
 		});
@@ -88,19 +115,101 @@ bookRouter
                 article.findById(id)
                 .populate({path:'category',select:'name'})
                 .then((article)=>{
-                    res.render('detail',{
-                        userInfo:req.userInfo,
-                        article:article,
-                        categories:categories,
-                        topArticles:topArticles,
-                        cate:article.category._id.toString()
-                    });
+                    comment.findPagination(req,{article:id})
+                    .then(data=>{
+                       res.render('detail',{
+                            userInfo:req.userInfo,
+                            comment:data.docs,
+                            article:article,
+                            categories:categories,
+                            topArticles:topArticles,
+                            cate:article.category._id.toString(),
+                            list:data.list,
+                            page:data.page,
+                            pages:data.pages
+                       });
+                    });                   
                 });
                     
             }); 
         });
         });
 
+    })
+    .get('/comment',(req,res)=>{
+        comment.findPagination(req)
+        .then(data=>{
+           res.render('admin/comment',{
+                name:req.userInfo,
+                commentList:data.docs,
+                list:data.list,
+                page:data.page,
+                pages:data.pages
+           });
+        });
+    })
+    .get('/resource',(req,res)=>{
+        resource.findPagination(req)
+        .then(data=>{
+            res.render('admin/resource_list',{
+                name:req.userInfo,
+                resources:data.docs,
+                page:data.page,
+                pages:data.pages,
+                list:data.list
+            });
+        });
+        
+    })
+    .get('/resource/add',(req,res)=>{
+        res.render('admin/resource_add.html',{
+            name:req.userInfo,
+        });
+    })
+    .post('/resource/add',upload.single('file'),(req,res)=>{
+        new resource({
+            name:req.body.name,
+            path:'/resource/'+req.file.filename
+        })
+        .save()
+        .then(resource=>{
+            res.render('admin/success',{
+                name:req.userInfo,
+                message:'添加资源成功',
+                url:'资源管理'
+            });          
+         });
+    })
+    .get('/resource/delete/:id',(req,res)=>{
+        let id = req.params.id;
+        console.log(id);
+        resource.findByIdAndRemove(id)
+        .then(doc=>{
+            let filePath = path.normalize(__dirname+'/../static/'+doc.path);
+            fs.unlink(filePath,err=>{
+                if(!err){
+                    res.render('admin/success',{
+                        name:req.userInfo,
+                        message:'删除资源成功',
+                        url:'资源管理'
+                    });                  
+                }else{
+                    res.render('admin/error',{
+                        name:req.userInfo,
+                        message:'删除资源失败,删除文件错误',
+                        url:'资源管理'
+                    });                  
+                }
+            });
+           
+        })
+        .catch(e=>{
+            res.render('admin/error',{
+                name:req.userInfo,
+                message:'删除资源失败,删除文件错误',
+                url:'资源管理'
+            });          
+         });
     });
     
 

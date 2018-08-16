@@ -1,0 +1,25 @@
+{% extends './layout.html' %}
+{% block title %}
+<div class="wrapper">
+<svg width="100%" height="100">
+    <text text-anchor="middle" x="50%" y="50%" class="text text-1">
+       飞猪飞
+    </text>
+    <text text-anchor="middle" x="50%" y="50%" class="text text-2">
+        飞猪飞
+    </text>
+    <text text-anchor="middle" x="50%" y="50%" class="text text-3">
+        飞猪飞
+    </text>
+    <text text-anchor="middle" x="50%" y="50%" class="text text-4">
+        飞猪飞
+    </text>
+</svg> 
+</div>{% endblock %}
+{% block content5 %} <li><a href="/comment">评论列表<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content8 %} <li><a href="/admin/password">修改密码<span class="sr-only">(current)</span></a></li>{% endblock %}
+{% block content2 %}
+	<h2 class="sub-header">{{ title }}</h2>
+	<div class="alert alert-success" role="alert" class="link">{{ message }}</div>
+	<a href="{{ url }}" class="link">点击跳转</a>
+{% endblock %}

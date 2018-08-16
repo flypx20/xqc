@@ -8,13 +8,24 @@
 	var useInfer = $('#userloged');
 	var logOut = $('#logout');
 	var admin = $('.admin');
+	var updatePass = $('#updatepassword');
+	var goUpdatePass = $('.go-updatePass');
+	var subUpdate = $('#sub-repass');
 	goLogin.on('click',function(event) {
 		register.hide();
+		updatePass.hide();
 		login.show();
 	});
 	goRegister.on('click',function(event) {
 		login.hide();
+		updatePass.hide();
 		register.show();
+	});
+	goUpdatePass.on('click', function(event) {
+		register.hide();
+		login.hide();
+		updatePass.show();
+
 	});
 
 	//注册
@@ -100,7 +111,6 @@
 				}
 			})
 			.done(function(result) {
-				console.log(result);
 				if (result.code === 0) {
 					$('.text-danger').html(result.message);
 				}else{
@@ -115,7 +125,7 @@
 			});
 		}
 	});
-
+	
 	logOut.on('click',function(event) {
 		$.ajax({
 				url: '/user/logout',
@@ -135,36 +145,42 @@
 				console.log("complete");
 			});
 	});
-	var  pagination = $('.pagination');
+	var  pagination = $('#articleList');
 	var article = $('#articles');
-	pagination.on('click', 'a', function(event) {
-		var $this = $(this);
-		var page = 1;
-		var currentPage = pagination.find('.active a').html();
-		console.log(currentPage);
-		if ($this.attr('aria-label') == 'Previous') {
-			page = currentPage - 1;
-		}else if ($this.attr('aria-label') == 'Next') {
-			page = currentPage*1 +1;
-		}else{
-			page = $this.html();
+	pagination.on('get-data',function(event,result) {
+		bulidArticle(result.articleList);
+		console.log(result.paegs);
+		if (result.pages>1) {
+			buildList(pagination,result.list,result.page);
 		}
-		var query = 'page='+page;
-		var category = $('#cate-id').val();
-		console.log(category);
-		if (category) {
-			query += '&category='+category;
+	});
+	pagination.pagination();
+
+	var subCom = $('#comment-btn');
+	
+	var err = $('#com-err');
+	subCom.on('click',function(event) {
+		var articleId = $('#article-id').val();
+		var comment = $('#comment-content').val();
+		if (comment.trim() == '') {
+			err.html('评论不能为空');
+			return false;
 		}
 		$.ajax({
-			url: '/articles?'+query,
-			type: 'GET',
+			url: '/commend/add',
+			type: 'POST',
 			dataType: 'json',
+			data:{id:articleId,content:comment}
 		})
 		.done(function(result) {
 			if (result.code == 0) {
-				bulidArticle(result.articleList);
-				buildList(result.list,result.page);
+				if (result.pages>1) {
+					buildList(commentPage,result.list,result.page);
+				}
+				buildComment(result.data);
+				 $('#comment-content').val('');
 			}
+			
 		})
 		.fail(function() {
 			console.log("error");
@@ -172,7 +188,7 @@
 		.always(function() {
 			console.log("complete");
 		});
-		
+
 	});
 
 	function bulidArticle(articles){
@@ -200,7 +216,8 @@
 		}
 		article.html(html);
 	}
-	function buildList(list,page){
+
+	function buildList($page,list,page){
 		var html = `<li>
             			<a href="javascript:;" aria-label="Previous" id="previous">
               				<span aria-hidden="true">&laquo;</span>
@@ -210,7 +227,7 @@
 	    	if(list[i] == page){
 	    		html += `<li class="active"><a href="javascript:;" class="btn btn-primary">${list[i]}</a></li>`;
 	    	}else{
-	    		html += `<li><a href="javascript:;">${list[i]}</a></li>`;
+	    		html += `<li><a href="javascript:;">${ list[i] }</a></li>`;
 	    	}
 	    }
 	    html+=`<li>
@@ -218,6 +235,30 @@
 	              <span aria-hidden="true">&raquo;</span>
 	            </a>
          		</li>`;
-        $('#page').html(html);
+        $page.find('.pagination').html(html);
 	}
+	
+	function buildComment(comment){
+		var html = '';
+		var commentList= $('#comment-list');
+		for (var i = 0; i < comment.length; i++) {
+			var date = moment(comment[i].createdAt).format('YYYY年MM月DD日 h:mm:ss ');
+			html += `<div class="panel panel-default">
+    					<div class="panel-heading"><span style="color:#f00;font-weight: bold;">${ comment[i].user.username } &nbsp;</span>于<span style="color:skyblue">${ date } &nbsp;</span>评论</div>
+   						<div class="panel-body">
+     					 ${ comment[i].content }
+    					</div>
+ 					</div>`;
+		}
+		commentList.html(html);
+	}
+	
+var commentPage = $('#commentPage');
+commentPage.on('get-data',function(event,result) {
+	if (result.pages>1) {
+		buildList(commentPage,result.list,result.page);
+	}
+	buildComment(result.data);
+});
+commentPage.pagination();
 })(jQuery);

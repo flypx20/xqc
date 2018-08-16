@@ -56,7 +56,7 @@
                 {% if userInfo.isAdmin %}
                 <p><a href="/admin" class="link admin">点击进入管理中心</a></p>
                 {% else %}
-                 <p><a href="/users" class="link users">点击进入用户中心</a></p>
+                 <p><a href="/home" class="link users">点击进入用户中心</a></p>
                  {% endif %}
                 <a href="javascript:;" id="logout">退出</a>
               </div>
@@ -72,7 +72,9 @@
                 </div>
                 <a class="btn btn-primary" href="javascript:;" id="sub-login">登录</a>
                 <a href="javascript:;" class="link go-register">免费注册</a>
+                <a href="javascript:;" class="link go-updatePass">修改密码</a>
               </div>
+            
               <div id="register" class="usecom">
                 <div class="form-group">
                   <label for="exampleInputEmail1">用户名</label>
@@ -152,6 +154,7 @@
     <script src="/lib/jquery/jquery-1.12.4.js"></script>
     <script src="/lib/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="/js/moment.js"></script>
+    <script type="text/javascript" src="/js/pagination.js"></script>
     <script src="/js/index.js"></script>
   </body>
 </html>

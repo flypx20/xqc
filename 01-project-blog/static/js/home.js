@@ -2,8 +2,9 @@
 	var backTlogin = $('#backLogin');
 	var subUpdate = $('#sub-repass');
 	backTlogin.on('click',function(event) {
+		console.log('aaas');
 		$.ajax({
-				url: '/admin/logout',
+				url: '/home/logout',
 				type: 'GET',
 				dataType: 'json',
 			})
@@ -48,7 +49,7 @@
 		 }
 		else{
 			$.ajax({
-				url: '/admin/password',
+				url: '/home/password',
 				type: 'POST',
 				dataType: 'json',
 				data: {

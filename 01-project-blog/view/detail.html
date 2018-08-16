@@ -17,13 +17,54 @@
                 <p class="content">{{ article.content | safe }}</p>  
               </div>
             </div> 
-  <form class="form-inline">
-    <div class="form-group">
-      <label class="sr-only" for="exampleInputAmount">喜欢就来评论吧</label>
-      <div class="input-group ">
-        <input type="text" class="form-control commend" id="comment" placeholder="喜欢就来评论吧">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="input-group">
+        <textarea id="comment-content" cols="30" rows="3" class="form-control" placeholder="喜欢就发表评论吧"></textarea>
+          <span class="input-group-btn">
+          <input type="hidden" value="{{ article._id.toString() }}" id="article-id"
+          >
+          <button href="javascript:;" class="btn btn-primary" type="button" id='comment-btn'>发表</button>
+        </span>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">点击评论</button>
-</form>
+  </div>
+<p class="text-danger err" id="com-err"></p>
+<div id="comment-list">
+  {% for comment in comment %}
+ <div class="panel panel-default">
+    <div class="panel-heading"><span style="color:#f00;font-weight: bold;">{{ comment.user.username }} &nbsp;</span>于<span style="color:skyblue">{{ comment.createdAt | date('Y年m月d日 H:i:s',-8*60) }} &nbsp;</span>评论</div>
+    <div class="panel-body">
+     {{ comment.content }}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<nav aria-label="Page navigation" data-category="{{ article._id.toString() }}" id="commentPage" data-url="/commend/list">
+  
+  <ul class="pagination" >
+    {% if pages > 1 %}
+    <li>
+      <a href="javascript:;" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {% for i in list %}
+    {% if page == i %}
+    <li class="active"><a href="javascript:;" class="btn btn-primary">{{ i }}</a></li>
+    {% else %}
+    <li><a href="javascript:;" >{{ i }}</a></li>
+    {% endif %}
+    {% endfor %}
+    <li>
+      <a href="javascript:;" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  {% endif %}
+  </ul>
+</nav>
+
+
 {% endblock %}
