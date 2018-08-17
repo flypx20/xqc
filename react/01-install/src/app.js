@@ -1,4 +1,5 @@
 import React,{Component,Fragment} from 'react';
+import Son from './son';
 
 //定义组件
 //必须继承React.Component
@@ -9,20 +10,48 @@ class App extends Component{
 			value:'',
 			list:['aaa','bbb']
 		};
+		this.handleEnter = this.handleEnter.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
+		this.handleAdd = this.handleAdd.bind(this);
 	}
 	handleEnter(e){
-		if (e.target.value.length >1) {
-			this.setState({
-				value:e.target.value
-			});
-		}
+		const value  = e.target.value;
+		this.setState((preState)=>({
+			value
+		}));
 		
 	}
 	handleAdd(e){
-		this.setState({
-			list:[...this.state.list,this.state.value],
+		this.setState((preState)=>({
+			list:[...preState.list,preState.value],
 			value:''
+		}));
+	}
+
+	handleDelete(index){
+
+		/*const list = [...this.state.list];
+		list.splice(index,1);*/
+		this.setState((preState)=>{
+			const list = [...this.state.list];
+			list.splice(index,1);
+			return {
+					list
+				};
 		});
+
+	}
+	getSon(){
+		return this.state.list.map((index,value) => {
+					return (
+						<Son 
+							key={value} 
+							content={index} 
+							index = {value}
+							handleDelete = {this.handleDelete} 
+						/>
+					);
+				})
 	}
 
 	//必须有一个render方法
@@ -30,13 +59,11 @@ class App extends Component{
 		//只能返回一个标签
 		return(
 			<div>
-				<input value = {this.state.value} onChange = { this.handleEnter.bind(this) } />
-				<button onClick = {this.handleAdd.bind(this)}>新增</button>
+				<input value = {this.state.value} onChange = { this.handleEnter } />
+				<button onClick = {this.handleAdd}>新增</button>
 				<ul>
 					{
-						this.state.list.map((index,value) => {
-							return (<li key={value}>{index}</li>);
-						})
+						this.getSon()
 					}
 				</ul>
 			</div>
