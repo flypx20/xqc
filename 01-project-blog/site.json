@@ -1,18 +1,1 @@
-{
-	"name":"飞猪飞",
-	"author":{
-		"name":"Leo","intro":"80后草根！07年入行。一直潜心研究web技术，一边工作一边积累经验，分享一些个人心得。!!",
-		"image":"/resource/1534212439270.jpg",
-		"wechat":"/resource/1534212462189.jpeg"},
-	"icp":"豫ICP备11002373号-1.",
-	"carouseles":
-	[
-		{"url":"http://www.baidu.com","path":"/resource/1534212345433.jpg"},
-		{"url":"http://www.taobao.com","path":"/resource/1534212327410.jpg"}
-	],
-	"ads":
-	[
-		{"url":"http://www.baidu.com","path":"/resource/1534212415763.jpg"},
-		{"url":"http://www.taobao.com","path":"/resource/1534212371108.jpg"}
-	]
-}
+{"name":"飞猪飞","author":{"name":"飞猪飞","intro":"加油在哪里摔倒就在哪里躺下休息","image":"/resource/1534337796392.jpg","wechat":"/resource/1534337796392.jpg"},"icp":"豫ICP备11002373号-1.","carouseles":[{"url":"http://www.baidu.com","path":"/resource/1534337758527.jpg"},{"url":"http://www.baidu.com","path":"/resource/1534337736373.jpg"}],"ads":[{"url":"http://www.baidu.com","path":"/resource/1534338051025.jpg"},{"url":"http://www.taobao.com","path":"/resource/1534338030539.jpeg"}]}

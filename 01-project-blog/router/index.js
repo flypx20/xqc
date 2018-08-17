@@ -9,6 +9,7 @@ const resource = require('../model/resource.js');
 
 const path = require('path');
 const fs = require('fs');
+ let filePath = path.normalize(__dirname+'/../site.json');
 
 
 const multer = require('multer');
@@ -30,6 +31,7 @@ bookRouter
 //权限控制
  
     .get('/',(req,res)=>{
+       
     	category.find({},'_id name')
 		.then((categories)=>{
             article.find({})
@@ -38,7 +40,9 @@ bookRouter
             .then((topArticles)=>{
                article.findPagination(req)
                 .then((data)=>{
-                  
+                  fs.readFile(filePath,(err,result)=>{
+                    if (!err) {
+                         let site = JSON.parse(result);
                         res.render('index',{
                             userInfo:req.userInfo,
                             articleList:data.docs,
@@ -47,9 +51,11 @@ bookRouter
                             pages:data.pages,
                             categories:categories,
                             topArticles:topArticles,
-                           
-                       
-                    });
+                            site:site
+                         });
+                    }
+                  });
+                        
                     
                 });
             }); 
@@ -66,7 +72,10 @@ bookRouter
             .then((topArticles)=>{
                article.findPagination(req,{category:id})
                 .then((data)=>{
-                    res.render('index',{
+                    fs.readFile(filePath,(err,result)=>{
+                     if (!err) {
+                        let site = JSON.parse(result);
+                        res.render('index',{
                         userInfo:req.userInfo,
                         articleList:data.docs,
                         page:data.page,
@@ -74,8 +83,12 @@ bookRouter
                         pages:data.pages,
                         categories:categories,
                         topArticles:topArticles,
-                        cate:id
+                        cate:id,
+                        site:site
                     });
+                     }
+                 });
+                    
                 });
             }); 
         });
@@ -117,17 +130,24 @@ bookRouter
                 .then((article)=>{
                     comment.findPagination(req,{article:id})
                     .then(data=>{
-                       res.render('detail',{
-                            userInfo:req.userInfo,
-                            comment:data.docs,
-                            article:article,
-                            categories:categories,
-                            topArticles:topArticles,
-                            cate:article.category._id.toString(),
-                            list:data.list,
-                            page:data.page,
-                            pages:data.pages
-                       });
+                        fs.readFile(filePath,(err,result)=>{
+                            let site = JSON.parse(result);
+                            if (!err) {
+                                 res.render('detail',{
+                                userInfo:req.userInfo,
+                                comment:data.docs,
+                                article:article,
+                                categories:categories,
+                                topArticles:topArticles,
+                                cate:article.category._id.toString(),
+                                list:data.list,
+                                page:data.page,
+                                pages:data.pages,
+                                site:site
+                            });
+                            }
+                        });
+                      
                     });                   
                 });
                     

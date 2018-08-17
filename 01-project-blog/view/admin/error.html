@@ -8,7 +8,7 @@
 {% block content7 %} <li><a href="/admin/site">站点管理<span class="sr-only">(current)</span></a></li>{% endblock %}
 {% block content8 %} <li><a href="/admin/password">修改密码<span class="sr-only">(current)</span></a></li>{% endblock %}
 {% block content2 %}
-	<h2 class="sub-header">{{ url }}</h2>
+	<h2 class="sub-header">{{ title }}</h2>
 	<div class="alert alert-danger" role="alert">{{ message }}</div>
-	<a href="/article">点击返回</a>
+	<a href="{{ url }}">点击返回</a>
 {% endblock %}
