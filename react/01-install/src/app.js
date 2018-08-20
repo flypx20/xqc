@@ -14,6 +14,24 @@ class App extends Component{
 		this.handleDelete = this.handleDelete.bind(this);
 		this.handleAdd = this.handleAdd.bind(this);
 	}
+	componentDidMount() {
+    fetch("http://127.0.0.1:3000/api/dataPage")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            items: result.items
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
+  }
 	handleEnter(e){
 		const value  = e.target.value;
 		this.setState((preState)=>({
@@ -45,6 +63,7 @@ class App extends Component{
 		return this.state.list.map((index,value) => {
 					return (
 						<Son 
+						//如果不传值会被认为Boolean
 							key={value} 
 							content={index} 
 							index = {value}
