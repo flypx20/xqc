@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 //导出配置
 module.exports = {
 	//模式
-	mode:'production',
+	mode:'development',
 	//指定入口文件
 	entry:'./src/index.js',	
 	//指定出口

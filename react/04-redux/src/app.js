@@ -5,6 +5,9 @@ import { Input,Button,Row,Col,List } from 'antd';
 //引入css
 import './style.css';
 import store from './store';
+import { changeAction,addAction,deleteAction,loadateAction,getInitData } from './actions.js';
+import UI from './ui.js';
+import axios from 'axios';
 
 
 
@@ -17,60 +20,57 @@ class App extends Component{
 		store.subscribe(()=>{
 			this.setState(store.getState());
 		});
-		this.onChange = this.onChange.bind(this);
-		this.handleAdd = this.handleAdd.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.handleAdd    = this.handleAdd.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
 	}
-	onChange(e){
-		const action = {
-			type:'change',
+	componentDidMount(){
+		//发送ajax请求
+		/*axios
+		.get('http://127.0.0.1:3000')
+		.then((data)=>{
+			const action = loadateAction(data.data);
+			store.dispatch(action);
+		})
+		.catch((e)=>{
+			console.log('err:::',e);
+		});*/
+		const action = getInitData();
+		store.dispatch(action);
+	}
+	handleChange(e){
+		/*const action = {
+			type:CHANGE,
 			payload:e.target.value
-		};
+		};*/
+		const action = changeAction(e.target.value);
 		store.dispatch(action);
 	}
 	handleAdd(){
-		const action = {
-			type:'add',
-		};
+		/*const action = {
+			type:ADD,
+		};*/
+		const action = addAction();
 		store.dispatch(action);
 	}
 	handleDelete(index){
-		const action = {
-			type:'delete',
+		/*const action = {
+			type:DELETE,
 			payload:index
-		};
+		};*/
+		const action = deleteAction(index);
 		store.dispatch(action);
 	}
 	render(){
 		//return 只能返回一个
 		return(
-			<div className="App">
-			    <Row>
-			      <Col span={18} >
-				      <Input 
-				      	value = {this.state.value} 
-				      	onChange = {this.onChange} 
-				      /> 
-			      </Col>
-			      <Col span={6} >
-			      	<Button type="primary"
-			      		onClick = {this.handleAdd}
-			      	>
-			      		增加
-			      	</Button>
-			      </Col>
-			    </Row>
-			    <List
-			      style={{ marginTop: 10 }}
-			      bordered
-			      dataSource={this.state.list}
-			      renderItem={(item,index) => 
-			      	(<List.Item
-				      	 onClick = {this.handleDelete.bind(this,index)}
-				      	 >
-				      	 {item}
-			      	 </List.Item>)}
-			    />			    			
-			</div>				
+			<UI 
+				value        = {this.state.value}
+				handleChange = {this.handleChange}
+				handleAdd    = {this.handleAdd}
+				list         = {this.state.list}
+				handleDelete = {this.handleDelete}
+			/>
 		)
 	}
 }
