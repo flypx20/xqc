@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03-左右固定中间自适应布局.html</title>
+	<style type="text/css">
+		body{
+			display: flex;
+			flex-direction: row;
+
+			justify-content:space-between;
+		}
+		.left{
+			width:200px;
+			height:200px;
+			background-color: orange;
+			display: flex;
+		}		
+		.center{
+			height:200px;			
+			background-color: yellow;
+			flex:auto;
+		}		
+		.right{					
+			width:200px;
+			height:200px;
+			background-color: gold;
+		}
+	</style>
+</head>
+<body>
+	<div class="left"></div>
+	<div class="center"></div>
+	<div class="right"></div>
+</body>
+</html>
