@@ -1,0 +1,19 @@
+<view class="article-detail">
+  <view class='article-detail-img'>
+    <image class='article-detail-img-main' src='{{image}}'></image>
+    <image class='article-detail-img-music' src='{{isPlayingMusic ? "../../../images/icon/pause.png" : "../../../images/icon/music.png"}}' catchtap='tapMusic'></image>
+  </view>
+  <view class='article-detail-head'>
+    <image class='article-detail-head-avatar' src='{{avatar}}'></image>
+    <text class='article-detail-head-name'>{{author}}</text>
+    <text class='article-detail-head-text'>发表于</text>
+    <text class='article-detail-head-time'>{{time}}</text>
+  </view>
+  <text class='article-detail-title'>{{title}}</text>
+  <view class='article-detail-opreation'>
+    <image class='article-detail-opreation-img collect' src='../../../images/icon/collection-later.jpg' wx:if="{{currentIsCollected}}" catchtap='tapCollection'></image>
+    <image class='article-detail-opreation-img collect' src='../../../images/icon/collection-before.jpg' wx:else catchtap='tapCollection'></image>
+    <image class='article-detail-opreation-img share' src='../../../images/icon/share.jpg' catchtap='tapShare'></image>
+  </view>
+  <text class='article-detail-desc'>{{content}}</text>
+</view>

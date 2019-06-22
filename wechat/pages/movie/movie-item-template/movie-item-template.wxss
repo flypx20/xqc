@@ -1,0 +1,22 @@
+@import "../star-template/star-template.wxss";
+.movie-item-box{
+  display: flex;
+  flex-direction: column;
+  margin-right: 40rpx;
+  width: 200rpx;
+  float: left;
+}
+.cover-img{
+  width: 200rpx;
+  height: 300rpx;
+}
+.title{
+  font-size: 32rpx;
+  width: 200rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-top: 20rpx;
+}

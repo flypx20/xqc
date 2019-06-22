@@ -1,0 +1,18 @@
+.start-box{
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.star-img{
+  width: 24rpx;
+  display: flex;
+  flex-direction: column;
+  height: 28rpx;
+  float: left;
+  vertical-align: middle;
+  margin-top: 15rpx;
+}
+.score{
+  font-size: 30rpx;
+  vertical-align: middle;
+  margin-left: 10rpx;
+}

@@ -1,0 +1,16 @@
+@import "../movie-item-template/movie-item-template.wxss";
+
+.movie-list-box{
+  flex-direction: column;
+  display: flex;
+  padding: 0 0 0 31rpx;
+  margin-bottom: 20rpx;
+}
+.movie-list-box .head{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-right: 31rpx;
+}

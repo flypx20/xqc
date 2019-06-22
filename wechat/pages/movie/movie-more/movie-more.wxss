@@ -1,0 +1,7 @@
+@import "../movie-item-template/movie-item-template.wxss";
+.more-list{
+  padding: 40rpx 0 0 31rpx;
+}
+.more-list .movie-item-box{
+  margin-bottom: 40rpx;
+}

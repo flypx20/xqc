@@ -1,0 +1,37 @@
+<import src="./article-item-template/article-item-template.wxml"/>
+<view class='container'>
+  <!-- <swiper indicator-dots='true' indicator-color='#fff' indicator-active-color='#f99' interval='2000' autoplay="true" circular="true" vertical="true"> -->
+  <swiper indicator-dots='true' indicator-color='#fff' indicator-active-color='#f99' interval='2000' autoplay="true">
+    <swiper-item>
+      <image src='/images/carousel/l-1.jpg'></image>
+    </swiper-item>
+    <swiper-item>
+      <image src='/images/carousel/l-2.jpg'></image>
+    </swiper-item>
+    <swiper-item>
+      <image src='/images/carousel/l-3.jpg'></image>
+    </swiper-item>
+  </swiper>
+  <view class='article-box'>
+    <block wx:for="{{articles}}" wx:for-item="article" wx:key="idx" wx-for="idx">
+      <!-- <view class='article-item'>
+        <view class='article-head'>
+          <image class='article-head-avatar' src='/images/avatar/avatar.jpg'></image>
+          <text class='article-head-time'>2018-09-20</text>
+        </view>
+        <text class='article-title'>标题</text>
+        <image class='article-image' src='/images/yyqx/1.jpg'></image>
+        <text class='article-description'>描述</text>
+        <view class='article-footer'>
+          <image class='article-footer-img' src='/images/icon/eye.jpg'></image>
+          <text class='article-footer-text'>看过</text>
+          <image class='article-footer-img' src='/images/icon/star.jpg'></image>
+          <text class='article-footer-text'>收藏</text>
+        </view>
+      </view> -->
+      <view catchtap="tapArticleItem" data-article-id="{{article.articleId}}">
+        <template is="articleItem" data="{{...article}}" />
+      </view>
+    </block>
+  </view>
+</view>

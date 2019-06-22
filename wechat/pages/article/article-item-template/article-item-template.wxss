@@ -1,0 +1,46 @@
+.article-item{
+  display: flex;
+  border-bottom: 2rpx solid #ddd;
+  flex-direction: column;
+}
+.article-head{
+  width: 100%;
+  height: 140rpx;
+  line-height: 140rpx;
+}
+.article-head-avatar{
+  width: 100rpx;
+  height: 100rpx;
+  float: left;
+  margin-top: 20rpx;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+.article-head-time{
+  margin-left: 10px;
+  vertical-align: middle;
+  font-size: 28rpx;
+}
+.article-title{
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-left: 10px;
+  font-size: 36rpx;
+  font-weight: 600;
+}
+.article-description{
+  margin-top: 20rpx;
+  margin-left: 10px;
+  font-size: 32rpx;
+}
+.article-footer{
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 32rpx;
+}
+.article-footer-img{
+  margin-left: 10px;
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 5px;
+}
